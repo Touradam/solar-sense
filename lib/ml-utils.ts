@@ -448,7 +448,7 @@ export function createModel(
   const model = tf.sequential();
 
   // Determine weight initializer based on activation
-  const getKernelInitializer = (activation: ActivationFunction): tf.initializers.Initializer => {
+  const getKernelInitializer = (activation: ActivationFunction): any => {
     switch (config.weightInit) {
       case 'heNormal':
         return tf.initializers.heNormal({});
@@ -558,19 +558,20 @@ export function createModel(
  */
 export function getOptimizer(config: NetworkConfig): tf.Optimizer {
   const lr = config.learningRate;
-  const clipValue = config.clipGradients ? config.clipValue : undefined;
+  // Note: Gradient clipping in TensorFlow.js is typically done via clipByValue or clipByNorm
+  // layers, or in custom training loops, not in the optimizer constructor
 
   switch (config.optimizer) {
     case 'sgd':
       return tf.train.sgd(lr);
     case 'adam':
-      return tf.train.adam(lr, undefined, undefined, undefined, clipValue);
+      return tf.train.adam(lr);
     case 'rmsprop':
-      return tf.train.rmsprop(lr, undefined, undefined, undefined, clipValue);
+      return tf.train.rmsprop(lr);
     case 'adadelta':
       return tf.train.adadelta(lr);
     case 'adamax':
-      return tf.train.adamax(lr, undefined, undefined, undefined, clipValue);
+      return tf.train.adamax(lr);
     default:
       return tf.train.adam(lr);
   }
