@@ -31,37 +31,35 @@ export function NetworkDiagram({
       </div>
 
       {/* Diagram Container */}
-      <div className="bg-gradient-to-br from-gray-900 to-gray-950 dark:from-black dark:to-gray-950 rounded-xl p-8 border border-gray-800">
-        <div className="relative w-full">
-          <Image
-            src="/neural-network-diagram.png"
-            alt="Neural Network Flow Diagram"
-            width={1200}
-            height={400}
-            className="w-full h-auto"
-            priority
-          />
-        </div>
+      <div className="relative w-full">
+        <Image
+          src="/neural-network-diagram.png"
+          alt="Neural Network Flow Diagram"
+          width={1200}
+          height={400}
+          className="w-full h-auto"
+          priority
+        />
+      </div>
 
-        {/* Legend */}
-        <div className="mt-6 pt-6 border-t border-gray-800">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-gray-400">
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-blue-500"></div>
-              <span>Input Layer</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-              <span>Hidden Layers</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-purple-500"></div>
-              <span>Output Layer</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-red-500"></div>
-              <span>Loss Function</span>
-            </div>
+      {/* Legend */}
+      <div className="mt-6 pt-6 border-t border-gray-300 dark:border-gray-700">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-xs text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-blue-500"></div>
+            <span>Input Layer</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
+            <span>Hidden Layers</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-purple-500"></div>
+            <span>Output Layer</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <div className="w-2 h-2 rounded-full bg-red-500"></div>
+            <span>Loss Function</span>
           </div>
         </div>
       </div>
