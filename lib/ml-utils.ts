@@ -661,7 +661,7 @@ export async function trainModel(
       monitor: 'val_loss',
       patience: config.patience,
       minDelta: config.minDelta,
-      restoreBestWeights: true,
+      // Note: restoreBestWeights is not supported in TensorFlow.js
     });
     
     // Merge callbacks
