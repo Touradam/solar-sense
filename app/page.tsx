@@ -148,7 +148,7 @@ export default function LandingPage() {
             <div className="relative">
               {/* Team Photo */}
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
-                <div className="relative aspect-[4/3]">
+                <div className="relative aspect-[3/4]">
                   <Image
                     src="/adamaJordan.jpg"
                     alt="Adama Toure and Jordan Harris-Toovy - SEPT Co-Founders"
