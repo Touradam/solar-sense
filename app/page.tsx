@@ -335,8 +335,9 @@ export default function NeuralNetworkBuilder() {
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between">
-            <div className="flex items-center gap-4">
+          <div className="flex h-14 items-center justify-between gap-4">
+            {/* Left: Logo */}
+            <div className="flex-shrink-0">
               <Image
                 src="/SEPT_logo_Transparent.png"
                 alt="SEPT Logo"
@@ -345,19 +346,23 @@ export default function NeuralNetworkBuilder() {
                 className="h-10 w-auto"
                 priority
               />
-              <div className="hidden md:block">
-                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                  Build and train your own Neural Network
-                </p>
-              </div>
             </div>
-            <div className="flex items-center gap-3">
+
+            {/* Center: Tagline (takes remaining space) */}
+            <div className="flex-1 text-center hidden sm:block">
+              <h1 className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                Build and train your own Neural Network
+              </h1>
+            </div>
+
+            {/* Right: Test Link */}
+            <div className="flex-shrink-0">
               <Link
                 href="/test"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 dark:text-gray-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30 transition-all"
+                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 dark:text-gray-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30 transition-all"
               >
                 <Info className="h-4 w-4" />
-                Test Components
+                <span className="hidden lg:inline">Test Components</span>
               </Link>
             </div>
           </div>
