@@ -1141,7 +1141,7 @@ export default function LandingPage() {
       <footer className="bg-black dark:bg-gray-950 text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center text-sm text-gray-500">
-            <p>Designed and Built in Portland, Oregon</p>
+            <p>Design and Build by SEPT LLC</p>
           </div>
         </div>
       </footer>
