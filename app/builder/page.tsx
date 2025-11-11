@@ -543,17 +543,17 @@ ${summary ? `
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between gap-4">
-            {/* Left: Logo */}
-            <div className="flex-shrink-0">
+            {/* Left: Logo (clickable - returns to landing page) */}
+            <Link href="/" className="flex-shrink-0 group">
               <Image
                 src="/SEPT_logo_Transparent.png"
                 alt="SEPT Logo"
                 width={120}
                 height={40}
-                className="h-10 w-auto"
+                className="h-10 w-auto transition-transform group-hover:scale-105"
                 priority
               />
-            </div>
+            </Link>
 
             {/* Center: Tagline (takes remaining space) */}
             <div className="flex-1 text-center hidden sm:block">
@@ -562,14 +562,17 @@ ${summary ? `
               </h1>
             </div>
 
-            {/* Right: Test Link */}
+            {/* Right: Back to SEPT button */}
             <div className="flex-shrink-0">
               <Link
-                href="/test"
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 dark:text-gray-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30 transition-all"
+                href="/"
+                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md hover:shadow-lg transition-all"
               >
-                <Info className="h-4 w-4" />
-                <span className="hidden lg:inline">Test Components</span>
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+                <span className="hidden sm:inline">Back to SEPT</span>
+                <span className="sm:hidden">Home</span>
               </Link>
             </div>
           </div>
