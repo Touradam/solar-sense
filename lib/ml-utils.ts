@@ -381,11 +381,29 @@ export function parseCSVData(
   const lines = csvText.trim().split('\n');
   const features: number[][] = [];
   const rawLabels: number[] = [];
+  let skippedRows = 0;
+  let textColumnDetected = false;
 
   const startRow = config.hasHeaders ? 1 : 0;
 
   for (let i = startRow; i < lines.length; i++) {
-    const values = lines[i].split(',').map(v => v.trim());
+    // Handle quoted fields properly (basic CSV parsing)
+    const values: string[] = [];
+    let currentValue = '';
+    let inQuotes = false;
+    
+    for (let j = 0; j < lines[i].length; j++) {
+      const char = lines[i][j];
+      if (char === '"') {
+        inQuotes = !inQuotes;
+      } else if (char === ',' && !inQuotes) {
+        values.push(currentValue.trim());
+        currentValue = '';
+      } else {
+        currentValue += char;
+      }
+    }
+    values.push(currentValue.trim());
     
     let featureValues: number[];
     let labelValue: number;
@@ -404,8 +422,14 @@ export function parseCSVData(
       labelValue = Number(values[labelIndex]);
     }
 
+    // Check for text columns
+    if (featureValues.some(isNaN)) {
+      textColumnDetected = true;
+    }
+
     // Validate numbers
     if (featureValues.some(isNaN) || isNaN(labelValue)) {
+      skippedRows++;
       continue; // Skip invalid rows
     }
 
@@ -413,9 +437,43 @@ export function parseCSVData(
     rawLabels.push(labelValue);
   }
 
+  // Throw error if no valid data
+  if (features.length === 0) {
+    if (textColumnDetected) {
+      throw new Error(
+        'No valid data found. Your CSV contains text columns. ' +
+        'Neural networks require all numeric features. ' +
+        'Please remove text columns (like names or IDs) and ensure you have a numeric label column.'
+      );
+    } else {
+      throw new Error(
+        'No valid data found. Please check your CSV format. ' +
+        'Ensure all columns are numeric and properly formatted.'
+      );
+    }
+  }
+
+  // Warn if many rows were skipped
+  if (skippedRows > features.length * 0.5) {
+    console.warn(
+      `Warning: ${skippedRows} rows were skipped due to invalid data. ` +
+      `This might indicate text columns or incorrect label column position.`
+    );
+  }
+
   // One-hot encode labels
   const uniqueLabels = Array.from(new Set(rawLabels)).sort((a, b) => a - b);
   const numClasses = uniqueLabels.length;
+  
+  // Check for too many classes
+  if (numClasses > 50) {
+    throw new Error(
+      `Too many unique classes detected (${numClasses}). ` +
+      `This might indicate that your label column contains continuous values instead of categorical labels. ` +
+      `For classification, labels should be categories like 0, 1, 2, not continuous values.`
+    );
+  }
+  
   const labelMap = new Map(uniqueLabels.map((label, idx) => [label, idx]));
 
   const labels = rawLabels.map(label => {
