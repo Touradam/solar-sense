@@ -321,73 +321,172 @@ export default function NeuralNetworkBuilder() {
     }
 
     try {
-      // Check if File System Access API is supported (Chrome/Edge)
-      if ('showDirectoryPicker' in window) {
-        try {
-          // Ask user to select a directory
-          const dirHandle = await (window as any).showDirectoryPicker({
-            mode: 'readwrite',
-            startIn: 'downloads',
-          });
-
-          // Create a custom IOHandler to save to the selected directory
-          const saveHandler = {
-            save: async (modelArtifacts: any) => {
-              // Save model.json
-              const modelJsonHandle = await dirHandle.getFileHandle('neural-network-model.json', { create: true });
-              const modelJsonWritable = await modelJsonHandle.createWritable();
-              await modelJsonWritable.write(JSON.stringify({
-                modelTopology: modelArtifacts.modelTopology,
-                weightsManifest: modelArtifacts.weightSpecs ? [{
-                  paths: ['neural-network-model.weights.bin'],
-                  weights: modelArtifacts.weightSpecs,
-                }] : [],
-                format: modelArtifacts.format,
-                generatedBy: modelArtifacts.generatedBy,
-                convertedBy: modelArtifacts.convertedBy,
-                userDefinedMetadata: {
-                  ...modelArtifacts.userDefinedMetadata,
-                  config,
-                  normalizationScaler,
-                  dataInfo,
-                },
-              }, null, 2));
-              await modelJsonWritable.close();
-
-              // Save weights if they exist
-              if (modelArtifacts.weightData) {
-                const weightsHandle = await dirHandle.getFileHandle('neural-network-model.weights.bin', { create: true });
-                const weightsWritable = await weightsHandle.createWritable();
-                await weightsWritable.write(modelArtifacts.weightData);
-                await weightsWritable.close();
-              }
-
-              return { modelArtifactsInfo: { dateSaved: new Date(), modelTopologyType: 'JSON' } };
+      // Save model to memory first
+      const saveResult = await model.save(tf.io.withSaveHandler(async (artifacts) => {
+        // Create a comprehensive download package
+        const modelPackage = {
+          // Model files
+          model: {
+            modelTopology: artifacts.modelTopology,
+            weightSpecs: artifacts.weightSpecs,
+            weightData: Array.from(new Uint8Array(artifacts.weightData as ArrayBuffer)),
+            format: artifacts.format,
+            generatedBy: artifacts.generatedBy || 'Neural Network Builder',
+            convertedBy: artifacts.convertedBy,
+          },
+          
+          // Training configuration
+          config: {
+            architecture: {
+              inputLayers: config.inputLayers,
+              hiddenLayers: config.hiddenLayers,
+              outputLayers: config.outputLayers,
+              hiddenActivation: config.hiddenActivation,
+              outputActivation: config.outputActivation,
             },
-          };
+            training: {
+              epochs: config.epochs,
+              batchSize: config.batchSize,
+              learningRate: config.learningRate,
+              optimizer: config.optimizer,
+              lossFunction: config.lossFunction,
+            },
+            regularization: {
+              useDropout: config.useDropout,
+              dropoutRate: config.dropoutRate,
+              regularization: config.regularization,
+              l1Rate: config.l1Rate,
+              l2Rate: config.l2Rate,
+            },
+          },
+          
+          // Data preprocessing info
+          preprocessing: {
+            normalization: config.normalization,
+            scaler: normalizationScaler,
+            dataInfo: dataInfo,
+          },
+          
+          // Performance metrics
+          performance: summary ? {
+            finalTrainLoss: summary.finalTrainLoss,
+            finalTrainAccuracy: summary.finalTrainAccuracy,
+            finalValLoss: summary.finalValLoss,
+            finalValAccuracy: summary.finalValAccuracy,
+            totalEpochs: summary.totalEpochs,
+            bestEpoch: summary.bestEpoch,
+          } : null,
+          
+          // Metadata
+          metadata: {
+            exportDate: new Date().toISOString(),
+            version: '1.0',
+            framework: 'TensorFlow.js',
+          },
+        };
 
-          await model.save(saveHandler as any);
-          console.log('✅ Model saved to selected directory');
-          alert('Model saved successfully to the selected folder!');
-        } catch (error: any) {
-          // User cancelled or error occurred
-          if (error.name === 'AbortError') {
-            console.log('User cancelled directory selection');
-            return;
-          }
-          throw error;
-        }
-      } else {
-        // Fallback: Use default download location
-        await model.save('downloads://neural-network-model');
-        console.log('✅ Model downloaded to default location');
-        alert('Model downloaded successfully to your Downloads folder!');
-      }
+        // Create README content
+        const readme = `# Neural Network Model Export
+
+## Model Information
+- **Export Date**: ${new Date().toLocaleString()}
+- **Input Features**: ${config.inputLayers}
+- **Output Classes**: ${config.outputLayers}
+- **Architecture**: ${config.hiddenLayers.join(' → ')}
+- **Training Epochs**: ${config.epochs}
+- **Final Accuracy**: ${summary?.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
+
+## How to Use This Model
+
+### 1. Load the Model in Browser
+
+\`\`\`javascript
+// Load the model
+const model = await tf.loadLayersModel('path/to/model.json');
+
+// Prepare your input data (normalize if needed)
+const inputData = tf.tensor2d([[feature1, feature2, ...]]);
+
+// Make prediction
+const prediction = model.predict(inputData);
+const probabilities = await prediction.data();
+console.log('Predictions:', probabilities);
+\`\`\`
+
+### 2. Preprocessing Required
+
+${normalizationScaler ? `**Normalization**: ${config.normalization}
+${config.normalization === 'minmax' ? `- Min values: ${JSON.stringify(normalizationScaler.min)}
+- Max values: ${JSON.stringify(normalizationScaler.max)}` : ''}
+${config.normalization === 'standard' ? `- Mean values: ${JSON.stringify(normalizationScaler.mean)}
+- Std values: ${JSON.stringify(normalizationScaler.std)}` : ''}` : 'No normalization required'}
+
+### 3. Input/Output Format
+
+- **Input**: Array of ${config.inputLayers} numeric features
+- **Output**: Array of ${config.outputLayers} probabilities (one for each class)
+
+### 4. Example Usage
+
+\`\`\`javascript
+// Example: Make a prediction
+const features = [/* your ${config.inputLayers} feature values */];
+const inputTensor = tf.tensor2d([features]);
+const output = model.predict(inputTensor);
+const predictions = await output.array();
+const predictedClass = predictions[0].indexOf(Math.max(...predictions[0]));
+console.log('Predicted class:', predictedClass);
+\`\`\`
+
+## Files Included
+
+- \`model.json\`: Model architecture and metadata
+- \`model-package.json\`: Complete configuration and preprocessing info
+- \`README.md\`: This file
+
+## Notes
+
+- Make sure to apply the same preprocessing (normalization) used during training
+- The model expects input shape: [batch_size, ${config.inputLayers}]
+- Output shape will be: [batch_size, ${config.outputLayers}]
+`;
+
+        // Create downloads
+        const timestamp = new Date().getTime();
+        
+        // Download model package JSON
+        const packageBlob = new Blob([JSON.stringify(modelPackage, null, 2)], { type: 'application/json' });
+        const packageUrl = URL.createObjectURL(packageBlob);
+        const packageLink = document.createElement('a');
+        packageLink.href = packageUrl;
+        packageLink.download = `neural-network-package-${timestamp}.json`;
+        packageLink.click();
+        URL.revokeObjectURL(packageUrl);
+        
+        // Download README
+        const readmeBlob = new Blob([readme], { type: 'text/markdown' });
+        const readmeUrl = URL.createObjectURL(readmeBlob);
+        const readmeLink = document.createElement('a');
+        readmeLink.href = readmeUrl;
+        readmeLink.download = `neural-network-README-${timestamp}.md`;
+        setTimeout(() => {
+          readmeLink.click();
+          URL.revokeObjectURL(readmeUrl);
+        }, 100);
+
+        return { modelArtifactsInfo: { dateSaved: new Date(), modelTopologyType: 'JSON' } };
+      }));
+
+      // Also use TensorFlow.js default download for the actual model files
+      await model.save(`downloads://neural-network-model-${Date.now()}`);
+      
+      console.log('✅ Model package downloaded');
+      alert('Model downloaded successfully!\n\nYou received:\n• Model files (model.json + weights)\n• Complete configuration package\n• README with usage instructions');
     } catch (error) {
       console.error('❌ Download error:', error);
       alert('Failed to download model. Please try again.');
     }
-  }, [model, config, normalizationScaler, dataInfo]);
+  }, [model, config, normalizationScaler, dataInfo, summary]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
