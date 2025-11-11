@@ -316,8 +316,8 @@ export default function LandingPage() {
                 </div>
               </div>
               {/* Floating Feature Badges */}
-              <div className="absolute -top-4 -left-4 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg">
-                <div className="text-xs font-medium text-gray-500 dark:text-gray-400">Plug & Play</div>
+              <div className="absolute -top-6 -left-6 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-500 border-2 border-white shadow-2xl">
+                <div className="text-lg font-bold text-white">Plug & Play Fail Safe Device</div>
               </div>
               <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg">
                 <div className="text-xs font-medium text-gray-500 dark:text-gray-400">Wireless</div>
