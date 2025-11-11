@@ -321,14 +321,73 @@ export default function NeuralNetworkBuilder() {
     }
 
     try {
-      await model.save('downloads://neural-network-model');
-      console.log('✅ Model downloaded');
-      alert('Model downloaded successfully!');
+      // Check if File System Access API is supported (Chrome/Edge)
+      if ('showDirectoryPicker' in window) {
+        try {
+          // Ask user to select a directory
+          const dirHandle = await (window as any).showDirectoryPicker({
+            mode: 'readwrite',
+            startIn: 'downloads',
+          });
+
+          // Create a custom IOHandler to save to the selected directory
+          const saveHandler = {
+            save: async (modelArtifacts: any) => {
+              // Save model.json
+              const modelJsonHandle = await dirHandle.getFileHandle('neural-network-model.json', { create: true });
+              const modelJsonWritable = await modelJsonHandle.createWritable();
+              await modelJsonWritable.write(JSON.stringify({
+                modelTopology: modelArtifacts.modelTopology,
+                weightsManifest: modelArtifacts.weightSpecs ? [{
+                  paths: ['neural-network-model.weights.bin'],
+                  weights: modelArtifacts.weightSpecs,
+                }] : [],
+                format: modelArtifacts.format,
+                generatedBy: modelArtifacts.generatedBy,
+                convertedBy: modelArtifacts.convertedBy,
+                userDefinedMetadata: {
+                  ...modelArtifacts.userDefinedMetadata,
+                  config,
+                  normalizationScaler,
+                  dataInfo,
+                },
+              }, null, 2));
+              await modelJsonWritable.close();
+
+              // Save weights if they exist
+              if (modelArtifacts.weightData) {
+                const weightsHandle = await dirHandle.getFileHandle('neural-network-model.weights.bin', { create: true });
+                const weightsWritable = await weightsHandle.createWritable();
+                await weightsWritable.write(modelArtifacts.weightData);
+                await weightsWritable.close();
+              }
+
+              return { modelArtifactsInfo: { dateSaved: new Date(), modelTopologyType: 'JSON' } };
+            },
+          };
+
+          await model.save(saveHandler as any);
+          console.log('✅ Model saved to selected directory');
+          alert('Model saved successfully to the selected folder!');
+        } catch (error: any) {
+          // User cancelled or error occurred
+          if (error.name === 'AbortError') {
+            console.log('User cancelled directory selection');
+            return;
+          }
+          throw error;
+        }
+      } else {
+        // Fallback: Use default download location
+        await model.save('downloads://neural-network-model');
+        console.log('✅ Model downloaded to default location');
+        alert('Model downloaded successfully to your Downloads folder!');
+      }
     } catch (error) {
       console.error('❌ Download error:', error);
-      alert('Failed to download model');
+      alert('Failed to download model. Please try again.');
     }
-  }, [model]);
+  }, [model, config, normalizationScaler, dataInfo]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
