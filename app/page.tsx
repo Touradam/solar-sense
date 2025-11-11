@@ -302,10 +302,13 @@ export default function LandingPage() {
                   <DollarSign className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Lower Operating Costs
+                  One Device Does It All
                 </h3>
-                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-                  💰 One Device, Multiple Benefits
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">
+                  💰 Cut Installation & Maintenance Costs
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                  Why pay for separate safety and monitoring systems? Solar Sense replaces multiple devices with one <span className="font-semibold text-gray-900 dark:text-white">affordable solution</span> — saving you money on equipment, installation, and ongoing support.
                 </p>
               </div>
             </div>
