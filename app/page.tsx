@@ -4,6 +4,7 @@ import React, { useState, useCallback, useRef } from 'react';
 import * as tf from '@tensorflow/tfjs';
 import { Brain, Info } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
 
 // Components
 import { DataInputSection } from '@/components/data-input-section';
@@ -336,10 +337,14 @@ export default function NeuralNetworkBuilder() {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between">
             <div className="flex items-center gap-3">
-              <Brain className="h-7 w-7 text-emerald-600 dark:text-emerald-400" />
-              <h1 className="text-lg font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Neural Network Builder
-              </h1>
+              <Image
+                src="/SEPT_logo_Transparent.png"
+                alt="SEPT Logo"
+                width={120}
+                height={40}
+                className="h-10 w-auto"
+                priority
+              />
             </div>
             <div className="flex items-center gap-3">
               <Link
