@@ -213,11 +213,151 @@ export default function LandingPage() {
         </div>
       </div>
 
-      {/* Placeholder sections (to be built in next phases) */}
-      <section id="product" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Product Section</h2>
-          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 2</p>
+      {/* Value Propositions Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              Why Choose Solar Sense?
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              The all-in-one solution that empowers solar system owners, operators, and installers with compliance, intelligence, and peace of mind.
+            </p>
+          </div>
+
+          {/* Value Props Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {/* 1. Enhanced Safety */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6">
+                  <Shield className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  Enhanced Safety
+                </h3>
+                <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
+                  ⚡ Rapid Shutdown Compliance
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Disconnects panels in a fraction of a second, ensuring NEC 690.12 compliance and protecting first responders during emergencies.
+                </p>
+              </div>
+            </div>
+
+            {/* 2. Smart Monitoring */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center mb-6">
+                  <Brain className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  Smart Monitoring
+                </h3>
+                <p className="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-4">
+                  🔍 AI-Powered Fault Detection
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Built-in sensors and machine learning continuously monitor voltage, current, and temperature to detect shading, hotspots, and degradation before damage occurs.
+                </p>
+              </div>
+            </div>
+
+            {/* 3. Full Compliance */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6">
+                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  Full Compliance
+                </h3>
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-4">
+                  ✅ Meets Regulatory Standards
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Mandatory in 12+ countries including the United States. Solar Sense ensures your installation meets all safety requirements.
+                </p>
+              </div>
+            </div>
+
+            {/* 4. Cost-Effective */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
+                  <DollarSign className="w-7 h-7 text-white" />
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                  Cost-Effective
+                </h3>
+                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">
+                  💰 All-in-One Solution
+                </p>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                  Reduces costs compared to using separate monitoring and shutdown systems. Simple installation with wireless data transmission.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Additional Benefits */}
+          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 border border-emerald-200 dark:border-emerald-800">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
+              Complete Solar System Protection
+            </h3>
+            <div className="grid md:grid-cols-3 gap-6">
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center mt-1">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900 dark:text-white">User-Friendly</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Simple installation with mobile dashboard</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center mt-1">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900 dark:text-white">Predictive</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Detects issues before damage occurs</div>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mt-1">
+                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <div className="font-semibold text-gray-900 dark:text-white">Sustainable</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Extends panel life, reduces waste</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Product Showcase Section */}
+      <section id="product" className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center">
+            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Product Section</h2>
+            <p className="text-gray-600 dark:text-gray-400">Coming in Phase 3</p>
+          </div>
         </div>
       </section>
 
