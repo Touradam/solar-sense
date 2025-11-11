@@ -711,10 +711,285 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="team" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Team Section</h2>
-          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 4</p>
+      {/* Mission & Goals Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Mission Statement */}
+            <div className="p-10 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 text-white shadow-2xl">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/20 backdrop-blur-sm mb-6">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+                <span className="text-sm font-medium">Our Mission</span>
+              </div>
+              <h3 className="text-3xl font-bold mb-6">
+                Making Solar Systems Safer, Smarter, and More Sustainable
+              </h3>
+              <p className="text-lg leading-relaxed opacity-95">
+                "To make solar energy systems safer, smarter, and more sustainable through intelligent sensing and machine learning, ensuring every solar panel operates at peak efficiency while protecting people, property, and the planet."
+              </p>
+            </div>
+
+            {/* Goals */}
+            <div className="space-y-6">
+              <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8">
+                Our Goals
+              </h3>
+
+              {/* Goal 1 */}
+              <div className="flex items-start gap-4 p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Make Solar Safer
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Ensure every solar installation meets rapid shutdown safety standards to protect people and property.
+                  </p>
+                </div>
+              </div>
+
+              {/* Goal 2 */}
+              <div className="flex items-start gap-4 p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                  <Brain className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
+                    Make Solar Smarter
+                  </h4>
+                  <p className="text-gray-600 dark:text-gray-300">
+                    Integrate real-time monitoring and ML-based diagnostics to detect shading, hotspots, and degradation before performance loss occurs.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Team Section */}
+      <section id="team" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Meet the Team
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Two engineers on a mission to revolutionize solar energy through intelligent technology and innovation.
+            </p>
+          </div>
+
+          {/* Team Members */}
+          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+            {/* Adama Toure */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="space-y-6">
+                  {/* Avatar Placeholder */}
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mx-auto shadow-lg">
+                    <span className="text-3xl font-bold text-white">AT</span>
+                  </div>
+
+                  {/* Info */}
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      Adama Toure
+                    </h3>
+                    <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-4">
+                      Co-Founder, Renewable Energy Engineer
+                    </p>
+                  </div>
+
+                  {/* Bio */}
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-center">
+                    Adama is a Renewable Energy Engineer and participant in the NSF 2023 Innovator Program. He conducted research at Aalborg University focused on PV degradation and fault detection in used solar panels. His work led to the development of a physics-informed machine learning model that creates a digital twin of a solar cell — the foundation of Solar Sense.
+                  </p>
+
+                  {/* Achievements */}
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700 space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      NSF 2023 Innovator Program
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Research at Aalborg University
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-emerald-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      ML Model Developer
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Jordan Harris-Toovy */}
+            <div className="group relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="space-y-6">
+                  {/* Avatar Placeholder */}
+                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mx-auto shadow-lg">
+                    <span className="text-3xl font-bold text-white">JH</span>
+                  </div>
+
+                  {/* Info */}
+                  <div className="text-center">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+                      Jordan Harris-Toovy
+                    </h3>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-4">
+                      Co-Founder, Electrical Engineer
+                    </p>
+                  </div>
+
+                  {/* Bio */}
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-center">
+                    Jordan is an Electrical Engineer with expertise in sensor design, PCB layout, electronics manufacturing, and embedded programming. He co-founded SEPT to apply his experience in advanced sensing technologies to the solar industry, driving the creation and refinement of Solar Sense prototypes.
+                  </p>
+
+                  {/* Achievements */}
+                  <div className="pt-6 border-t border-gray-200 dark:border-gray-700 space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Sensor Design Expert
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      PCB & Electronics Manufacturing
+                    </div>
+                    <div className="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400">
+                      <svg className="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Embedded Programming
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Impact & Vision Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              Our Vision for the Future
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              At SEPT, we believe that the future of solar energy lies in systems that are intelligent, self-aware, and safe by design.
+            </p>
+          </div>
+
+          {/* Vision Content */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Left: Impact Points */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+                Enabling a New Generation of Smart Solar
+              </h3>
+
+              <div className="space-y-4">
+                {[
+                  { icon: '🛡️', title: 'Protect lives and property', desc: 'Advanced safety systems that respond in real-time' },
+                  { icon: '⚡', title: 'Maximize power output', desc: 'Optimize performance through continuous monitoring' },
+                  { icon: '🔄', title: 'Extend asset lifespan', desc: 'Detect issues early to prevent costly damage' },
+                  { icon: '♻️', title: 'Prevent premature waste', desc: 'Reduce decommissioning of salvageable panels' }
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-4 p-4 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:shadow-lg transition-shadow">
+                    <div className="text-3xl">{item.icon}</div>
+                    <div>
+                      <div className="font-semibold text-gray-900 dark:text-white">{item.title}</div>
+                      <div className="text-sm text-gray-600 dark:text-gray-400">{item.desc}</div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: Vision Statement */}
+            <div className="relative">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-3xl blur-2xl opacity-20"></div>
+              <div className="relative p-10 rounded-3xl bg-gradient-to-br from-gray-900 to-gray-800 dark:from-gray-800 dark:to-gray-900 text-white shadow-2xl">
+                <div className="space-y-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm">
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" />
+                    </svg>
+                    <span className="text-sm font-medium">Our Vision</span>
+                  </div>
+                  
+                  <p className="text-2xl font-bold leading-relaxed">
+                    A sustainable solar ecosystem where every panel can monitor, report, and protect itself — making solar energy truly resilient and future-proof.
+                  </p>
+
+                  <div className="pt-6 border-t border-white/20">
+                    <p className="text-gray-300 leading-relaxed">
+                      By merging rapid shutdown compliance with real-time diagnostics, we are enabling smart solar systems that work harder, last longer, and deliver more value to their owners.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Development Status */}
+          <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800">
+            <div className="flex items-start gap-6">
+              <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
+                  Development Progress
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 mb-6">
+                  Our team has built and tested four generations of Solar Sense prototypes, guided by continuous feedback from PV system owners, installers, and industry experts.
+                </p>
+                <div className="grid sm:grid-cols-2 gap-4">
+                  <div className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-gray-800">
+                    <div className="text-2xl">✅</div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">Optimized ML model for fault detection</div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-gray-800">
+                    <div className="text-2xl">✅</div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">4 prototype generations tested</div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-gray-800">
+                    <div className="text-2xl">🏆</div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">InventOR 2024 Recognition</div>
+                  </div>
+                  <div className="flex items-center gap-3 p-4 rounded-lg bg-white dark:bg-gray-800">
+                    <div className="text-2xl">🚀</div>
+                    <div className="text-sm font-medium text-gray-900 dark:text-white">Pilot project in preparation</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
