@@ -118,44 +118,41 @@ export function DataSplitSection({
   return (
     <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
-          <Split className="h-5 w-5 text-purple-600 dark:text-purple-400" />
-          Data Split
-        </h2>
+        <div>
+          <h2 className="text-lg font-semibold text-gray-900 dark:text-white flex items-center gap-2">
+            <Split className="h-5 w-5 text-purple-600 dark:text-purple-400" />
+            Data Split
+          </h2>
+          {totalSamples > 0 && (
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              Total: <span className="font-semibold text-purple-600 dark:text-purple-400">{totalSamples}</span> samples
+            </p>
+          )}
+        </div>
         <button
           onClick={handleReset}
-          className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+          className="text-xs font-medium text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors px-3 py-1.5 rounded-lg hover:bg-purple-50 dark:hover:bg-purple-950/20"
         >
-          Reset to 60/20/20
+          Reset
         </button>
       </div>
 
-      {/* Total Samples Badge */}
-      {totalSamples > 0 && (
-        <div className="mb-4 p-3 bg-gradient-to-r from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
-          <p className="text-sm font-medium text-center text-purple-800 dark:text-purple-200">
-            Total Samples: <span className="text-lg font-bold">{totalSamples}</span>
-          </p>
-        </div>
-      )}
-
-      <div className="space-y-5">
+      <div className="space-y-4">
         {/* Training Split */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Training Set
+          <div className="flex justify-between items-center mb-1.5">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-emerald-500"></div>
+              Training
             </label>
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-emerald-600 dark:text-emerald-400">
-                {localRatios.train.toFixed(0)}%
-              </span>
+            <span className="text-sm font-bold text-emerald-600 dark:text-emerald-400">
+              {localRatios.train.toFixed(0)}%
               {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  ({trainSamples} samples)
+                <span className="text-xs text-gray-500 dark:text-gray-400 font-normal ml-1.5">
+                  ({trainSamples})
                 </span>
               )}
-            </div>
+            </span>
           </div>
           <input
             type="range"
@@ -164,33 +161,28 @@ export function DataSplitSection({
             step="1"
             value={localRatios.train}
             onChange={(e) => handleTrainChange(parseFloat(e.target.value))}
-            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-emerald"
+            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             style={{
-              background: `linear-gradient(to right, rgb(16, 185, 129) 0%, rgb(16, 185, 129) ${localRatios.train}%, rgb(229, 231, 235) ${localRatios.train}%, rgb(229, 231, 235) 100%)`,
+              background: `linear-gradient(to right, rgb(16, 185, 129) 0%, rgb(16, 185, 129) ${(localRatios.train - 40) * 100 / 40}%, rgb(229, 231, 235) ${(localRatios.train - 40) * 100 / 40}%, rgb(229, 231, 235) 100%)`,
             }}
           />
-          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-            <span>40%</span>
-            <span>80%</span>
-          </div>
         </div>
 
         {/* Validation Split */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Validation Set
+          <div className="flex justify-between items-center mb-1.5">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-blue-500"></div>
+              Validation
             </label>
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
-                {localRatios.validation.toFixed(0)}%
-              </span>
+            <span className="text-sm font-bold text-blue-600 dark:text-blue-400">
+              {localRatios.validation.toFixed(0)}%
               {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  ({valSamples} samples)
+                <span className="text-xs text-gray-500 dark:text-gray-400 font-normal ml-1.5">
+                  ({valSamples})
                 </span>
               )}
-            </div>
+            </span>
           </div>
           <input
             type="range"
@@ -199,33 +191,28 @@ export function DataSplitSection({
             step="1"
             value={localRatios.validation}
             onChange={(e) => handleValidationChange(parseFloat(e.target.value))}
-            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-blue"
+            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             style={{
               background: `linear-gradient(to right, rgb(59, 130, 246) 0%, rgb(59, 130, 246) ${(localRatios.validation - 10) * 100 / 30}%, rgb(229, 231, 235) ${(localRatios.validation - 10) * 100 / 30}%, rgb(229, 231, 235) 100%)`,
             }}
           />
-          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-            <span>10%</span>
-            <span>40%</span>
-          </div>
         </div>
 
         {/* Test Split */}
         <div>
-          <div className="flex justify-between items-center mb-2">
-            <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-              Test Set
+          <div className="flex justify-between items-center mb-1.5">
+            <label className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-purple-500"></div>
+              Test
             </label>
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-semibold text-purple-600 dark:text-purple-400">
-                {localRatios.test.toFixed(0)}%
-              </span>
+            <span className="text-sm font-bold text-purple-600 dark:text-purple-400">
+              {localRatios.test.toFixed(0)}%
               {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  ({testSamples} samples)
+                <span className="text-xs text-gray-500 dark:text-gray-400 font-normal ml-1.5">
+                  ({testSamples})
                 </span>
               )}
-            </div>
+            </span>
           </div>
           <input
             type="range"
@@ -234,111 +221,30 @@ export function DataSplitSection({
             step="1"
             value={localRatios.test}
             onChange={(e) => handleTestChange(parseFloat(e.target.value))}
-            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer slider-purple"
+            className="w-full h-2 bg-gray-200 dark:bg-gray-700 rounded-lg appearance-none cursor-pointer"
             style={{
               background: `linear-gradient(to right, rgb(147, 51, 234) 0%, rgb(147, 51, 234) ${(localRatios.test - 10) * 100 / 30}%, rgb(229, 231, 235) ${(localRatios.test - 10) * 100 / 30}%, rgb(229, 231, 235) 100%)`,
             }}
           />
-          <div className="flex justify-between text-xs text-gray-500 dark:text-gray-400 mt-1">
-            <span>10%</span>
-            <span>40%</span>
-          </div>
         </div>
       </div>
 
-      {/* Validation Warning */}
-      {!isValid && (
-        <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg flex items-start gap-2">
-          <AlertCircle className="h-5 w-5 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-          <div className="flex-1">
-            <p className="text-sm font-medium text-amber-800 dark:text-amber-200">
-              Split Ratios Warning
-            </p>
-            <p className="text-xs text-amber-700 dark:text-amber-300 mt-1">
-              Ratios should sum to 100%. Current sum: {ratiosSum.toFixed(1)}%
-            </p>
-          </div>
+      {/* Validation Warning or Summary */}
+      {!isValid ? (
+        <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-800 rounded-lg flex items-center gap-2">
+          <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400 flex-shrink-0" />
+          <p className="text-xs text-amber-700 dark:text-amber-300">
+            <strong className="font-semibold">Warning:</strong> Ratios must sum to 100%. Current: {ratiosSum.toFixed(1)}%
+          </p>
+        </div>
+      ) : (
+        <div className="mt-4 p-3 bg-gradient-to-br from-emerald-50 to-green-50 dark:from-emerald-950/20 dark:to-green-950/20 border border-emerald-200 dark:border-emerald-800 rounded-lg">
+          <p className="text-xs text-emerald-700 dark:text-emerald-300 text-center">
+            <strong className="font-semibold">✓ Split configured:</strong> {localRatios.train}% train / {localRatios.validation}% val / {localRatios.test}% test
+            {totalSamples > 0 && ` (${trainSamples} / ${valSamples} / ${testSamples} samples)`}
+          </p>
         </div>
       )}
-
-      {/* Summary Card */}
-      <div className="mt-4 p-4 bg-gradient-to-br from-gray-50 to-purple-50/30 dark:from-gray-950 dark:to-purple-950/20 rounded-lg border border-gray-200 dark:border-gray-800">
-        <p className="text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wide mb-3">
-          Split Summary
-        </p>
-        <div className="space-y-2">
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-700 dark:text-gray-300 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-emerald-500"></div>
-              Training
-            </span>
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {localRatios.train.toFixed(0)}%
-              {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
-                  ({trainSamples})
-                </span>
-              )}
-            </span>
-          </div>
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-700 dark:text-gray-300 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-blue-500"></div>
-              Validation
-            </span>
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {localRatios.validation.toFixed(0)}%
-              {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
-                  ({valSamples})
-                </span>
-              )}
-            </span>
-          </div>
-          <div className="flex justify-between items-center text-sm">
-            <span className="text-gray-700 dark:text-gray-300 flex items-center gap-2">
-              <div className="w-3 h-3 rounded-full bg-purple-500"></div>
-              Test
-            </span>
-            <span className="font-semibold text-gray-900 dark:text-white">
-              {localRatios.test.toFixed(0)}%
-              {totalSamples > 0 && (
-                <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
-                  ({testSamples})
-                </span>
-              )}
-            </span>
-          </div>
-          <div className="pt-2 mt-2 border-t border-gray-300 dark:border-gray-700">
-            <div className="flex justify-between items-center text-sm font-semibold">
-              <span className="text-gray-700 dark:text-gray-300">Total</span>
-              <span
-                className={
-                  isValid
-                    ? 'text-emerald-600 dark:text-emerald-400'
-                    : 'text-amber-600 dark:text-amber-400'
-                }
-              >
-                {ratiosSum.toFixed(1)}%
-                {totalSamples > 0 && (
-                  <span className="text-xs text-gray-500 dark:text-gray-400 ml-2">
-                    ({trainSamples + valSamples + testSamples})
-                  </span>
-                )}
-              </span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Info Box */}
-      <div className="mt-4 p-3 bg-blue-50 dark:bg-blue-950/20 rounded-lg border border-blue-200 dark:border-blue-800">
-        <p className="text-xs text-blue-700 dark:text-blue-300">
-          <strong className="font-semibold">Tip:</strong> A common split is 60% training, 20% validation, and 20% testing. 
-          Training data trains the model, validation helps tune hyperparameters and detect overfitting, 
-          and test data provides final evaluation.
-        </p>
-      </div>
     </div>
   );
 }
