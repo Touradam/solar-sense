@@ -269,14 +269,28 @@ export default function LandingPage() {
                   <Brain className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Smart Monitoring
+                  Maximize Your Energy Production
                 </h3>
                 <p className="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-4">
-                  🔍 AI-Powered Fault Detection
+                  💰 Catch Problems Before They Cost You Money
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Built-in sensors and machine learning continuously monitor voltage, current, and temperature to detect shading, hotspots, and degradation before damage occurs.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
+                  AI-powered monitoring detects issues like shading, dirt buildup, and panel degradation <span className="font-semibold text-gray-900 dark:text-white">the moment they start affecting your output</span> — so you can fix small problems before they become expensive repairs.
                 </p>
+                <div className="space-y-2">
+                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Get instant alerts when panels underperform</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Maintain peak efficiency and ROI</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Extend your system's lifespan by years</span>
+                  </div>
+                </div>
               </div>
             </div>
 
