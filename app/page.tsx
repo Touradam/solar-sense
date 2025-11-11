@@ -384,7 +384,7 @@ export default function LandingPage() {
               <div className="aspect-square rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800 p-12 flex items-center justify-center">
                 <div className="text-center space-y-6">
                   {/* Solar Sense Product Image */}
-                  <div className="relative w-full max-w-md mx-auto aspect-square">
+                  <div className="relative w-full mx-auto aspect-square">
                     <Image
                       src="/solarSenseOnPV.png"
                       alt="Solar Sense on Solar Panel"
