@@ -541,23 +541,23 @@ ${summary ? `
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between gap-4">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-full overflow-hidden">
+          <div className="flex h-14 items-center justify-between gap-2 sm:gap-4">
             {/* Left: Logo (clickable - returns to landing page) */}
             <Link href="/" className="flex-shrink-0 group">
               <Image
                 src="/SEPT_logo_Transparent.png"
                 alt="SEPT Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto transition-transform group-hover:scale-105"
+                width={100}
+                height={33}
+                className="h-8 sm:h-10 w-auto transition-transform group-hover:scale-105"
                 priority
               />
             </Link>
 
             {/* Center: Tagline (takes remaining space) */}
-            <div className="flex-1 text-center hidden sm:block">
-              <h1 className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <div className="flex-1 text-center hidden md:block px-2">
+              <h1 className="text-sm md:text-base lg:text-lg xl:text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent truncate">
                 Build and train your own Neural Network
               </h1>
             </div>
@@ -566,13 +566,13 @@ ${summary ? `
             <div className="flex-shrink-0">
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md hover:shadow-lg transition-all"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 h-10 sm:h-11 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md hover:shadow-lg transition-all touch-manipulation"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
                 </svg>
+                <span className="hidden xs:inline sm:hidden">Back</span>
                 <span className="hidden sm:inline">Back to SEPT</span>
-                <span className="sm:hidden">Home</span>
               </Link>
             </div>
           </div>
@@ -580,18 +580,20 @@ ${summary ? `
       </header>
 
       {/* Main Content */}
-      <div className="container mx-auto px-4 py-6 space-y-6">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 max-w-full overflow-hidden">
         {/* Network Diagram */}
-        <NetworkDiagram
-          inputNodes={config.inputLayers}
-          hiddenLayers={config.hiddenLayers}
-          outputNodes={config.outputLayers}
-        />
+        <div className="w-full overflow-x-auto">
+          <NetworkDiagram
+            inputNodes={config.inputLayers}
+            hiddenLayers={config.hiddenLayers}
+            outputNodes={config.outputLayers}
+          />
+        </div>
 
-        {/* Main Grid Layout */}
-        <div className="grid lg:grid-cols-12 gap-6">
-          {/* Left Sidebar */}
-          <aside className="lg:col-span-4 space-y-6">
+        {/* Main Grid Layout - Stack on Mobile, Grid on Desktop */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
+          {/* Left Sidebar - First on Mobile */}
+          <aside className="lg:col-span-4 space-y-4 sm:space-y-6 order-1">
             <PresetManager currentConfig={config} onLoadPreset={handleLoadPreset} />
             <DataInputSection onDataLoaded={handleDataLoaded} />
             <DataSplitSection
@@ -601,8 +603,8 @@ ${summary ? `
             />
           </aside>
 
-          {/* Center Column - Training & Testing (More Space for Graphs) */}
-          <main className="lg:col-span-5 space-y-6">
+          {/* Center Column - Training & Testing (More Space for Graphs) - Second on Mobile */}
+          <main className="lg:col-span-5 space-y-4 sm:space-y-6 order-2">
             <TrainingSection
               isTraining={isTraining}
               trainingData={trainingData}
@@ -622,8 +624,8 @@ ${summary ? `
             />
           </main>
 
-          {/* Right Column - Configuration Controls */}
-          <aside className="lg:col-span-3 space-y-6">
+          {/* Right Column - Configuration Controls - Third on Mobile */}
+          <aside className="lg:col-span-3 space-y-4 sm:space-y-6 order-3">
             <ConfigControls config={config} onConfigChange={handleConfigChange} />
             <FunctionSelector
               hiddenActivation={config.hiddenActivation}

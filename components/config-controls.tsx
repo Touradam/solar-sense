@@ -58,7 +58,8 @@ export function ConfigControls({ config, onConfigChange }: ConfigControlsProps) 
       <div className="flex items-center gap-2">
         <button
           onClick={() => onChange(Math.max(min, value - step))}
-          className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-bold transition-all"
+          className="w-11 h-11 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-bold transition-all touch-manipulation"
+          aria-label="Decrease value"
         >
           -
         </button>
@@ -72,11 +73,12 @@ export function ConfigControls({ config, onConfigChange }: ConfigControlsProps) 
           min={min}
           max={max}
           step={step}
-          className="flex-1 px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-center font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-transparent"
+          className="flex-1 px-4 py-2 h-11 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-center font-semibold focus:ring-2 focus:ring-emerald-500 focus:border-transparent text-base"
         />
         <button
           onClick={() => onChange(Math.min(max, value + step))}
-          className="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-bold transition-all"
+          className="w-11 h-11 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-emerald-100 dark:hover:bg-emerald-900/30 text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 font-bold transition-all touch-manipulation"
+          aria-label="Increase value"
         >
           +
         </button>
