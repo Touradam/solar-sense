@@ -383,11 +383,15 @@ export default function LandingPage() {
             <div className="relative">
               <div className="aspect-square rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800 p-12 flex items-center justify-center">
                 <div className="text-center space-y-6">
-                  {/* Solar Panel Icon */}
-                  <div className="w-32 h-32 mx-auto rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-2xl">
-                    <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
+                  {/* Solar Sense Product Image */}
+                  <div className="relative w-full max-w-md mx-auto aspect-square">
+                    <Image
+                      src="/solarSenseOnPV.png"
+                      alt="Solar Sense on Solar Panel"
+                      fill
+                      className="object-contain rounded-2xl"
+                      priority
+                    />
                   </div>
                   <div className="space-y-2">
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">Solar Sense</div>
