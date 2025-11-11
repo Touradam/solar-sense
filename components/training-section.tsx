@@ -25,6 +25,17 @@ export function TrainingSection({
   testMetrics,
 }: TrainingSectionProps) {
   const hasData = trainingData.length > 0;
+  
+  // Debug logging
+  React.useEffect(() => {
+    console.log('TrainingSection render:', { 
+      hasData, 
+      dataLength: trainingData.length,
+      isTraining,
+      firstEpoch: trainingData[0]?.epoch,
+      lastEpoch: trainingData[trainingData.length - 1]?.epoch 
+    });
+  }, [trainingData.length, isTraining]);
 
   // Format confusion matrix as heatmap data
   const getConfusionMatrixHeatmap = (matrix: number[][]) => {
@@ -102,9 +113,16 @@ export function TrainingSection({
 
       {/* Training Graph */}
       <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6">
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-          Training Progress
-        </h3>
+        <div className="flex items-center justify-between mb-4">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Training Progress
+          </h3>
+          {trainingData.length > 0 && (
+            <span className="text-xs text-gray-500 dark:text-gray-400">
+              {trainingData.length} epoch{trainingData.length !== 1 ? 's' : ''} completed
+            </span>
+          )}
+        </div>
 
         {hasData ? (
           <div className="h-80">

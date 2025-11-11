@@ -704,13 +704,13 @@ export async function trainModel(
   
   if (onEpochEnd) {
     callbacks.onEpochEnd = async (epoch, logs) => {
-      onEpochEnd(epoch, logs || {});
+      await onEpochEnd(epoch, logs || {});
     };
   }
 
   if (onBatchEnd) {
     callbacks.onBatchEnd = async (batch, logs) => {
-      onBatchEnd(batch, logs || {});
+      await onBatchEnd(batch, logs || {});
     };
   }
 

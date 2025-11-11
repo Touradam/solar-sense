@@ -197,8 +197,8 @@ export default function NeuralNetworkBuilder() {
           // Use functional update to ensure React gets the latest state
           setTrainingData(prev => [...prev, metric]);
           
-          // Small delay to allow React to render the update
-          await new Promise(resolve => setTimeout(resolve, 0));
+          // Yield to browser to allow UI updates (TensorFlow.js specific)
+          await tf.nextFrame();
 
           // Track best epoch
           if (logs.val_loss && logs.val_loss < bestValLoss) {
