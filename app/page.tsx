@@ -1020,56 +1020,9 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black dark:bg-gray-950 text-white py-12 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-black dark:bg-gray-950 text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-4 gap-8 mb-8">
-            {/* Brand */}
-            <div className="md:col-span-2">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="relative h-14 w-14">
-                  <Image
-                    src="/SEPT_logo_Transparent.png"
-                    alt="SEPT Logo"
-                    fill
-                    className="object-contain"
-                  />
-                </div>
-                <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  We Make Solar Smart and Safe
-                </span>
-              </div>
-              <p className="text-gray-400 mb-4 max-w-md">
-                Solar Energy Protection Technology - Empowering safer and smarter solar systems through intelligent sensing and machine learning.
-              </p>
-              <p className="text-sm text-gray-500">
-                © 2025 SEPT. All rights reserved.
-              </p>
-            </div>
-
-            {/* Product Links */}
-            <div>
-              <h3 className="font-bold mb-4">Product</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#product" className="hover:text-emerald-400 transition-colors">Solar Sense</a></li>
-                <li><a href="/builder" className="hover:text-emerald-400 transition-colors">Neural Network Builder</a></li>
-              </ul>
-            </div>
-
-            {/* Company Links */}
-            <div>
-              <h3 className="font-bold mb-4">Company</h3>
-              <ul className="space-y-2 text-sm text-gray-400">
-                <li><a href="#how-it-works" className="hover:text-emerald-400 transition-colors">How It Works</a></li>
-                <li><a href="#team" className="hover:text-emerald-400 transition-colors">Team</a></li>
-                <li><a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
-                <li><a href="#" className="hover:text-emerald-400 transition-colors">Terms of Service</a></li>
-              </ul>
-            </div>
-          </div>
-
-          {/* Bottom Bar */}
-          <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+          <div className="text-center text-sm text-gray-500">
             <p>Designed and Built in Portland, Oregon</p>
           </div>
         </div>
