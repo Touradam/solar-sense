@@ -635,6 +635,17 @@ export default function LandingPage() {
                       AI-Powered Intelligence
                     </div>
                   </div>
+
+                  {/* Neural Network Builder CTA */}
+                  <div className="pt-4">
+                    <Link href="/builder">
+                      <Button className="w-full bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white shadow-lg hover:shadow-xl transition-all">
+                        <Brain className="w-4 h-4 mr-2" />
+                        Try Our Neural Network Builder
+                        <ArrowRight className="w-4 h-4 ml-2" />
+                      </Button>
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
