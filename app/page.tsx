@@ -14,7 +14,7 @@ export default function LandingPage() {
           <div className="flex h-16 items-center justify-between gap-4">
             {/* Left: Logo */}
             <Link href="/" className="flex-shrink-0 group">
-              <div className="relative h-10 w-10 transition-transform group-hover:scale-110">
+              <div className="relative h-14 w-14 transition-transform group-hover:scale-110">
                 <Image
                   src="/SEPT_logo_Transparent.png"
                   alt="SEPT Logo"
@@ -1085,7 +1085,7 @@ export default function LandingPage() {
             {/* Brand */}
             <div className="md:col-span-2">
               <div className="flex items-center gap-3 mb-4">
-                <div className="relative h-10 w-10">
+                <div className="relative h-14 w-14">
                   <Image
                     src="/SEPT_logo_Transparent.png"
                     alt="SEPT Logo"
