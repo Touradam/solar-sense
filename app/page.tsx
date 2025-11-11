@@ -307,9 +307,23 @@ export default function LandingPage() {
                 <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">
                   💰 Cut Installation & Maintenance Costs
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
-                  Why pay for separate safety and monitoring systems? Solar Sense combines both with one <span className="font-semibold text-gray-900 dark:text-white">affordable device</span> — saving you money on equipment, installation, and ongoing support.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-3">
+                  Why pay for separate systems? Solar Sense <span className="font-semibold text-gray-900 dark:text-white">combines both in one affordable device</span>.
                 </p>
+                <div className="space-y-1.5">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Lower equipment costs</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Simpler installation</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Single vendor support</span>
+                  </div>
+                </div>
               </div>
             </div>
 
