@@ -1,648 +1,247 @@
 'use client';
 
-import React, { useState, useCallback, useRef } from 'react';
-import * as tf from '@tensorflow/tfjs';
-import { Brain, Info } from 'lucide-react';
-import Link from 'next/link';
 import Image from 'next/image';
-
-// Components
-import { DataInputSection } from '@/components/data-input-section';
-import { DataSplitSection } from '@/components/data-split-section';
-import { ConfigControls } from '@/components/config-controls';
-import { PresetManager } from '@/components/preset-manager';
-import { NetworkDiagram } from '@/components/network-diagram';
-import { FunctionSelector } from '@/components/function-selector';
-import { TrainingSection } from '@/components/training-section';
-import { TestingSection } from '@/components/testing-section';
-
-// Types & Utils
-import {
-  NetworkConfig,
-  SplitRatios,
-  TrainingMetrics,
-  TrainingSummary,
-  NormalizationScaler,
-  EvaluationMetrics,
-  PredictionResult,
-  ActivationFunction,
-  LossFunction,
-  OptimizerType,
-} from '@/lib/types';
-import {
-  normalizeData,
-  denormalizeData,
-  splitData,
-  createModel,
-  trainModel,
-  calculateMetrics,
-} from '@/lib/ml-utils';
-import { BUILT_IN_PRESETS } from '@/lib/presets';
-
-export default function NeuralNetworkBuilder() {
-  // ===== DATA STATE =====
-  const [rawFeatures, setRawFeatures] = useState<number[][]>([]);
-  const [rawLabels, setRawLabels] = useState<number[][]>([]);
-  const [dataInfo, setDataInfo] = useState<{
-    numSamples: number;
-    numFeatures: number;
-    numClasses: number;
-  } | null>(null);
-  const [normalizationScaler, setNormalizationScaler] = useState<NormalizationScaler | null>(null);
-
-  // ===== SPLIT STATE =====
-  const [splitRatios, setSplitRatios] = useState<SplitRatios>({
-    train: 60,
-    validation: 20,
-    test: 20,
-  });
-
-  // ===== CONFIGURATION STATE =====
-  const [config, setConfig] = useState<NetworkConfig>(BUILT_IN_PRESETS[1].config); // Standard preset
-
-  // ===== MODEL & TRAINING STATE =====
-  const [model, setModel] = useState<tf.Sequential | null>(null);
-  const [isTraining, setIsTraining] = useState(false);
-  const [trainingData, setTrainingData] = useState<TrainingMetrics[]>([]);
-  const [summary, setSummary] = useState<TrainingSummary | undefined>(undefined);
-  const [testMetrics, setTestMetrics] = useState<EvaluationMetrics | undefined>(undefined);
-  
-  const trainingRef = useRef<boolean>(false);
-
-  /**
-   * Handle data loaded from input section
-   */
-  const handleDataLoaded = useCallback(
-    (features: number[][], labels: number[][], info: { numSamples: number; numFeatures: number; numClasses: number }) => {
-      setRawFeatures(features);
-      setRawLabels(labels);
-      setDataInfo(info);
-      
-      // Update config with detected sizes
-      setConfig(prev => ({
-        ...prev,
-        inputLayers: info.numFeatures,
-        outputLayers: info.numClasses,
-      }));
-
-      // Reset training state
-      setModel(null);
-      setTrainingData([]);
-      setSummary(undefined);
-      setTestMetrics(undefined);
-      setNormalizationScaler(null);
-
-      console.log('✅ Data loaded:', info);
-    },
-    []
-  );
-
-  /**
-   * Handle split ratio change
-   */
-  const handleSplitChange = useCallback((ratios: SplitRatios) => {
-    setSplitRatios(ratios);
-  }, []);
-
-  /**
-   * Handle config change
-   */
-  const handleConfigChange = useCallback((updates: Partial<NetworkConfig>) => {
-    setConfig(prev => ({ ...prev, ...updates }));
-  }, []);
-
-  /**
-   * Handle preset load
-   */
-  const handleLoadPreset = useCallback((presetConfig: NetworkConfig) => {
-    setConfig(prev => ({
-      ...presetConfig,
-      inputLayers: prev.inputLayers, // Preserve detected input size
-      outputLayers: prev.outputLayers, // Preserve detected output size
-    }));
-  }, []);
-
-  /**
-   * Handle training
-   */
-  const handleTrain = useCallback(async () => {
-    if (!dataInfo || rawFeatures.length === 0) {
-      alert('Please load data first');
-      return;
-    }
-
-    try {
-      setIsTraining(true);
-      trainingRef.current = true;
-      setTrainingData([]);
-      setSummary(undefined);
-      setTestMetrics(undefined);
-
-      const startTime = Date.now();
-
-      // Step 1: Normalize data if enabled
-      let features = rawFeatures;
-      let scaler: NormalizationScaler | null = null;
-
-      if (config.normalization !== 'none') {
-        const normalized = normalizeData(rawFeatures, config.normalization);
-        features = normalized.normalized;
-        scaler = normalized.scaler;
-        setNormalizationScaler(scaler);
-        console.log('✅ Data normalized:', config.normalization);
-      }
-
-      // Step 2: Split data
-      const trainRatio = splitRatios.train / 100;
-      const valRatio = splitRatios.validation / 100;
-      
-      const split = splitData(features, rawLabels, trainRatio, valRatio, true);
-      console.log('✅ Data split:', {
-        train: split.trainX.length,
-        val: split.valX.length,
-        test: split.testX.length,
-      });
-
-      // Step 3: Create model
-      const newModel = createModel(config, dataInfo.numFeatures, dataInfo.numClasses);
-      setModel(newModel);
-      console.log('✅ Model created');
-
-      // Step 4: Train model
-      const metrics: TrainingMetrics[] = [];
-      let bestEpoch = 0;
-      let bestValLoss = Infinity;
-
-      const history = await trainModel(
-        newModel,
-        split.trainX,
-        split.trainY,
-        split.valX,
-        split.valY,
-        config,
-        (epoch, logs) => {
-          if (!trainingRef.current) return;
-
-          const metric: TrainingMetrics = {
-            epoch: epoch + 1,
-            loss: logs.loss as number,
-            accuracy: logs.acc as number,
-            valLoss: logs.val_loss as number,
-            valAccuracy: logs.val_acc as number,
-            learningRate: config.learningRate,
-          };
-
-          metrics.push(metric);
-          setTrainingData([...metrics]);
-
-          // Track best epoch
-          if (logs.val_loss && logs.val_loss < bestValLoss) {
-            bestValLoss = logs.val_loss as number;
-            bestEpoch = epoch + 1;
-          }
-
-          console.log(`Epoch ${epoch + 1}/${config.epochs}`, logs);
-        }
-      );
-
-      if (!trainingRef.current) {
-        console.log('⚠️ Training cancelled');
-        return;
-      }
-
-      const trainingTime = (Date.now() - startTime) / 1000;
-
-      // Step 5: Evaluate on test set
-      const testEval = await calculateMetrics(newModel, split.testX, split.testY);
-      setTestMetrics(testEval);
-      console.log('✅ Test metrics calculated:', testEval);
-
-      // Step 6: Create summary
-      const finalSummary: TrainingSummary = {
-        finalTrainLoss: metrics[metrics.length - 1].loss,
-        finalTrainAccuracy: metrics[metrics.length - 1].accuracy || 0,
-        finalValLoss: metrics[metrics.length - 1].valLoss || 0,
-        finalValAccuracy: metrics[metrics.length - 1].valAccuracy || 0,
-        testLoss: testEval.loss,
-        testAccuracy: testEval.accuracy,
-        totalEpochs: metrics.length,
-        bestEpoch,
-        trainingTime,
-        earlyStopped: metrics.length < config.epochs,
-        testMetrics: testEval,
-      };
-
-      setSummary(finalSummary);
-      console.log('✅ Training complete!', finalSummary);
-
-    } catch (error) {
-      console.error('❌ Training error:', error);
-      alert(`Training failed: ${error instanceof Error ? error.message : 'Unknown error'}`);
-    } finally {
-      setIsTraining(false);
-      trainingRef.current = false;
-    }
-  }, [dataInfo, rawFeatures, rawLabels, config, splitRatios]);
-
-  /**
-   * Handle pause training
-   */
-  const handlePause = useCallback(() => {
-    trainingRef.current = false;
-    setIsTraining(false);
-    console.log('⏸️ Training paused');
-  }, []);
-
-  /**
-   * Handle reset
-   */
-  const handleReset = useCallback(() => {
-    trainingRef.current = false;
-    setIsTraining(false);
-    setTrainingData([]);
-    setSummary(undefined);
-    setTestMetrics(undefined);
-    
-    if (model) {
-      model.dispose();
-      setModel(null);
-    }
-    
-    console.log('🔄 Training reset');
-  }, [model]);
-
-  /**
-   * Handle test/prediction
-   */
-  const handleTest = useCallback(
-    async (inputs: number[]): Promise<PredictionResult | null> => {
-      if (!model || !dataInfo) return null;
-
-      try {
-        // Normalize inputs if scaler exists
-        let processedInputs = inputs;
-        if (normalizationScaler && normalizationScaler.method !== 'none') {
-          const normalized = normalizeData([inputs], normalizationScaler.method);
-          processedInputs = normalized.normalized[0];
-        }
-
-        // Make prediction
-        const inputTensor = tf.tensor2d([processedInputs]);
-        const prediction = model.predict(inputTensor) as tf.Tensor;
-        const probabilities = await prediction.data();
-        
-        inputTensor.dispose();
-        prediction.dispose();
-
-        const probArray = Array.from(probabilities);
-        const predictedClass = probArray.indexOf(Math.max(...probArray));
-        const confidence = probArray[predictedClass];
-
-        return {
-          predictedClass,
-          confidence,
-          probabilities: probArray,
-        };
-      } catch (error) {
-        console.error('❌ Prediction error:', error);
-        throw error;
-      }
-    },
-    [model, dataInfo, normalizationScaler]
-  );
-
-  /**
-   * Handle model download
-   */
-  const handleDownloadModel = useCallback(async () => {
-    if (!model) {
-      alert('No trained model to download');
-      return;
-    }
-
-    try {
-      const timestamp = Date.now();
-      
-      // Create comprehensive README with all information
-      const readme = `# Neural Network Model Package
-**Export Date**: ${new Date().toLocaleString()}
-**Model ID**: neural-network-model-${timestamp}
-
-## 📊 Model Information
-- **Input Features**: ${config.inputLayers}
-- **Output Classes**: ${config.outputLayers}
-- **Architecture**: ${config.hiddenLayers.join(' → ')} neurons per hidden layer
-- **Activation Functions**: ${config.hiddenActivation} (hidden), ${config.outputActivation} (output)
-- **Final Validation Accuracy**: ${summary?.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-- **Training Epochs**: ${summary?.totalEpochs || config.epochs}
-- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
-
-## 📦 Downloaded Files
-1. **neural-network-model-${timestamp}.json** - Model architecture
-2. **neural-network-model-${timestamp}.weights.bin** - Trained weights
-
-## 🚀 How to Use This Model
-
-### Step 1: Load the Model
-\`\`\`javascript
-import * as tf from '@tensorflow/tfjs';
-
-// Load the model (adjust path as needed)
-const model = await tf.loadLayersModel('path/to/neural-network-model-${timestamp}.json');
-// Or from a web server: 'https://yourserver.com/neural-network-model-${timestamp}.json'
-\`\`\`
-
-### Step 2: Preprocess Your Input
-${normalizationScaler ? `
-**⚠️ IMPORTANT: You MUST normalize your input data the same way it was during training!**
-
-**Normalization Method**: ${config.normalization.toUpperCase()}
-
-\`\`\`javascript
-${config.normalization === 'minmax' ? `// Min-Max Normalization values from training:
-const min = ${JSON.stringify(normalizationScaler.min)};
-const max = ${JSON.stringify(normalizationScaler.max)};
-
-// Normalization function: (x - min) / (max - min)
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    const range = max[index] - min[index];
-    return range === 0 ? 0.5 : (value - min[index]) / range;
-  });
-}` : ''}${config.normalization === 'standardization' ? `// Standardization (Z-score) values from training:
-const mean = ${JSON.stringify(normalizationScaler.mean)};
-const std = ${JSON.stringify(normalizationScaler.std)};
-
-// Normalization function: (x - mean) / std
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    return std[index] === 0 ? 0 : (value - mean[index]) / std[index];
-  });
-}` : ''}${config.normalization === 'robust' ? `// Robust Normalization values from training:
-const median = ${JSON.stringify(normalizationScaler.median)};
-const iqr = ${JSON.stringify(normalizationScaler.iqr)};
-
-// Normalization function: (x - median) / IQR
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    return iqr[index] === 0 ? 0 : (value - median[index]) / iqr[index];
-  });
-}` : ''}
-
-// Example usage:
-const rawFeatures = [1.5, 2.3, 0.8${config.inputLayers > 3 ? ', ...' : ''}]; // Your ${config.inputLayers} raw feature values
-const normalizedFeatures = normalizeInput(rawFeatures);
-\`\`\`
-` : `
-**No preprocessing required** - You can use raw feature values directly.
-`}
-
-### Step 3: Make Predictions
-\`\`\`javascript
-// Prepare input (${config.inputLayers} features)
-const inputFeatures = [/* your ${config.inputLayers} feature values */];
-${normalizationScaler ? 'const normalizedFeatures = normalizeInput(inputFeatures);' : 'const normalizedFeatures = inputFeatures;'}
-
-// Create tensor (2D: [1, ${config.inputLayers}] for single prediction)
-const inputTensor = tf.tensor2d([normalizedFeatures]);
-
-// Make prediction
-const outputTensor = model.predict(inputTensor);
-const probabilities = await outputTensor.data();
-
-// Get predicted class (highest probability)
-const predictedClass = Array.from(probabilities).indexOf(Math.max(...probabilities));
-console.log('Predicted Class:', predictedClass);
-console.log('Class Probabilities:', probabilities);
-
-// IMPORTANT: Clean up tensors to prevent memory leaks
-inputTensor.dispose();
-outputTensor.dispose();
-\`\`\`
-
-### Batch Predictions
-\`\`\`javascript
-// For multiple predictions at once
-const batchFeatures = [
-  [feat1_1, feat1_2, ..., feat1_${config.inputLayers}],
-  [feat2_1, feat2_2, ..., feat2_${config.inputLayers}],
-  // ... more samples
-];
-${normalizationScaler ? 'const normalizedBatch = batchFeatures.map(normalizeInput);' : 'const normalizedBatch = batchFeatures;'}
-const batchTensor = tf.tensor2d(normalizedBatch);
-const predictions = model.predict(batchTensor);
-const allProbabilities = await predictions.data();
-batchTensor.dispose();
-predictions.dispose();
-\`\`\`
-
-## 📋 Technical Specifications
-
-### Input
-- **Shape**: [batchSize, ${config.inputLayers}]
-- **Type**: Float32 tensor
-- **Preprocessing**: ${config.normalization === 'none' ? 'None required' : config.normalization + ' normalization (see values above)'}
-
-### Output
-- **Shape**: [batchSize, ${config.outputLayers}]
-- **Type**: Float32 tensor (probabilities)
-- **Format**: ${config.outputLayers} values, one per class, summing to 1.0
-- **Activation**: ${config.outputActivation}
-
-### Architecture
-\`\`\`
-Input Layer (${config.inputLayers} features)
-    ↓
-${config.hiddenLayers.map((neurons, i) => `Hidden Layer ${i + 1} (${neurons} neurons, ${config.hiddenActivation} activation)${config.useDropout ? ` + Dropout(${config.dropoutRate})` : ''}${config.useBatchNormalization ? ' + BatchNorm' : ''}`).join('\n    ↓\n')}
-    ↓
-Output Layer (${config.outputLayers} classes, ${config.outputActivation} activation)
-\`\`\`
-
-### Training Configuration
-- **Optimizer**: ${config.optimizer}
-- **Learning Rate**: ${config.learningRate}
-- **Loss Function**: ${config.lossFunction}
-- **Batch Size**: ${config.batchSize}
-- **Epochs Trained**: ${summary?.totalEpochs || config.epochs}
-- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
-
-### Performance Metrics
-${summary ? `
-- **Training Loss**: ${summary.finalTrainLoss?.toFixed(4) || 'N/A'}
-- **Training Accuracy**: ${summary.finalTrainAccuracy ? (summary.finalTrainAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-- **Validation Loss**: ${summary.finalValLoss?.toFixed(4) || 'N/A'}
-- **Validation Accuracy**: ${summary.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-` : 'No training metrics available'}
-
-## 💡 Important Tips
-
-1. **Always normalize inputs** using the exact same method and values from training
-2. **Dispose tensors** after use to prevent memory leaks: \`tensor.dispose()\`
-3. **Check input shape** - must be [batchSize, ${config.inputLayers}]
-4. **Interpret output** - returns probabilities, not class labels
-5. **Batch processing** - process multiple samples together for better performance
-
-## 🔧 Troubleshooting
-
-**Error: "Input shape mismatch"**
-- Ensure input has exactly ${config.inputLayers} features
-- Check tensor shape: should be 2D [batchSize, ${config.inputLayers}]
-
-**Error: "Memory leak detected"**
-- Call \`.dispose()\` on all tensors after use
-- Use \`tf.tidy()\` to automatically clean up: \`tf.tidy(() => { /* operations */ })\`
-
-**Poor predictions:**
-- Verify normalization is applied correctly
-- Check that features are in the same order as training
-- Ensure feature values are in reasonable ranges
-
-## 📚 Additional Resources
-- TensorFlow.js Documentation: https://js.tensorflow.org/
-- Model Loading Guide: https://js.tensorflow.org/tutorials/import-saved-model.html
-
----
-*Generated by Neural Network Builder*
-*Framework: TensorFlow.js*
-*Export Time: ${new Date().toISOString()}*
-`;
-
-      // Save model using TensorFlow.js (this downloads 2 files: model.json + weights.bin)
-      console.log('📦 Saving model files...');
-      await model.save(`downloads://neural-network-model-${timestamp}`);
-      
-      // Save README as a single comprehensive file
-      console.log('📝 Creating README...');
-      const readmeBlob = new Blob([readme], { type: 'text/markdown' });
-      const readmeUrl = URL.createObjectURL(readmeBlob);
-      const readmeLink = document.createElement('a');
-      readmeLink.href = readmeUrl;
-      readmeLink.download = `neural-network-README-${timestamp}.md`;
-      readmeLink.style.display = 'none';
-      document.body.appendChild(readmeLink);
-      
-      // Small delay to ensure model files start downloading first
-      setTimeout(() => {
-        readmeLink.click();
-        document.body.removeChild(readmeLink);
-        URL.revokeObjectURL(readmeUrl);
-      }, 1000);
-      
-      console.log('✅ Model export complete');
-      alert(`✅ Model download started!\n\nYou should receive 3 files:\n\n1. neural-network-model-${timestamp}.json\n2. neural-network-model-${timestamp}.weights.bin\n3. neural-network-README-${timestamp}.md\n\n⚠️ If your browser blocks multiple downloads, please allow them when prompted.\n\nCheck your Downloads folder!`);
-      
-    } catch (error) {
-      console.error('❌ Download error:', error);
-      alert('Failed to download model. Error: ' + (error as Error).message);
-    }
-  }, [model, config, normalizationScaler, dataInfo, summary]);
-
+import Link from 'next/link';
+import { Button } from '@/components/ui/button';
+import { ArrowRight, Shield, Brain, Zap, DollarSign } from 'lucide-react';
+
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-teal-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       {/* Header */}
-      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-14 items-center justify-between gap-4">
-            {/* Left: Logo */}
-            <div className="flex-shrink-0">
-              <Image
-                src="/SEPT_logo_Transparent.png"
-                alt="SEPT Logo"
-                width={120}
-                height={40}
-                className="h-10 w-auto"
-                priority
-              />
-            </div>
+      <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
+            {/* Logo */}
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="relative h-10 w-10 transition-transform group-hover:scale-110">
+                <Image
+                  src="/SEPT_logo_Transparent.png"
+                  alt="SEPT Logo"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                SEPT
+              </span>
+            </Link>
 
-            {/* Center: Tagline (takes remaining space) */}
-            <div className="flex-1 text-center hidden sm:block">
-              <h1 className="text-base md:text-lg lg:text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                Build and train your own Neural Network
-              </h1>
-            </div>
-
-            {/* Right: Test Link */}
-            <div className="flex-shrink-0">
-              <Link
-                href="/test"
-                className="inline-flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-gray-600 hover:text-emerald-600 hover:bg-emerald-50 dark:text-gray-400 dark:hover:text-emerald-400 dark:hover:bg-emerald-950/30 transition-all"
-              >
-                <Info className="h-4 w-4" />
-                <span className="hidden lg:inline">Test Components</span>
+            {/* Navigation */}
+            <nav className="hidden md:flex items-center gap-8">
+              <Link href="#product" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                Product
               </Link>
-            </div>
+              <Link href="#how-it-works" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                How It Works
+              </Link>
+              <Link href="#team" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                Team
+              </Link>
+              <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                Contact
+              </Link>
+              <Link href="/builder">
+                <Button variant="outline" size="sm" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950">
+                  Neural Network Builder
+                </Button>
+              </Link>
+            </nav>
+
+            {/* Mobile Menu Button */}
+            <button className="md:hidden p-2">
+              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
           </div>
         </div>
       </header>
 
-      {/* Main Content */}
-      <div className="container mx-auto px-4 py-6 space-y-6">
-        {/* Network Diagram */}
-        <NetworkDiagram
-          inputNodes={config.inputLayers}
-          hiddenLayers={config.hiddenLayers}
-          outputNodes={config.outputLayers}
-        />
+      {/* Hero Section */}
+      <section className="pt-32 pb-20 px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800">
+                <Shield className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+                <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                  NEC 690.12 Compliant
+                </span>
+              </div>
 
-        {/* Main Grid Layout */}
-        <div className="grid lg:grid-cols-12 gap-6">
-          {/* Left Sidebar */}
-          <aside className="lg:col-span-4 space-y-6">
-            <PresetManager currentConfig={config} onLoadPreset={handleLoadPreset} />
-            <DataInputSection onDataLoaded={handleDataLoaded} />
-            <DataSplitSection
-              splitRatios={splitRatios}
-              onSplitChange={handleSplitChange}
-              totalSamples={dataInfo?.numSamples || 0}
-            />
-          </aside>
+              {/* Headline */}
+              <div className="space-y-4">
+                <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                  Making Solar Energy{' '}
+                  <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    Safer, Smarter
+                  </span>
+                  {' '}& More Sustainable
+                </h1>
+                <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                  SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through{' '}
+                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">Solar Sense</span>{' '}
+                  — the all-in-one device that protects solar systems while maximizing performance.
+                </p>
+              </div>
 
-          {/* Center Column - Training & Testing (More Space for Graphs) */}
-          <main className="lg:col-span-5 space-y-6">
-            <TrainingSection
-              isTraining={isTraining}
-              trainingData={trainingData}
-              onTrain={handleTrain}
-              onPause={handlePause}
-              onReset={handleReset}
-              summary={summary}
-              testMetrics={testMetrics}
-            />
-            <TestingSection
-              model={model}
-              inputSize={config.inputLayers}
-              outputSize={config.outputLayers}
-              onTest={handleTest}
-              onDownloadModel={handleDownloadModel}
-              isModelTrained={model !== null && !isTraining}
-            />
-          </main>
+              {/* Problem Statement */}
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg">
+                <h3 className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+                  The Challenge
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
+                  Firefighters and regulators in <span className="font-semibold">12+ countries</span> require Rapid Shutdown for solar systems. 
+                  Yet solar owners struggle to stay both compliant and efficient — existing solutions force a difficult choice between safety and performance monitoring.
+                </p>
+              </div>
 
-          {/* Right Column - Configuration Controls */}
-          <aside className="lg:col-span-3 space-y-6">
-            <ConfigControls config={config} onConfigChange={handleConfigChange} />
-            <FunctionSelector
-              hiddenActivation={config.hiddenActivation}
-              outputActivation={config.outputActivation}
-              lossFunction={config.lossFunction}
-              optimizer={config.optimizer}
-              onHiddenActivationChange={(val: ActivationFunction) =>
-                handleConfigChange({ hiddenActivation: val })
-              }
-              onOutputActivationChange={(val: ActivationFunction) =>
-                handleConfigChange({ outputActivation: val })
-              }
-              onLossFunctionChange={(val: LossFunction) =>
-                handleConfigChange({ lossFunction: val })
-              }
-              onOptimizerChange={(val: OptimizerType) =>
-                handleConfigChange({ optimizer: val })
-              }
-            />
-          </aside>
+              {/* Solution Statement */}
+              <div className="p-6 rounded-xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800 shadow-lg">
+                <h3 className="text-sm font-semibold text-emerald-700 dark:text-emerald-400 uppercase tracking-wide mb-3">
+                  Our Solution
+                </h3>
+                <p className="text-gray-800 dark:text-gray-200 leading-relaxed">
+                  Solar Sense bridges this gap with an intelligent device that collects real-time data from each solar panel 
+                  and applies <span className="font-semibold">machine learning</span> to detect faults such as shading, hotspots, and degradation.
+                </p>
+              </div>
+
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="#product">
+                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all">
+                    Explore Solar Sense
+                    <ArrowRight className="ml-2 w-5 h-5" />
+                  </Button>
+                </Link>
+                <Link href="/builder">
+                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
+                    Try Neural Network Builder
+                  </Button>
+                </Link>
+              </div>
+
+              {/* Quick Stats */}
+              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200 dark:border-gray-800">
+                <div>
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">12+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Countries</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">4th</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Generation</div>
+                </div>
+                <div>
+                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">100%</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Compliant</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Visual */}
+            <div className="relative">
+              {/* Main Feature Card */}
+              <div className="relative z-10 p-8 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-2xl">
+                <div className="space-y-6">
+                  {/* Header */}
+                  <div className="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800">
+                    <div className="p-3 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
+                      <Zap className="w-6 h-6 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">Solar Sense</h3>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">All-in-One Smart Device</p>
+                    </div>
+                  </div>
+
+                  {/* Features Grid */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900">
+                      <Shield className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mb-2" />
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Enhanced Safety</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Rapid Shutdown</div>
+                    </div>
+                    <div className="p-4 rounded-lg bg-teal-50 dark:bg-teal-950/30 border border-teal-100 dark:border-teal-900">
+                      <Brain className="w-8 h-8 text-teal-600 dark:text-teal-400 mb-2" />
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">AI Detection</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Real-time Faults</div>
+                    </div>
+                    <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900">
+                      <svg className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Full Compliance</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">NEC Certified</div>
+                    </div>
+                    <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900">
+                      <DollarSign className="w-8 h-8 text-purple-600 dark:text-purple-400 mb-2" />
+                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Cost-Effective</div>
+                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Single Device</div>
+                    </div>
+                  </div>
+
+                  {/* Status Indicator */}
+                  <div className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+                    <div className="flex items-center gap-2">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">System Active</span>
+                    </div>
+                    <span className="text-xs text-gray-500 dark:text-gray-400">Real-time Monitoring</span>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -top-6 -right-6 w-32 h-32 bg-gradient-to-br from-emerald-400 to-teal-400 rounded-full blur-3xl opacity-20 animate-pulse"></div>
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-teal-400 to-blue-400 rounded-full blur-3xl opacity-20 animate-pulse" style={{animationDelay: '1s'}}></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Scroll Indicator */}
+      <div className="flex justify-center pb-12">
+        <div className="animate-bounce">
+          <svg className="w-6 h-6 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+          </svg>
         </div>
       </div>
+
+      {/* Placeholder sections (to be built in next phases) */}
+      <section id="product" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Product Section</h2>
+          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 2</p>
+        </div>
+      </section>
+
+      <section id="how-it-works" className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
+          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 3</p>
+        </div>
+      </section>
+
+      <section id="team" className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-900">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Team Section</h2>
+          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 4</p>
+        </div>
+      </section>
+
+      <section id="contact" className="min-h-screen flex items-center justify-center">
+        <div className="text-center">
+          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Contact Section</h2>
+          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 5</p>
+        </div>
+      </section>
     </div>
   );
 }
+
