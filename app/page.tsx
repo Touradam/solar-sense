@@ -180,16 +180,11 @@ export default function LandingPage() {
               </div>
 
               {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              <div className="flex justify-center sm:justify-start">
                 <Link href="#product">
-                  <Button size="lg" className="w-full sm:w-auto bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all">
+                  <Button size="lg" className="w-full sm:w-auto px-8 py-6 text-lg bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-xl hover:shadow-2xl transition-all transform hover:scale-105">
                     Explore Solar Sense
-                    <ArrowRight className="ml-2 w-5 h-5" />
-                  </Button>
-                </Link>
-                <Link href="/builder">
-                  <Button size="lg" variant="outline" className="w-full sm:w-auto border-2 border-gray-300 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-900">
-                    Try Neural Network Builder
+                    <ArrowRight className="ml-2 w-6 h-6" />
                   </Button>
                 </Link>
               </div>
