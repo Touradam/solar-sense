@@ -95,11 +95,12 @@ export function DataInputSection({ onDataLoaded }: DataInputSectionProps) {
       const numFeatures = features[0].length;
       const numClasses = labels[0].length;
 
-      // Store preview (first 5 rows)
+      // Store preview (first 8 rows + header if exists)
       const preview: string[][] = [];
       const lines = csvText.trim().split('\n');
       const startRow = formatConfig.hasHeaders ? 0 : 1;
-      for (let i = startRow; i < Math.min(startRow + 5, lines.length); i++) {
+      const previewRows = formatConfig.hasHeaders ? 9 : 8; // 8 data rows + 1 header if exists
+      for (let i = startRow; i < Math.min(startRow + previewRows, lines.length); i++) {
         preview.push(lines[i].split(','));
       }
       setPreviewData(preview);
@@ -134,17 +135,23 @@ export function DataInputSection({ onDataLoaded }: DataInputSectionProps) {
       const numFeatures = features[0].length;
       const numClasses = labels[0].length;
 
-      // Create preview
+      // Create preview (first 8 rows)
       const preview: string[][] = [];
-      preview.push(['Feature 1', 'Feature 2', '...', 'Label']);
-      for (let i = 0; i < Math.min(5, features.length); i++) {
+      
+      // Header row
+      const headers = [];
+      for (let j = 0; j < numFeatures; j++) {
+        headers.push(`Feature ${j + 1}`);
+      }
+      headers.push('Class');
+      preview.push(headers);
+      
+      // Data rows (first 8 samples)
+      for (let i = 0; i < Math.min(8, features.length); i++) {
         const labelIndex = labels[i].indexOf(1);
-        preview.push([
-          features[i][0].toFixed(3),
-          features[i][1].toFixed(3),
-          numFeatures > 2 ? '...' : '',
-          labelIndex.toString(),
-        ]);
+        const row = features[i].map(val => val.toFixed(3));
+        row.push(`Class ${labelIndex}`);
+        preview.push(row);
       }
       setPreviewData(preview);
 
@@ -364,7 +371,7 @@ export function DataInputSection({ onDataLoaded }: DataInputSectionProps) {
             </p>
           </div>
           
-          <div className="grid grid-cols-3 gap-2 text-xs">
+          <div className="grid grid-cols-3 gap-2 text-xs mb-4">
             <div className="bg-white/50 dark:bg-gray-900/30 rounded-lg px-3 py-2 text-center">
               <p className="text-emerald-600 dark:text-emerald-400 font-bold text-lg">
                 {dataInfo.numSamples}
@@ -384,6 +391,53 @@ export function DataInputSection({ onDataLoaded }: DataInputSectionProps) {
               <p className="text-gray-600 dark:text-gray-400">Classes</p>
             </div>
           </div>
+
+          {/* Data Preview */}
+          {previewData && previewData.length > 0 && (
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <FileSpreadsheet className="h-4 w-4 text-emerald-600 dark:text-emerald-400" />
+                <p className="text-xs font-medium text-emerald-700 dark:text-emerald-300">
+                  Preview (first 8 samples)
+                </p>
+              </div>
+              <div className="bg-white dark:bg-gray-900 rounded-lg p-3 overflow-x-auto">
+                <table className="w-full text-xs border-collapse">
+                  <thead>
+                    <tr className="border-b-2 border-emerald-200 dark:border-emerald-800">
+                      {previewData[0].map((header, j) => (
+                        <th
+                          key={j}
+                          className="px-2 py-2 text-left font-semibold text-emerald-700 dark:text-emerald-300 whitespace-nowrap"
+                        >
+                          {header}
+                        </th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {previewData.slice(1).map((row, i) => (
+                      <tr
+                        key={i}
+                        className={`border-b border-gray-200 dark:border-gray-700 ${
+                          i % 2 === 0 ? 'bg-gray-50/50 dark:bg-gray-800/30' : ''
+                        }`}
+                      >
+                        {row.map((cell, j) => (
+                          <td
+                            key={j}
+                            className="px-2 py-1.5 text-gray-700 dark:text-gray-300 whitespace-nowrap"
+                          >
+                            {cell.length > 12 ? cell.substring(0, 10) + '...' : cell}
+                          </td>
+                        ))}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>
