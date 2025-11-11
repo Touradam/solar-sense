@@ -15,13 +15,13 @@ export default function LandingPage() {
             {/* Left: Logo */}
             <Link href="/" className="flex-shrink-0 group">
               <div className="relative h-14 w-14 transition-transform group-hover:scale-110">
-                <Image
+        <Image
                   src="/SEPT_logo_Transparent.png"
                   alt="SEPT Logo"
                   fill
                   className="object-contain"
-                  priority
-                />
+          priority
+        />
               </div>
             </Link>
 
@@ -74,7 +74,7 @@ export default function LandingPage() {
                     Safer, Smarter
                   </span>
                   {' '}& More Sustainable
-                </h1>
+          </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
                   SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through{' '}
                   <span className="font-semibold text-emerald-600 dark:text-emerald-400">Solar Sense</span>{' '}
@@ -117,22 +117,6 @@ export default function LandingPage() {
                     Try Neural Network Builder
                   </Button>
                 </Link>
-              </div>
-
-              {/* Quick Stats */}
-              <div className="grid grid-cols-3 gap-6 pt-8 border-t border-gray-200 dark:border-gray-800">
-                <div>
-                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">12+</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Countries</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">4th</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Generation</div>
-                </div>
-                <div>
-                  <div className="text-3xl font-bold text-emerald-600 dark:text-emerald-400">100%</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400 mt-1">Compliant</div>
-                </div>
               </div>
             </div>
 
@@ -790,7 +774,7 @@ export default function LandingPage() {
                 <div className="space-y-6">
                   {/* Avatar */}
                   <div className="relative w-24 h-24 rounded-full mx-auto shadow-lg overflow-hidden">
-                    <Image
+            <Image
                       src="/jordanHarrisToovy.png"
                       alt="Jordan Harris-Toovy"
                       fill
