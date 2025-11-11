@@ -510,7 +510,7 @@ export default function LandingPage() {
 
           {/* Main Systems */}
           <div className="grid lg:grid-cols-2 gap-8 mb-16">
-            {/* System 1: Rapid Disconnect */}
+            {/* System 1: Rapid Shutdown */}
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
@@ -522,13 +522,23 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">System 1</div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Rapid Disconnect Module</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Rapid Shutdown Mode</h3>
                     </div>
+                  </div>
+
+                  {/* Ecosystem Diagram */}
+                  <div className="relative w-full h-48 my-4">
+                    <Image
+                      src="/sept-ecosystem.svg"
+                      alt="SEPT Ecosystem - Rapid Shutdown"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
 
                   {/* Description */}
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    The rapid disconnect module is the safety heart of Solar Sense, designed to protect first responders and property during emergencies.
+                    The rapid shutdown mode is the safety heart of Solar Sense, designed to protect first responders and property during emergencies.
                   </p>
 
                   {/* Features List */}
@@ -579,7 +589,7 @@ export default function LandingPage() {
               </div>
             </div>
 
-            {/* System 2: ML Module */}
+            {/* System 2: Digital Twin ML */}
             <div className="relative group">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
@@ -591,13 +601,23 @@ export default function LandingPage() {
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">System 2</div>
-                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Self-Analysis & ML Module</h3>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Digital Twin ML Based Monitoring</h3>
                     </div>
+                  </div>
+
+                  {/* ML Fault Detection Diagram */}
+                  <div className="relative w-full h-48 my-4">
+                    <Image
+                      src="/pv-ml-fault-detection.png"
+                      alt="ML Based Fault Detection"
+                      fill
+                      className="object-contain"
+                    />
                   </div>
 
                   {/* Description */}
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                    The machine learning module is the intelligence core, continuously monitoring and analyzing panel performance to predict and prevent issues.
+                    The digital twin machine learning module is the intelligence core, continuously monitoring and analyzing panel performance to predict and prevent issues.
                   </p>
 
                   {/* Features List */}
