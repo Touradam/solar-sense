@@ -816,9 +816,14 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="space-y-6">
-                  {/* Avatar Placeholder */}
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mx-auto shadow-lg">
-                    <span className="text-3xl font-bold text-white">AT</span>
+                  {/* Avatar */}
+                  <div className="relative w-24 h-24 rounded-full mx-auto shadow-lg overflow-hidden">
+                    <Image
+                      src="/adamaToure.png"
+                      alt="Adama Toure"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* Info */}
@@ -866,9 +871,14 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="space-y-6">
-                  {/* Avatar Placeholder */}
-                  <div className="w-24 h-24 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mx-auto shadow-lg">
-                    <span className="text-3xl font-bold text-white">JH</span>
+                  {/* Avatar */}
+                  <div className="relative w-24 h-24 rounded-full mx-auto shadow-lg overflow-hidden">
+                    <Image
+                      src="/jordanHarrisToovy.png"
+                      alt="Jordan Harris-Toovy"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
 
                   {/* Info */}
