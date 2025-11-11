@@ -242,7 +242,7 @@ export default function LandingPage() {
 
           {/* Value Props Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* 1. Enhanced Safety */}
+            {/* 1. Safety & Compliance Combined */}
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
@@ -250,18 +250,18 @@ export default function LandingPage() {
                   <Shield className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Enhanced Safety
+                  Code-Compliant Safety
                 </h3>
-                <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-4">
-                  ⚡ Rapid Shutdown Compliance
+                <p className="text-sm font-semibold text-emerald-600 dark:text-emerald-400 mb-3">
+                  ⚡ Required in 12+ Countries
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Disconnects panels in a fraction of a second, ensuring NEC 690.12 compliance and protecting first responders during emergencies.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm">
+                  NEC 690.12 compliant rapid shutdown protects first responders and meets mandatory regulations in the US and beyond.
                 </p>
               </div>
             </div>
 
-            {/* 2. Smart Monitoring */}
+            {/* 2. Maximize Energy Production */}
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
@@ -269,68 +269,94 @@ export default function LandingPage() {
                   <Brain className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Maximize Your Energy Production
+                  Maximize Energy Production
                 </h3>
-                <p className="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-4">
-                  💰 Catch Problems Before They Cost You Money
+                <p className="text-sm font-semibold text-teal-600 dark:text-teal-400 mb-3">
+                  🔍 Catch Problems Early
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-4">
-                  AI-powered monitoring detects issues like shading, dirt buildup, and panel degradation <span className="font-semibold text-gray-900 dark:text-white">the moment they start affecting your output</span> — so you can fix small problems before they become expensive repairs.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-3">
+                  AI detects issues <span className="font-semibold text-gray-900 dark:text-white">the moment they affect output</span> — fix small problems before costly repairs.
                 </p>
-                <div className="space-y-2">
-                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                <div className="space-y-1.5">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
                     <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Get instant alerts when panels underperform</span>
+                    <span>Instant alerts on underperformance</span>
                   </div>
-                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
                     <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Maintain peak efficiency and ROI</span>
+                    <span>Maintain peak ROI</span>
                   </div>
-                  <div className="flex items-start gap-2 text-sm text-gray-700 dark:text-gray-300">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
                     <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Extend your system's lifespan by years</span>
+                    <span>Extend system lifespan</span>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* 3. Full Compliance */}
+            {/* 3. Lower Operating Costs */}
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mb-6">
-                  <svg className="w-7 h-7 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
+                  <DollarSign className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Full Compliance
+                  Lower Operating Costs
                 </h3>
-                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-4">
-                  ✅ Meets Regulatory Standards
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">
+                  💰 One Device, Multiple Benefits
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Mandatory in 12+ countries including the United States. Solar Sense ensures your installation meets all safety requirements.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-3">
+                  Replace separate safety and monitoring systems with one affordable device.
                 </p>
+                <div className="space-y-1.5">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Reduce installation complexity</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Wireless = less wiring costs</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Single vendor support</span>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* 4. Cost-Effective */}
+            {/* 4. Protect Your Investment */}
             <div className="group relative">
               <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
-                  <DollarSign className="w-7 h-7 text-white" />
+                  <Zap className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
-                  Cost-Effective
+                  Protect Your Investment
                 </h3>
-                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-4">
-                  💰 All-in-One Solution
+                <p className="text-sm font-semibold text-purple-600 dark:text-purple-400 mb-3">
+                  🛡️ Prevent Costly Failures
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  Reduces costs compared to using separate monitoring and shutdown systems. Simple installation with wireless data transmission.
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-3">
+                  Early detection prevents <span className="font-semibold text-gray-900 dark:text-white">thousands in repair costs</span> and lost production.
                 </p>
+                <div className="space-y-1.5">
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Avoid panel replacements</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Reduce emergency service calls</span>
+                  </div>
+                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
+                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
+                    <span>Maintain warranty coverage</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
