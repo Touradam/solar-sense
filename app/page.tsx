@@ -336,7 +336,7 @@ export default function NeuralNetworkBuilder() {
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex h-14 items-center justify-between">
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4">
               <Image
                 src="/SEPT_logo_Transparent.png"
                 alt="SEPT Logo"
@@ -345,6 +345,11 @@ export default function NeuralNetworkBuilder() {
                 className="h-10 w-auto"
                 priority
               />
+              <div className="hidden md:block">
+                <p className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                  Build and train your own Neural Network
+                </p>
+              </div>
             </div>
             <div className="flex items-center gap-3">
               <Link
