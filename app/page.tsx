@@ -24,7 +24,7 @@ export default function LandingPage() {
                 />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                SEPT
+                We Make Solar Smart and Safe
               </span>
             </Link>
 
@@ -1093,7 +1093,7 @@ export default function LandingPage() {
                   />
                 </div>
                 <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                  SEPT
+                  We Make Solar Smart and Safe
                 </span>
               </div>
               <p className="text-gray-400 mb-4 max-w-md">
