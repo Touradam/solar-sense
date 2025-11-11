@@ -980,8 +980,8 @@ export default function LandingPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold mb-2 text-center">Email Us</h3>
-              <a href="mailto:info@septsolar.com" className="text-emerald-400 hover:text-emerald-300 text-center block">
-                info@septsolar.com
+              <a href="mailto:support@SEPT.energy" className="text-emerald-400 hover:text-emerald-300 text-center block">
+                support@SEPT.energy
               </a>
             </div>
 
