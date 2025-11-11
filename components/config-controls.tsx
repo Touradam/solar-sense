@@ -92,20 +92,19 @@ export function ConfigControls({ config, onConfigChange }: ConfigControlsProps) 
       </h2>
 
       <Tabs value={activeTab} onValueChange={setActiveTab}>
-        <TabsList className="grid w-full grid-cols-4 mb-6">
-          <TabsTrigger value="architecture" className="text-xs px-2">
-            <span className="hidden sm:inline">Architecture</span>
-            <span className="sm:hidden">Arch</span>
+        <TabsList className="grid w-full grid-cols-4 mb-6 gap-1">
+          <TabsTrigger value="architecture" className="text-[10px] sm:text-xs px-1">
+            Arch
           </TabsTrigger>
-          <TabsTrigger value="preprocessing" className="text-xs px-2">
-            <span className="hidden sm:inline">Preprocessing</span>
-            <span className="sm:hidden">Prep</span>
+          <TabsTrigger value="preprocessing" className="text-[10px] sm:text-xs px-1">
+            Prep
           </TabsTrigger>
-          <TabsTrigger value="regularization" className="text-xs px-2">
-            <span className="hidden sm:inline">Regularization</span>
-            <span className="sm:hidden">Reg</span>
+          <TabsTrigger value="regularization" className="text-[10px] sm:text-xs px-1">
+            Reg
           </TabsTrigger>
-          <TabsTrigger value="training" className="text-xs px-2">Training</TabsTrigger>
+          <TabsTrigger value="training" className="text-[10px] sm:text-xs px-1">
+            Train
+          </TabsTrigger>
         </TabsList>
 
         {/* ===== TAB 1: ARCHITECTURE ===== */}
