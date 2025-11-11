@@ -304,26 +304,9 @@ export default function LandingPage() {
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   Lower Operating Costs
                 </h3>
-                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400 mb-3">
+                <p className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                   💰 One Device, Multiple Benefits
                 </p>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-3">
-                  Replace separate safety and monitoring systems with one affordable device.
-                </p>
-                <div className="space-y-1.5">
-                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
-                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Reduce installation complexity</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
-                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Wireless = less wiring costs</span>
-                  </div>
-                  <div className="flex items-start gap-2 text-xs text-gray-700 dark:text-gray-300">
-                    <span className="text-emerald-600 dark:text-emerald-400">✓</span>
-                    <span>Single vendor support</span>
-                  </div>
-                </div>
               </div>
             </div>
 
