@@ -1069,7 +1069,6 @@ export default function LandingPage() {
               <h3 className="font-bold mb-4">Product</h3>
               <ul className="space-y-2 text-sm text-gray-400">
                 <li><a href="#product" className="hover:text-emerald-400 transition-colors">Solar Sense</a></li>
-                <li><a href="#how-it-works" className="hover:text-emerald-400 transition-colors">How It Works</a></li>
                 <li><a href="/builder" className="hover:text-emerald-400 transition-colors">Neural Network Builder</a></li>
               </ul>
             </div>
@@ -1078,6 +1077,7 @@ export default function LandingPage() {
             <div>
               <h3 className="font-bold mb-4">Company</h3>
               <ul className="space-y-2 text-sm text-gray-400">
+                <li><a href="#how-it-works" className="hover:text-emerald-400 transition-colors">How It Works</a></li>
                 <li><a href="#team" className="hover:text-emerald-400 transition-colors">Team</a></li>
                 <li><a href="#contact" className="hover:text-emerald-400 transition-colors">Contact</a></li>
                 <li><a href="#" className="hover:text-emerald-400 transition-colors">Privacy Policy</a></li>
