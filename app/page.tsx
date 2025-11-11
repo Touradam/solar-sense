@@ -274,48 +274,6 @@ export default function LandingPage() {
               </div>
             </div>
           </div>
-
-          {/* Additional Benefits */}
-          <div className="mt-16 p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 border border-emerald-200 dark:border-emerald-800">
-            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
-              Complete Solar System Protection
-            </h3>
-            <div className="grid md:grid-cols-3 gap-6">
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-emerald-500 flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-white">User-Friendly</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Simple installation with mobile dashboard</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-teal-500 flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-white">Predictive</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Detects issues before damage occurs</div>
-                </div>
-              </div>
-              <div className="flex items-start gap-3">
-                <div className="flex-shrink-0 w-6 h-6 rounded-full bg-blue-500 flex items-center justify-center mt-1">
-                  <svg className="w-4 h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                  </svg>
-                </div>
-                <div>
-                  <div className="font-semibold text-gray-900 dark:text-white">Sustainable</div>
-                  <div className="text-sm text-gray-600 dark:text-gray-400">Extends panel life, reduces waste</div>
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </section>
 
