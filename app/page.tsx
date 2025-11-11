@@ -146,54 +146,21 @@ export default function LandingPage() {
 
             {/* Right Column - Visual */}
             <div className="relative">
-              {/* Main Feature Card */}
-              <div className="relative z-10 p-8 rounded-2xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-2xl">
-                <div className="space-y-6">
-                  {/* Header */}
-                  <div className="flex items-center gap-3 pb-4 border-b border-gray-200 dark:border-gray-800">
-                    <div className="p-3 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500">
-                      <Zap className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-white">Solar Sense</h3>
-                      <p className="text-sm text-gray-600 dark:text-gray-400">All-in-One Smart Device</p>
-                    </div>
-                  </div>
-
-                  {/* Features Grid */}
-                  <div className="grid grid-cols-2 gap-4">
-                    <div className="p-4 rounded-lg bg-emerald-50 dark:bg-emerald-950/30 border border-emerald-100 dark:border-emerald-900">
-                      <Shield className="w-8 h-8 text-emerald-600 dark:text-emerald-400 mb-2" />
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Enhanced Safety</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Rapid Shutdown</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-teal-50 dark:bg-teal-950/30 border border-teal-100 dark:border-teal-900">
-                      <Brain className="w-8 h-8 text-teal-600 dark:text-teal-400 mb-2" />
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">AI Detection</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Real-time Faults</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-blue-50 dark:bg-blue-950/30 border border-blue-100 dark:border-blue-900">
-                      <svg className="w-8 h-8 text-blue-600 dark:text-blue-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                      </svg>
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Full Compliance</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">NEC Certified</div>
-                    </div>
-                    <div className="p-4 rounded-lg bg-purple-50 dark:bg-purple-950/30 border border-purple-100 dark:border-purple-900">
-                      <DollarSign className="w-8 h-8 text-purple-600 dark:text-purple-400 mb-2" />
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">Cost-Effective</div>
-                      <div className="text-xs text-gray-600 dark:text-gray-400 mt-1">Single Device</div>
-                    </div>
-                  </div>
-
-                  {/* Status Indicator */}
-                  <div className="flex items-center justify-between p-4 rounded-lg bg-gray-50 dark:bg-gray-800/50">
-                    <div className="flex items-center gap-2">
-                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-300">System Active</span>
-                    </div>
-                    <span className="text-xs text-gray-500 dark:text-gray-400">Real-time Monitoring</span>
-                  </div>
+              {/* Team Photo */}
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
+                <div className="relative aspect-[4/3]">
+                  <Image
+                    src="/adamaJordan.jpg"
+                    alt="Adama Toure and Jordan Harris-Toovy - SEPT Co-Founders"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
+                  <p className="text-white font-semibold text-lg">SEPT Co-Founders</p>
+                  <p className="text-gray-200 text-sm">Adama Toure & Jordan Harris-Toovy</p>
                 </div>
               </div>
 
