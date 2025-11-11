@@ -369,7 +369,7 @@ function normalizeInput(features) {
     const range = max[index] - min[index];
     return range === 0 ? 0.5 : (value - min[index]) / range;
   });
-}` : ''}${config.normalization === 'standard' ? `// Standardization (Z-score) values from training:
+}` : ''}${config.normalization === 'standardization' ? `// Standardization (Z-score) values from training:
 const mean = ${JSON.stringify(normalizationScaler.mean)};
 const std = ${JSON.stringify(normalizationScaler.std)};
 
