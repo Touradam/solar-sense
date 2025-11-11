@@ -732,9 +732,12 @@ export default function LandingPage() {
                     <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                       Adama Toure
                     </h3>
-                    <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-4">
+                    <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
                       Co-Founder, Renewable Energy Engineer
                     </p>
+                    <a href="mailto:adama.toure@sept.energy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+                      adama.toure@sept.energy
+                    </a>
                   </div>
 
                   {/* Bio */}
