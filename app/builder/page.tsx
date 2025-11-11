@@ -180,7 +180,7 @@ export default function NeuralNetworkBuilder() {
         split.valX,
         split.valY,
         config,
-        (epoch, logs) => {
+        async (epoch, logs) => {
           if (!trainingRef.current) return;
 
           const metric: TrainingMetrics = {
@@ -193,7 +193,12 @@ export default function NeuralNetworkBuilder() {
           };
 
           metrics.push(metric);
-          setTrainingData([...metrics]);
+          
+          // Use functional update to ensure React gets the latest state
+          setTrainingData(prev => [...prev, metric]);
+          
+          // Small delay to allow React to render the update
+          await new Promise(resolve => setTimeout(resolve, 0));
 
           // Track best epoch
           if (logs.val_loss && logs.val_loss < bestValLoss) {
