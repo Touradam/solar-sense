@@ -323,185 +323,213 @@ export default function NeuralNetworkBuilder() {
     try {
       const timestamp = Date.now();
       
-      // Step 1: Download TensorFlow.js model files (model.json + weights.bin)
-      console.log('📦 Saving model files...');
-      await model.save(`downloads://neural-network-model-${timestamp}`);
-      
-      // Wait a bit to ensure first download completes
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Step 2: Create and download configuration package
-      console.log('📄 Creating configuration package...');
-      const configPackage = {
-        modelInfo: {
-          name: `neural-network-model-${timestamp}`,
-          exportDate: new Date().toISOString(),
-          framework: 'TensorFlow.js',
-          version: '1.0',
-        },
-        architecture: {
-          inputSize: config.inputLayers,
-          hiddenLayers: config.hiddenLayers,
-          outputSize: config.outputLayers,
-          hiddenActivation: config.hiddenActivation,
-          outputActivation: config.outputActivation,
-        },
-        training: {
-          epochs: config.epochs,
-          batchSize: config.batchSize,
-          learningRate: config.learningRate,
-          optimizer: config.optimizer,
-          lossFunction: config.lossFunction,
-        },
-        preprocessing: {
-          normalization: config.normalization,
-          scaler: normalizationScaler,
-        },
-        dataInfo: dataInfo,
-        performance: summary ? {
-          trainLoss: summary.finalTrainLoss,
-          trainAccuracy: summary.finalTrainAccuracy,
-          valLoss: summary.finalValLoss,
-          valAccuracy: summary.finalValAccuracy,
-          totalEpochs: summary.totalEpochs,
-          bestEpoch: summary.bestEpoch,
-        } : null,
-        usageInstructions: {
-          loading: "const model = await tf.loadLayersModel('path/to/model.json');",
-          preprocessing: normalizationScaler ? 
-            `Apply ${config.normalization} normalization with provided scaler values` : 
-            'No preprocessing required',
-          prediction: `
-const input = tf.tensor2d([[feature1, feature2, ..., feature${config.inputLayers}]]);
-const output = model.predict(input);
-const probabilities = await output.data();
-const predictedClass = probabilities.indexOf(Math.max(...probabilities));
-          `.trim(),
-        },
-      };
-
-      const configBlob = new Blob([JSON.stringify(configPackage, null, 2)], { 
-        type: 'application/json' 
-      });
-      const configUrl = URL.createObjectURL(configBlob);
-      const configLink = document.createElement('a');
-      configLink.href = configUrl;
-      configLink.download = `model-config-${timestamp}.json`;
-      document.body.appendChild(configLink);
-      configLink.click();
-      document.body.removeChild(configLink);
-      URL.revokeObjectURL(configUrl);
-      
-      // Wait again
-      await new Promise(resolve => setTimeout(resolve, 500));
-      
-      // Step 3: Create and download README
-      console.log('📝 Creating README...');
-      const readme = `# Neural Network Model - Export Package
+      // Create comprehensive README with all information
+      const readme = `# Neural Network Model Package
+**Export Date**: ${new Date().toLocaleString()}
+**Model ID**: neural-network-model-${timestamp}
 
 ## 📊 Model Information
-- **Export Date**: ${new Date().toLocaleString()}
-- **Model ID**: neural-network-model-${timestamp}
 - **Input Features**: ${config.inputLayers}
 - **Output Classes**: ${config.outputLayers}
-- **Architecture**: ${config.hiddenLayers.join(' → ')}
+- **Architecture**: ${config.hiddenLayers.join(' → ')} neurons per hidden layer
+- **Activation Functions**: ${config.hiddenActivation} (hidden), ${config.outputActivation} (output)
 - **Final Validation Accuracy**: ${summary?.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
+- **Training Epochs**: ${summary?.totalEpochs || config.epochs}
+- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
 
-## 📦 Files Included
-1. **model.json** - Model architecture
-2. **model.weights.bin** - Trained weights
-3. **model-config-${timestamp}.json** - Complete configuration
-4. **README.md** - This file
+## 📦 Downloaded Files
+1. **neural-network-model-${timestamp}.json** - Model architecture
+2. **neural-network-model-${timestamp}.weights.bin** - Trained weights
 
-## 🚀 Quick Start
+## 🚀 How to Use This Model
 
-### Load the Model
+### Step 1: Load the Model
 \`\`\`javascript
 import * as tf from '@tensorflow/tfjs';
 
-// Load model
-const model = await tf.loadLayersModel('file://path/to/model.json');
-// or from web server: 'http://yourserver.com/model.json'
+// Load the model (adjust path as needed)
+const model = await tf.loadLayersModel('path/to/neural-network-model-${timestamp}.json');
+// Or from a web server: 'https://yourserver.com/neural-network-model-${timestamp}.json'
 \`\`\`
 
-### Preprocess Input Data
+### Step 2: Preprocess Your Input
 ${normalizationScaler ? `
-**⚠️ IMPORTANT: Apply ${config.normalization} normalization**
+**⚠️ IMPORTANT: You MUST normalize your input data the same way it was during training!**
+
+**Normalization Method**: ${config.normalization.toUpperCase()}
 
 \`\`\`javascript
-// Your normalization scaler values:
-${config.normalization === 'minmax' ? `const min = ${JSON.stringify(normalizationScaler.min)};
+${config.normalization === 'minmax' ? `// Min-Max Normalization values from training:
+const min = ${JSON.stringify(normalizationScaler.min)};
 const max = ${JSON.stringify(normalizationScaler.max)};
 
-// Normalize: (x - min) / (max - min)
-function normalize(features) {
-  return features.map((val, i) => (val - min[i]) / (max[i] - min[i]));
-}` : ''}${config.normalization === 'standard' ? `const mean = ${JSON.stringify(normalizationScaler.mean)};
+// Normalization function: (x - min) / (max - min)
+function normalizeInput(features) {
+  return features.map((value, index) => {
+    const range = max[index] - min[index];
+    return range === 0 ? 0.5 : (value - min[index]) / range;
+  });
+}` : ''}${config.normalization === 'standard' ? `// Standardization (Z-score) values from training:
+const mean = ${JSON.stringify(normalizationScaler.mean)};
 const std = ${JSON.stringify(normalizationScaler.std)};
 
-// Normalize: (x - mean) / std
-function normalize(features) {
-  return features.map((val, i) => (val - mean[i]) / std[i]);
+// Normalization function: (x - mean) / std
+function normalizeInput(features) {
+  return features.map((value, index) => {
+    return std[index] === 0 ? 0 : (value - mean[index]) / std[index];
+  });
+}` : ''}${config.normalization === 'robust' ? `// Robust Normalization values from training:
+const median = ${JSON.stringify(normalizationScaler.median)};
+const iqr = ${JSON.stringify(normalizationScaler.iqr)};
+
+// Normalization function: (x - median) / IQR
+function normalizeInput(features) {
+  return features.map((value, index) => {
+    return iqr[index] === 0 ? 0 : (value - median[index]) / iqr[index];
+  });
 }` : ''}
-\`\`\`
-` : '**No preprocessing required** - Use raw feature values'}
 
-### Make Predictions
+// Example usage:
+const rawFeatures = [1.5, 2.3, 0.8${config.inputLayers > 3 ? ', ...' : ''}]; // Your ${config.inputLayers} raw feature values
+const normalizedFeatures = normalizeInput(rawFeatures);
+\`\`\`
+` : `
+**No preprocessing required** - You can use raw feature values directly.
+`}
+
+### Step 3: Make Predictions
 \`\`\`javascript
-// Example with ${config.inputLayers} features
-const rawFeatures = [1.5, 2.3, ${config.inputLayers > 2 ? '..., ' : ''}0.8]; // Your ${config.inputLayers} features
-${normalizationScaler ? 'const normalizedFeatures = normalize(rawFeatures);' : 'const normalizedFeatures = rawFeatures;'}
+// Prepare input (${config.inputLayers} features)
+const inputFeatures = [/* your ${config.inputLayers} feature values */];
+${normalizationScaler ? 'const normalizedFeatures = normalizeInput(inputFeatures);' : 'const normalizedFeatures = inputFeatures;'}
 
-// Create tensor and predict
+// Create tensor (2D: [1, ${config.inputLayers}] for single prediction)
 const inputTensor = tf.tensor2d([normalizedFeatures]);
-const prediction = model.predict(inputTensor);
-const probabilities = await prediction.data();
 
-// Get predicted class
-const predictedClass = probabilities.indexOf(Math.max(...probabilities));
+// Make prediction
+const outputTensor = model.predict(inputTensor);
+const probabilities = await outputTensor.data();
+
+// Get predicted class (highest probability)
+const predictedClass = Array.from(probabilities).indexOf(Math.max(...probabilities));
 console.log('Predicted Class:', predictedClass);
-console.log('Probabilities:', probabilities);
+console.log('Class Probabilities:', probabilities);
 
-// Clean up
+// IMPORTANT: Clean up tensors to prevent memory leaks
 inputTensor.dispose();
-prediction.dispose();
+outputTensor.dispose();
 \`\`\`
 
-## 📋 Model Specifications
-- **Input Shape**: [batchSize, ${config.inputLayers}]
-- **Output Shape**: [batchSize, ${config.outputLayers}]
-- **Output Type**: Probabilities (one per class)
+### Batch Predictions
+\`\`\`javascript
+// For multiple predictions at once
+const batchFeatures = [
+  [feat1_1, feat1_2, ..., feat1_${config.inputLayers}],
+  [feat2_1, feat2_2, ..., feat2_${config.inputLayers}],
+  // ... more samples
+];
+${normalizationScaler ? 'const normalizedBatch = batchFeatures.map(normalizeInput);' : 'const normalizedBatch = batchFeatures;'}
+const batchTensor = tf.tensor2d(normalizedBatch);
+const predictions = model.predict(batchTensor);
+const allProbabilities = await predictions.data();
+batchTensor.dispose();
+predictions.dispose();
+\`\`\`
+
+## 📋 Technical Specifications
+
+### Input
+- **Shape**: [batchSize, ${config.inputLayers}]
+- **Type**: Float32 tensor
+- **Preprocessing**: ${config.normalization === 'none' ? 'None required' : config.normalization + ' normalization (see values above)'}
+
+### Output
+- **Shape**: [batchSize, ${config.outputLayers}]
+- **Type**: Float32 tensor (probabilities)
+- **Format**: ${config.outputLayers} values, one per class, summing to 1.0
 - **Activation**: ${config.outputActivation}
 
-## 💡 Tips
-- Always apply the same preprocessing used during training
-- Output is an array of ${config.outputLayers} probabilities (sum = 1.0)
-- Use \`tf.dispose()\` to clean up tensors and avoid memory leaks
-- For batch predictions, pass multiple rows: \`tf.tensor2d([[feat1], [feat2], ...])\`
+### Architecture
+\`\`\`
+Input Layer (${config.inputLayers} features)
+    ↓
+${config.hiddenLayers.map((neurons, i) => `Hidden Layer ${i + 1} (${neurons} neurons, ${config.hiddenActivation} activation)${config.useDropout ? ` + Dropout(${config.dropoutRate})` : ''}${config.useBatchNormalization ? ' + BatchNorm' : ''}`).join('\n    ↓\n')}
+    ↓
+Output Layer (${config.outputLayers} classes, ${config.outputActivation} activation)
+\`\`\`
 
-## 🔧 Configuration Details
-See **model-config-${timestamp}.json** for complete training configuration including:
-- All hyperparameters
-- Exact scaler values
-- Training performance metrics
-- Full architecture details
+### Training Configuration
+- **Optimizer**: ${config.optimizer}
+- **Learning Rate**: ${config.learningRate}
+- **Loss Function**: ${config.lossFunction}
+- **Batch Size**: ${config.batchSize}
+- **Epochs Trained**: ${summary?.totalEpochs || config.epochs}
+- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
+
+### Performance Metrics
+${summary ? `
+- **Training Loss**: ${summary.finalTrainLoss?.toFixed(4) || 'N/A'}
+- **Training Accuracy**: ${summary.finalTrainAccuracy ? (summary.finalTrainAccuracy * 100).toFixed(2) + '%' : 'N/A'}
+- **Validation Loss**: ${summary.finalValLoss?.toFixed(4) || 'N/A'}
+- **Validation Accuracy**: ${summary.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
+` : 'No training metrics available'}
+
+## 💡 Important Tips
+
+1. **Always normalize inputs** using the exact same method and values from training
+2. **Dispose tensors** after use to prevent memory leaks: \`tensor.dispose()\`
+3. **Check input shape** - must be [batchSize, ${config.inputLayers}]
+4. **Interpret output** - returns probabilities, not class labels
+5. **Batch processing** - process multiple samples together for better performance
+
+## 🔧 Troubleshooting
+
+**Error: "Input shape mismatch"**
+- Ensure input has exactly ${config.inputLayers} features
+- Check tensor shape: should be 2D [batchSize, ${config.inputLayers}]
+
+**Error: "Memory leak detected"**
+- Call \`.dispose()\` on all tensors after use
+- Use \`tf.tidy()\` to automatically clean up: \`tf.tidy(() => { /* operations */ })\`
+
+**Poor predictions:**
+- Verify normalization is applied correctly
+- Check that features are in the same order as training
+- Ensure feature values are in reasonable ranges
+
+## 📚 Additional Resources
+- TensorFlow.js Documentation: https://js.tensorflow.org/
+- Model Loading Guide: https://js.tensorflow.org/tutorials/import-saved-model.html
 
 ---
 *Generated by Neural Network Builder*
+*Framework: TensorFlow.js*
+*Export Time: ${new Date().toISOString()}*
 `;
 
+      // Save model using TensorFlow.js (this downloads 2 files: model.json + weights.bin)
+      console.log('📦 Saving model files...');
+      await model.save(`downloads://neural-network-model-${timestamp}`);
+      
+      // Save README as a single comprehensive file
+      console.log('📝 Creating README...');
       const readmeBlob = new Blob([readme], { type: 'text/markdown' });
       const readmeUrl = URL.createObjectURL(readmeBlob);
       const readmeLink = document.createElement('a');
       readmeLink.href = readmeUrl;
-      readmeLink.download = `README-${timestamp}.md`;
+      readmeLink.download = `neural-network-README-${timestamp}.md`;
+      readmeLink.style.display = 'none';
       document.body.appendChild(readmeLink);
-      readmeLink.click();
-      document.body.removeChild(readmeLink);
-      URL.revokeObjectURL(readmeUrl);
       
-      console.log('✅ All files downloaded successfully');
-      alert('✅ Model downloaded successfully!\n\nFiles downloaded:\n📄 model.json + model.weights.bin\n📄 model-config.json\n📄 README.md\n\nCheck your Downloads folder!');
+      // Small delay to ensure model files start downloading first
+      setTimeout(() => {
+        readmeLink.click();
+        document.body.removeChild(readmeLink);
+        URL.revokeObjectURL(readmeUrl);
+      }, 1000);
+      
+      console.log('✅ Model export complete');
+      alert(`✅ Model download started!\n\nYou should receive 3 files:\n\n1. neural-network-model-${timestamp}.json\n2. neural-network-model-${timestamp}.weights.bin\n3. neural-network-README-${timestamp}.md\n\n⚠️ If your browser blocks multiple downloads, please allow them when prompted.\n\nCheck your Downloads folder!`);
       
     } catch (error) {
       console.error('❌ Download error:', error);
