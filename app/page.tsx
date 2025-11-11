@@ -376,8 +376,29 @@ export default function NeuralNetworkBuilder() {
             />
           </aside>
 
-          {/* Center Column */}
+          {/* Center Column - Training & Testing (More Space for Graphs) */}
           <main className="lg:col-span-5 space-y-6">
+            <TrainingSection
+              isTraining={isTraining}
+              trainingData={trainingData}
+              onTrain={handleTrain}
+              onPause={handlePause}
+              onReset={handleReset}
+              summary={summary}
+              testMetrics={testMetrics}
+            />
+            <TestingSection
+              model={model}
+              inputSize={config.inputLayers}
+              outputSize={config.outputLayers}
+              onTest={handleTest}
+              onDownloadModel={handleDownloadModel}
+              isModelTrained={model !== null && !isTraining}
+            />
+          </main>
+
+          {/* Right Column - Configuration Controls */}
+          <aside className="lg:col-span-3 space-y-6">
             <ConfigControls config={config} onConfigChange={handleConfigChange} />
             <FunctionSelector
               hiddenActivation={config.hiddenActivation}
@@ -396,27 +417,6 @@ export default function NeuralNetworkBuilder() {
               onOptimizerChange={(val: OptimizerType) =>
                 handleConfigChange({ optimizer: val })
               }
-            />
-          </main>
-
-          {/* Right Column */}
-          <aside className="lg:col-span-3 space-y-6">
-            <TrainingSection
-              isTraining={isTraining}
-              trainingData={trainingData}
-              onTrain={handleTrain}
-              onPause={handlePause}
-              onReset={handleReset}
-              summary={summary}
-              testMetrics={testMetrics}
-            />
-            <TestingSection
-              model={model}
-              inputSize={config.inputLayers}
-              outputSize={config.outputLayers}
-              onTest={handleTest}
-              onDownloadModel={handleDownloadModel}
-              isModelTrained={model !== null && !isTraining}
             />
           </aside>
         </div>
