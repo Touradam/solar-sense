@@ -77,7 +77,11 @@ export default function LandingPage() {
               {/* Headline */}
               <div className="space-y-4">
                 <h1 className="text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
-                  SEPT is a Portland-based startup that is developing a technology to addressing two critical challenges in the residential and commercial solar solar sector
+                  Making Solar Energy{' '}
+                  <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                    Safer, Smarter
+                  </span>
+                  {' '}& More Sustainable
                 </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
                   SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through{' '}
