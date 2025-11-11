@@ -490,10 +490,224 @@ export default function LandingPage() {
         </div>
       </section>
 
-      <section id="how-it-works" className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">How It Works</h2>
-          <p className="text-gray-600 dark:text-gray-400">Coming in Phase 3</p>
+      {/* How It Works Section */}
+      <section id="how-it-works" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+        <div className="max-w-7xl mx-auto">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              How Solar Sense Works
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Solar Sense is a self-powered, module-level power electronic (MLPE) device composed of two main systems that work together to ensure both safety and intelligence.
+            </p>
+          </div>
+
+          {/* Main Systems */}
+          <div className="grid lg:grid-cols-2 gap-8 mb-16">
+            {/* System 1: Rapid Disconnect */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-red-500 to-orange-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="space-y-6">
+                  {/* Icon & Title */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center shadow-lg">
+                      <Shield className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">System 1</div>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Rapid Disconnect Module</h3>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    The rapid disconnect module is the safety heart of Solar Sense, designed to protect first responders and property during emergencies.
+                  </p>
+
+                  {/* Features List */}
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 dark:bg-red-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Emergency Response</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Responds to emergency commands instantly</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 dark:bg-red-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Auto-Detection</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Automatically detects hazardous conditions</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-red-100 dark:bg-red-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-red-600 dark:text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Instant Shutdown</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Disconnects panels within seconds to stop power flow</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status Badge */}
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-red-50 dark:bg-red-950/30 text-red-700 dark:text-red-300 text-sm font-medium">
+                      <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+                      NEC 690.12 Compliant
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* System 2: ML Module */}
+            <div className="relative group">
+              <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
+              <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300 h-full">
+                <div className="space-y-6">
+                  {/* Icon & Title */}
+                  <div className="flex items-center gap-4">
+                    <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg">
+                      <Brain className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">System 2</div>
+                      <h3 className="text-2xl font-bold text-gray-900 dark:text-white">Self-Analysis & ML Module</h3>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                    The machine learning module is the intelligence core, continuously monitoring and analyzing panel performance to predict and prevent issues.
+                  </p>
+
+                  {/* Features List */}
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Continuous Monitoring</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Monitors electrical and thermal data 24/7</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Digital Twin</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Creates a physics-informed model of each solar cell</div>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950 flex items-center justify-center mt-0.5">
+                        <svg className="w-3 h-3 text-emerald-600 dark:text-emerald-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <div>
+                        <div className="font-medium text-gray-900 dark:text-white">Early Detection</div>
+                        <div className="text-sm text-gray-600 dark:text-gray-400">Detects shading, soiling, and degradation before damage</div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Status Badge */}
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                    <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-50 dark:bg-emerald-950/30 text-emerald-700 dark:text-emerald-300 text-sm font-medium">
+                      <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
+                      AI-Powered Intelligence
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Process Flow */}
+          <div className="p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-xl">
+            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8 text-center">
+              The Complete Process
+            </h3>
+            <div className="grid md:grid-cols-4 gap-6">
+              {/* Step 1 */}
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-2xl font-bold text-white">1</span>
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Data Collection</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Sensors collect voltage, current, and temperature from each panel
+                </p>
+              </div>
+
+              {/* Step 2 */}
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-2xl font-bold text-white">2</span>
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">AI Analysis</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Machine learning models analyze data patterns and predict issues
+                </p>
+              </div>
+
+              {/* Step 3 */}
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-pink-500 to-red-500 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-2xl font-bold text-white">3</span>
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Alert & Monitor</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Real-time alerts sent to mobile app for immediate action
+                </p>
+              </div>
+
+              {/* Step 4 */}
+              <div className="text-center">
+                <div className="w-16 h-16 rounded-full bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center mx-auto mb-4 shadow-lg">
+                  <span className="text-2xl font-bold text-white">4</span>
+                </div>
+                <h4 className="font-bold text-gray-900 dark:text-white mb-2">Auto Protect</h4>
+                <p className="text-sm text-gray-600 dark:text-gray-400">
+                  Automatic shutdown triggered during emergencies or hazards
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Conclusion Statement */}
+          <div className="mt-16 text-center">
+            <div className="inline-block p-8 rounded-2xl bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800">
+              <p className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                The Result
+              </p>
+              <p className="text-gray-700 dark:text-gray-300 max-w-3xl">
+                By combining these functions, Solar Sense transforms traditional solar panels into intelligent, 
+                self-aware energy units capable of ensuring both compliance and reliability — making solar energy truly resilient and future-proof.
+              </p>
+            </div>
+          </div>
         </div>
       </section>
 
