@@ -1064,7 +1064,7 @@ export default function LandingPage() {
 
           {/* Bottom Bar */}
           <div className="pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
-            <p>Built with ❤️ in Portland, Oregon • Powered by Next.js & TensorFlow.js</p>
+            <p>Designed and Built in Portland, Oregon</p>
           </div>
         </div>
       </footer>
