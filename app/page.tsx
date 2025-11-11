@@ -352,11 +352,140 @@ export default function LandingPage() {
       </section>
 
       {/* Product Showcase Section */}
-      <section id="product" className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">Product Section</h2>
-            <p className="text-gray-600 dark:text-gray-400">Coming in Phase 3</p>
+      <section id="product" className="py-20 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+        {/* Background Gradients */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-transparent to-teal-500/5"></div>
+        <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl"></div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-950 border border-emerald-200 dark:border-emerald-800 mb-6">
+              <Zap className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">
+                Introducing Solar Sense
+              </span>
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+              One Device. Complete Protection.
+            </h2>
+            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Solar Sense is a low-cost, wireless device that ensures compliance with the latest NEC Rapid Shutdown requirements 
+              while enabling precise fault detection and performance monitoring at the panel level.
+            </p>
+          </div>
+
+          {/* Main Product Display */}
+          <div className="grid lg:grid-cols-2 gap-12 items-center mb-16">
+            {/* Product Image/Visualization */}
+            <div className="relative">
+              <div className="aspect-square rounded-3xl bg-gradient-to-br from-emerald-100 to-teal-100 dark:from-emerald-950/30 dark:to-teal-950/30 border border-emerald-200 dark:border-emerald-800 p-12 flex items-center justify-center">
+                <div className="text-center space-y-6">
+                  {/* Solar Panel Icon */}
+                  <div className="w-32 h-32 mx-auto rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-2xl">
+                    <svg className="w-16 h-16 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                  </div>
+                  <div className="space-y-2">
+                    <div className="text-2xl font-bold text-gray-900 dark:text-white">Solar Sense</div>
+                    <div className="text-sm text-gray-600 dark:text-gray-400">Module-Level Power Electronics (MLPE)</div>
+                  </div>
+                  {/* Status Indicators */}
+                  <div className="flex items-center justify-center gap-4 pt-4">
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">Active</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-blue-500 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">Monitoring</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <div className="w-3 h-3 rounded-full bg-purple-500 animate-pulse" style={{animationDelay: '1s'}}></div>
+                      <span className="text-xs text-gray-600 dark:text-gray-400">Protected</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {/* Floating Feature Badges */}
+              <div className="absolute -top-4 -left-4 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="text-xs font-medium text-gray-500 dark:text-gray-400">Plug & Play</div>
+              </div>
+              <div className="absolute -bottom-4 -right-4 px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg">
+                <div className="text-xs font-medium text-gray-500 dark:text-gray-400">Wireless</div>
+              </div>
+            </div>
+
+            {/* Key Features */}
+            <div className="space-y-6">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-8">
+                Key Features
+              </h3>
+
+              {/* Feature 1: Rapid Shutdown */}
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-red-500 to-orange-500 flex items-center justify-center">
+                    <Zap className="w-6 h-6 text-white" />
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      ⚡ Rapid Shutdown
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Disconnects its host panel in a fraction of a second, ensuring NEC compliance and protecting first responders during emergencies.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 2: Health Monitoring */}
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      🔍 Health Monitoring
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      Built-in sensors continuously collect voltage, current, and temperature data to evaluate the health of the solar cell and detect early-stage degradation.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Feature 3: Real-Time Monitoring */}
+              <div className="p-6 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-lg hover:shadow-xl transition-shadow">
+                <div className="flex items-start gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center">
+                    <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div className="flex-1">
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                      📱 Real-Time Monitoring and Alerts
+                    </h4>
+                    <p className="text-gray-600 dark:text-gray-300">
+                      An intuitive mobile or web app displays real-time performance for each panel and sends automatic notifications when issues arise — enabling quick, informed maintenance decisions.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* USP Statement */}
+          <div className="p-8 rounded-2xl bg-gradient-to-r from-emerald-500 to-teal-500 text-white text-center">
+            <p className="text-xl lg:text-2xl font-semibold">
+              Unlike other systems that require multiple devices or complex wiring, Solar Sense combines everything into a single, smart, plug-and-play module suitable for both <span className="underline decoration-2 underline-offset-4">residential and commercial</span> solar installations.
+            </p>
           </div>
         </div>
       </section>
