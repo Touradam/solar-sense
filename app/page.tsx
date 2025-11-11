@@ -11,9 +11,9 @@ export default function LandingPage() {
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex h-16 items-center justify-between">
-            {/* Logo */}
-            <Link href="/" className="flex items-center gap-3 group">
+          <div className="flex h-16 items-center justify-between gap-4">
+            {/* Left: Logo */}
+            <Link href="/" className="flex-shrink-0 group">
               <div className="relative h-10 w-10 transition-transform group-hover:scale-110">
                 <Image
                   src="/SEPT_logo_Transparent.png"
@@ -23,34 +23,35 @@ export default function LandingPage() {
                   priority
                 />
               </div>
-              <span className="text-xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
-                We Make Solar Smart and Safe
-              </span>
             </Link>
 
-            {/* Navigation */}
-            <nav className="hidden md:flex items-center gap-8">
-              <Link href="#product" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+            {/* Center: Tagline (takes up most space) */}
+            <div className="flex-1 text-center">
+              <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+                We Make Solar Smart and Safe
+              </h1>
+            </div>
+
+            {/* Right: Navigation */}
+            <nav className="hidden md:flex items-center gap-6 flex-shrink-0">
+              <Link href="#product" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Product
               </Link>
-              <Link href="#how-it-works" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                How It Works
-              </Link>
-              <Link href="#team" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+              <Link href="#team" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Team
               </Link>
-              <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
+              <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Contact
               </Link>
               <Link href="/builder">
-                <Button variant="outline" size="sm" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950">
-                  Neural Network Builder
+                <Button variant="outline" size="sm" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950 whitespace-nowrap">
+                  Builder
                 </Button>
               </Link>
             </nav>
 
             {/* Mobile Menu Button */}
-            <button className="md:hidden p-2">
+            <button className="md:hidden p-2 flex-shrink-0">
               <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
               </svg>
