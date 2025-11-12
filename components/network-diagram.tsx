@@ -3,6 +3,7 @@
 import React from 'react';
 import Image from 'next/image';
 import { Network } from 'lucide-react';
+import { withBasePath } from '@/lib/utils';
 
 interface NetworkDiagramProps {
   inputNodes: number;
@@ -33,7 +34,7 @@ export function NetworkDiagram({
       {/* Diagram Container */}
       <div className="relative w-full">
         <Image
-          src="/neural-network-diagram.png"
+          src={withBasePath("/neural-network-diagram.png")}
           alt="Neural Network Flow Diagram"
           width={1200}
           height={400}
