@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   viewport: "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes",
   themeColor: "#059669",
   manifest: "/manifest.json",
+  icons: {
+    icon: "/SEPT_logo_Transparent.png",
+    apple: "/SEPT_logo_Transparent.png",
+  },
   openGraph: {
     title: "SEPT - Solar Energy Protection Technology",
     description: "Making Solar Energy Safer, Smarter & More Sustainable",
