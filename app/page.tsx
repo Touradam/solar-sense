@@ -5,6 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Brain, Zap, DollarSign, Menu, X } from 'lucide-react';
+import { withBasePath } from '@/lib/utils';
 
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -19,7 +20,7 @@ export default function LandingPage() {
             <Link href="/" className="flex-shrink-0 group">
               <div className="relative h-14 w-14 transition-transform group-hover:scale-110">
         <Image
-                  src="/SEPT_logo_Transparent.png"
+                  src={withBasePath("/SEPT_logo_Transparent.png")}
                   alt="SEPT Logo"
                   fill
                   className="object-contain"
@@ -32,7 +33,7 @@ export default function LandingPage() {
             <div className="flex-1 text-center">
               <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
                 We Make Solar Smart and Safe
-              </h1>
+          </h1>
             </div>
 
             {/* Right: Navigation */}
@@ -80,7 +81,7 @@ export default function LandingPage() {
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
               <div className="relative h-10 w-10">
                 <Image
-                  src="/SEPT_logo_Transparent.png"
+                  src={withBasePath("/SEPT_logo_Transparent.png")}
                   alt="SEPT Logo"
                   fill
                   className="object-contain"
@@ -196,7 +197,7 @@ export default function LandingPage() {
               <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-gray-200 dark:border-gray-800">
                 <div className="relative aspect-[3/4]">
                   <Image
-                    src="/adamaJordan.jpg"
+                    src={withBasePath("/adamaJordan.jpg")}
                     alt="Adama Toure and Jordan Harris-Toovy - SEPT Co-Founders"
                     fill
                     className="object-cover"
@@ -397,7 +398,7 @@ export default function LandingPage() {
                   {/* Solar Sense Product Image */}
                   <div className="relative w-full mx-auto aspect-square">
                     <Image
-                      src="/solarSenseOnPV.png"
+                      src={withBasePath("/solarSenseOnPV.png")}
                       alt="Solar Sense on Solar Panel"
                       fill
                       className="object-contain rounded-2xl"
@@ -537,7 +538,7 @@ export default function LandingPage() {
                   {/* Ecosystem Diagram */}
                   <div className="relative w-full h-48 my-4">
                     <Image
-                      src="/sept-ecosystem.svg"
+                      src={withBasePath("/sept-ecosystem.svg")}
                       alt="SEPT Ecosystem - Rapid Shutdown"
                       fill
                       className="object-contain"
@@ -616,7 +617,7 @@ export default function LandingPage() {
                   {/* ML Fault Detection Diagram */}
                   <div className="relative w-full h-48 my-4">
                     <Image
-                      src="/pv-ml-fault-detection.png"
+                      src={withBasePath("/pv-ml-fault-detection.png")}
                       alt="ML Based Fault Detection"
                       fill
                       className="object-contain"
@@ -838,7 +839,7 @@ export default function LandingPage() {
                   {/* Avatar */}
                   <div className="relative w-24 h-24 rounded-full mx-auto shadow-lg overflow-hidden">
                     <Image
-                      src="/adamaToure.png"
+                      src={withBasePath("/adamaToure.png")}
                       alt="Adama Toure"
                       fill
                       className="object-cover"
@@ -896,7 +897,7 @@ export default function LandingPage() {
                   {/* Avatar */}
                   <div className="relative w-24 h-24 rounded-full mx-auto shadow-lg overflow-hidden">
             <Image
-                      src="/jordanHarrisToovy.png"
+                      src={withBasePath("/jordanHarrisToovy.png")}
                       alt="Jordan Harris-Toovy"
                       fill
                       className="object-cover"

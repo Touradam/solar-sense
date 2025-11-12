@@ -5,6 +5,7 @@ import * as tf from '@tensorflow/tfjs';
 import { Brain, Info } from 'lucide-react';
 import Link from 'next/link';
 import Image from 'next/image';
+import { withBasePath } from '@/lib/utils';
 
 // Components
 import { DataInputSection } from '@/components/data-input-section';
@@ -551,7 +552,7 @@ ${summary ? `
             {/* Left: Logo (clickable - returns to landing page) */}
             <Link href="/" className="flex-shrink-0 group">
               <Image
-                src="/SEPT_logo_Transparent.png"
+                src={withBasePath("/SEPT_logo_Transparent.png")}
                 alt="SEPT Logo"
                 width={100}
                 height={33}
