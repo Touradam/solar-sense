@@ -1,9 +1,15 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
+import dynamic from 'next/dynamic';
 import { Play, Pause, RotateCcw, TrendingUp, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { TrainingMetrics, TrainingSummary, EvaluationMetrics } from '@/lib/types';
+
+// Dynamically import the graph component with no SSR
+const TrainingGraph = dynamic(() => import('./training-graph').then(mod => ({ default: mod.TrainingGraph })), {
+  ssr: false,
+  loading: () => <div className="h-80 flex items-center justify-center"><div className="text-gray-400">Loading chart...</div></div>
+});
 
 interface TrainingSectionProps {
   isTraining: boolean;
@@ -25,12 +31,6 @@ export function TrainingSection({
   testMetrics,
 }: TrainingSectionProps) {
   const hasData = trainingData.length > 0;
-  const [isMounted, setIsMounted] = useState(false);
-  
-  // Ensure component only renders charts after client-side hydration
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
   
   // Debug logging
   useEffect(() => {
@@ -38,11 +38,10 @@ export function TrainingSection({
       hasData, 
       dataLength: trainingData.length,
       isTraining,
-      isMounted,
       firstEpoch: trainingData[0]?.epoch,
       lastEpoch: trainingData[trainingData.length - 1]?.epoch 
     });
-  }, [trainingData.length, isTraining, isMounted]);
+  }, [trainingData.length, isTraining]);
 
   // Format confusion matrix as heatmap data
   const getConfusionMatrixHeatmap = (matrix: number[][]) => {
@@ -132,96 +131,7 @@ export function TrainingSection({
         </div>
 
         {hasData ? (
-          <div className="h-80">
-            {isMounted ? (
-              <ResponsiveContainer width="100%" height="100%">
-                <LineChart data={trainingData}>
-                <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                <XAxis 
-                  dataKey="epoch" 
-                  stroke="#6B7280" 
-                  label={{ value: 'Epoch', position: 'insideBottom', offset: -5 }}
-                />
-                <YAxis 
-                  yAxisId="left"
-                  stroke="#6B7280" 
-                  label={{ value: 'Loss', angle: -90, position: 'insideLeft' }}
-                />
-                <YAxis 
-                  yAxisId="right"
-                  orientation="right"
-                  stroke="#6B7280" 
-                  label={{ value: 'Accuracy', angle: 90, position: 'insideRight' }}
-                />
-                <Tooltip 
-                  contentStyle={{ 
-                    backgroundColor: '#1F2937', 
-                    border: '1px solid #374151',
-                    borderRadius: '8px',
-                    color: '#F9FAFB'
-                  }}
-                />
-                <Legend />
-                
-                {/* Loss Lines */}
-                <Line 
-                  yAxisId="left"
-                  type="monotone" 
-                  dataKey="loss" 
-                  stroke="#EF4444" 
-                  strokeWidth={2}
-                  dot={false}
-                  name="Training Loss"
-                />
-                <Line 
-                  yAxisId="left"
-                  type="monotone" 
-                  dataKey="valLoss" 
-                  stroke="#F59E0B" 
-                  strokeWidth={2}
-                  strokeDasharray="5 5"
-                  dot={false}
-                  name="Validation Loss"
-                />
-                
-                {/* Accuracy Lines */}
-                <Line 
-                  yAxisId="right"
-                  type="monotone" 
-                  dataKey="accuracy" 
-                  stroke="#10B981" 
-                  strokeWidth={2}
-                  dot={false}
-                  name="Training Accuracy"
-                />
-                <Line 
-                  yAxisId="right"
-                  type="monotone" 
-                  dataKey="valAccuracy" 
-                  stroke="#3B82F6" 
-                  strokeWidth={2}
-                  strokeDasharray="5 5"
-                  dot={false}
-                  name="Validation Accuracy"
-                />
-                
-                {/* Best Epoch Marker */}
-                {summary?.bestEpoch && (
-                  <ReferenceLine 
-                    x={summary.bestEpoch} 
-                    stroke="#8B5CF6" 
-                    strokeDasharray="3 3"
-                    label={{ value: 'Best', position: 'top' }}
-                  />
-                )}
-              </LineChart>
-              </ResponsiveContainer>
-            ) : (
-              <div className="h-80 flex items-center justify-center">
-                <div className="text-gray-400">Loading chart...</div>
-              </div>
-            )}
-          </div>
+          <TrainingGraph trainingData={trainingData} summary={summary} />
         ) : (
           <div className="h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 to-purple-50/30 dark:from-gray-950 dark:to-purple-950/20 rounded-xl border border-gray-200 dark:border-gray-800">
             <div className="text-center">

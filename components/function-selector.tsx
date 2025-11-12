@@ -1,10 +1,16 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import dynamic from 'next/dynamic';
 import { Activity, TrendingUp, Zap, ChevronDown, ChevronUp } from 'lucide-react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ActivationFunction, LossFunction, OptimizerType } from '@/lib/types';
 import { getActivationInfo, getLossInfo, getOptimizerInfo } from '@/lib/ml-utils';
+
+// Dynamically import the graph component with no SSR
+const FunctionGraph = dynamic(() => import('./function-graph').then(mod => ({ default: mod.FunctionGraph })), {
+  ssr: false,
+  loading: () => <div className="h-40 flex items-center justify-center"><div className="text-xs text-gray-400">Loading...</div></div>
+});
 
 interface FunctionSelectorProps {
   hiddenActivation: ActivationFunction;
@@ -28,17 +34,11 @@ export function FunctionSelector({
   onOptimizerChange,
 }: FunctionSelectorProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>('activation');
-  const [isMounted, setIsMounted] = useState(false);
 
   const hiddenActInfo = getActivationInfo(hiddenActivation);
   const outputActInfo = getActivationInfo(outputActivation);
   const lossInfo = getLossInfo(lossFunction);
   const optimizerInfo = getOptimizerInfo(optimizer);
-
-  // Ensure charts only render after client-side hydration
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
@@ -95,18 +95,11 @@ export function FunctionSelector({
                 </p>
 
                 {/* Graph */}
-                {isMounted && hiddenActInfo.graphPoints.length > 0 && (
-                  <div className="h-40 bg-white dark:bg-gray-900 rounded-lg p-2">
-                    <ResponsiveContainer width="100%" height="100%">
-                      <LineChart data={hiddenActInfo.graphPoints}>
-                        <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                        <XAxis dataKey="x" stroke="#6B7280" tick={{ fontSize: 10 }} />
-                        <YAxis stroke="#6B7280" tick={{ fontSize: 10 }} />
-                        <Tooltip />
-                        <Line type="monotone" dataKey="y" stroke="#06b6d4" strokeWidth={2} dot={false} />
-                      </LineChart>
-                    </ResponsiveContainer>
-                  </div>
+                {hiddenActInfo.graphPoints.length > 0 && (
+                  <FunctionGraph 
+                    data={hiddenActInfo.graphPoints} 
+                    strokeColor="#06b6d4" 
+                  />
                 )}
 
                 {/* Pros/Cons */}
@@ -206,18 +199,11 @@ export function FunctionSelector({
               </p>
 
               {/* Graph for MSE/MAE */}
-              {isMounted && lossInfo.graphPoints.length > 0 && (
-                <div className="h-40 bg-white dark:bg-gray-900 rounded-lg p-2">
-                  <ResponsiveContainer width="100%" height="100%">
-                    <LineChart data={lossInfo.graphPoints}>
-                      <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
-                      <XAxis dataKey="x" stroke="#6B7280" tick={{ fontSize: 10 }} />
-                      <YAxis stroke="#6B7280" tick={{ fontSize: 10 }} />
-                      <Tooltip />
-                      <Line type="monotone" dataKey="y" stroke="#f97316" strokeWidth={2} dot={false} />
-                    </LineChart>
-                  </ResponsiveContainer>
-                </div>
+              {lossInfo.graphPoints.length > 0 && (
+                <FunctionGraph 
+                  data={lossInfo.graphPoints} 
+                  strokeColor="#f97316" 
+                />
               )}
 
               {/* Use Cases */}
