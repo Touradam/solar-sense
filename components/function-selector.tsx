@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Activity, TrendingUp, Zap, ChevronDown, ChevronUp } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 import { ActivationFunction, LossFunction, OptimizerType } from '@/lib/types';
@@ -28,11 +28,17 @@ export function FunctionSelector({
   onOptimizerChange,
 }: FunctionSelectorProps) {
   const [expandedSection, setExpandedSection] = useState<string | null>('activation');
+  const [isMounted, setIsMounted] = useState(false);
 
   const hiddenActInfo = getActivationInfo(hiddenActivation);
   const outputActInfo = getActivationInfo(outputActivation);
   const lossInfo = getLossInfo(lossFunction);
   const optimizerInfo = getOptimizerInfo(optimizer);
+
+  // Ensure charts only render after client-side hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const toggleSection = (section: string) => {
     setExpandedSection(expandedSection === section ? null : section);
@@ -89,7 +95,7 @@ export function FunctionSelector({
                 </p>
 
                 {/* Graph */}
-                {hiddenActInfo.graphPoints.length > 0 && (
+                {isMounted && hiddenActInfo.graphPoints.length > 0 && (
                   <div className="h-40 bg-white dark:bg-gray-900 rounded-lg p-2">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart data={hiddenActInfo.graphPoints}>
@@ -200,7 +206,7 @@ export function FunctionSelector({
               </p>
 
               {/* Graph for MSE/MAE */}
-              {lossInfo.graphPoints.length > 0 && (
+              {isMounted && lossInfo.graphPoints.length > 0 && (
                 <div className="h-40 bg-white dark:bg-gray-900 rounded-lg p-2">
                   <ResponsiveContainer width="100%" height="100%">
                     <LineChart data={lossInfo.graphPoints}>

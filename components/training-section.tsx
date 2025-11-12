@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, TrendingUp, AlertCircle, CheckCircle2, Clock } from 'lucide-react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { TrainingMetrics, TrainingSummary, EvaluationMetrics } from '@/lib/types';
@@ -25,17 +25,24 @@ export function TrainingSection({
   testMetrics,
 }: TrainingSectionProps) {
   const hasData = trainingData.length > 0;
+  const [isMounted, setIsMounted] = useState(false);
+  
+  // Ensure component only renders charts after client-side hydration
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   
   // Debug logging
-  React.useEffect(() => {
+  useEffect(() => {
     console.log('TrainingSection render:', { 
       hasData, 
       dataLength: trainingData.length,
       isTraining,
+      isMounted,
       firstEpoch: trainingData[0]?.epoch,
       lastEpoch: trainingData[trainingData.length - 1]?.epoch 
     });
-  }, [trainingData.length, isTraining]);
+  }, [trainingData.length, isTraining, isMounted]);
 
   // Format confusion matrix as heatmap data
   const getConfusionMatrixHeatmap = (matrix: number[][]) => {
@@ -126,8 +133,9 @@ export function TrainingSection({
 
         {hasData ? (
           <div className="h-80">
-            <ResponsiveContainer width="100%" height="100%">
-              <LineChart data={trainingData}>
+            {isMounted ? (
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={trainingData}>
                 <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
                 <XAxis 
                   dataKey="epoch" 
@@ -207,7 +215,12 @@ export function TrainingSection({
                   />
                 )}
               </LineChart>
-            </ResponsiveContainer>
+              </ResponsiveContainer>
+            ) : (
+              <div className="h-80 flex items-center justify-center">
+                <div className="text-gray-400">Loading chart...</div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="h-80 flex items-center justify-center bg-gradient-to-br from-gray-50 to-purple-50/30 dark:from-gray-950 dark:to-purple-950/20 rounded-xl border border-gray-200 dark:border-gray-800">
