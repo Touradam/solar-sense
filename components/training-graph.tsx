@@ -14,7 +14,12 @@ export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
 
   useEffect(() => {
     setMounted(true);
-  }, []);
+    console.log('TrainingGraph mounted with data:', { 
+      dataLength: trainingData?.length,
+      firstEpoch: trainingData?.[0],
+      lastEpoch: trainingData?.[trainingData?.length - 1]
+    });
+  }, [trainingData]);
 
   if (!mounted) {
     return (
@@ -24,10 +29,20 @@ export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
     );
   }
 
+  if (!trainingData || trainingData.length === 0) {
+    return (
+      <div className="h-80 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-gray-400 text-sm">No training data available</div>
+      </div>
+    );
+  }
+
+  console.log('TrainingGraph rendering with:', trainingData.length, 'epochs');
+
   return (
     <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={trainingData}>
+        <LineChart data={trainingData} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
           <XAxis 
             dataKey="epoch" 
