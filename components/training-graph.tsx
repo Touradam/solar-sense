@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
 import { TrainingMetrics, TrainingSummary } from '@/lib/types';
 
@@ -10,8 +10,22 @@ interface TrainingGraphProps {
 }
 
 export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return (
+      <div className="h-80 flex items-center justify-center bg-gray-50 dark:bg-gray-900 rounded-lg">
+        <div className="text-gray-400 text-sm">Loading chart...</div>
+      </div>
+    );
+  }
+
   return (
-    <div className="h-80">
+    <div className="h-80 w-full">
       <ResponsiveContainer width="100%" height="100%">
         <LineChart data={trainingData}>
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
