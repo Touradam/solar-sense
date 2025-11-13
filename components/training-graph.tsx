@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer, ReferenceLine } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ReferenceLine } from 'recharts';
 import { TrainingMetrics, TrainingSummary } from '@/lib/types';
 
 interface TrainingGraphProps {
@@ -14,12 +14,7 @@ export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
 
   useEffect(() => {
     setMounted(true);
-    console.log('TrainingGraph mounted with data:', { 
-      dataLength: trainingData?.length,
-      firstEpoch: trainingData?.[0],
-      lastEpoch: trainingData?.[trainingData?.length - 1]
-    });
-  }, [trainingData]);
+  }, []);
 
   if (!mounted) {
     return (
@@ -37,12 +32,9 @@ export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
     );
   }
 
-  console.log('TrainingGraph rendering with:', trainingData.length, 'epochs');
-
   return (
-    <div className="h-80 w-full">
-      <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={trainingData} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
+    <div className="w-full overflow-x-auto">
+      <LineChart width={800} height={320} data={trainingData} margin={{ top: 5, right: 30, bottom: 5, left: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#374151" />
           <XAxis 
             dataKey="epoch" 
@@ -122,7 +114,6 @@ export function TrainingGraph({ trainingData, summary }: TrainingGraphProps) {
             />
           )}
         </LineChart>
-      </ResponsiveContainer>
     </div>
   );
 }
