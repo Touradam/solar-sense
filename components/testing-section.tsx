@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Zap, Download, AlertCircle, Sparkles } from 'lucide-react';
+import { Zap, AlertCircle, Sparkles } from 'lucide-react';
 import * as tf from '@tensorflow/tfjs';
 import { PredictionResult } from '@/lib/types';
 
@@ -10,7 +10,6 @@ interface TestingSectionProps {
   inputSize: number;
   outputSize: number;
   onTest: (inputs: number[]) => Promise<PredictionResult | null>;
-  onDownloadModel: () => void;
   isModelTrained: boolean;
 }
 
@@ -19,7 +18,6 @@ export function TestingSection({
   inputSize,
   outputSize,
   onTest,
-  onDownloadModel,
   isModelTrained,
 }: TestingSectionProps) {
   const [inputValues, setInputValues] = useState<string[]>(
@@ -94,15 +92,13 @@ export function TestingSection({
   };
 
   return (
-    <div className="space-y-6">
-      {/* Testing Card */}
-      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6">
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6 flex items-center gap-2">
-          <Zap className="h-5 w-5 text-teal-600 dark:text-teal-400" />
+    <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-4 sm:p-6">
+        <h2 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6 flex items-center gap-2">
+          <Zap className="h-4 w-4 sm:h-5 sm:w-5 text-teal-600 dark:text-teal-400" />
           Testing & Prediction
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
           {/* Input Section */}
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -113,14 +109,14 @@ export function TestingSection({
                 <button
                   onClick={handleQuickFill}
                   disabled={!isModelTrained}
-                  className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1"
+                  className="text-xs px-2.5 py-1.5 h-8 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-1 touch-manipulation"
                 >
                   <Sparkles className="h-3 w-3" />
                   Sample
                 </button>
                 <button
                   onClick={handleClear}
-                  className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-all"
+                  className="text-xs px-2.5 py-1.5 h-8 rounded bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-600 dark:text-gray-400 transition-all touch-manipulation"
                 >
                   Clear
                 </button>
@@ -140,7 +136,7 @@ export function TestingSection({
                     placeholder={`Value for feature ${idx + 1}`}
                     step="any"
                     disabled={!isModelTrained}
-                    className="w-full px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full h-11 px-3 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 focus:ring-2 focus:ring-teal-500 focus:border-transparent text-sm sm:text-base disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
                   />
                 </div>
               ))}
@@ -156,7 +152,7 @@ export function TestingSection({
             <button
               onClick={handlePredict}
               disabled={!isModelTrained || isLoading}
-              className="w-full py-3 px-4 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+              className="w-full h-11 sm:h-12 py-3 px-4 rounded-lg bg-gradient-to-r from-teal-600 to-cyan-600 text-white font-semibold hover:from-teal-700 hover:to-cyan-700 transition-all shadow-md hover:shadow-lg disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 touch-manipulation"
             >
               {isLoading ? (
                 <>
@@ -234,48 +230,6 @@ export function TestingSection({
           </div>
         </div>
       </div>
-
-      {/* Model Download Card */}
-      <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-800 p-6">
-        <div className="p-4 bg-gradient-to-r from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-lg border border-emerald-200 dark:border-emerald-800">
-          <div className="flex items-center justify-between">
-            <div className="flex-1">
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-1 flex items-center gap-2">
-                <Download className="h-4 w-4" />
-                Export Trained Model
-              </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
-                Download your trained model in TensorFlow.js format for deployment
-              </p>
-              {isModelTrained && model && (
-                <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">
-                  <p>• Includes model weights and architecture</p>
-                  <p>• Includes normalization parameters</p>
-                  <p>• Ready for inference in browser or Node.js</p>
-                </div>
-              )}
-            </div>
-            <button
-              onClick={onDownloadModel}
-              disabled={!isModelTrained}
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-white dark:bg-gray-800 border-2 border-emerald-600 dark:border-emerald-400 text-emerald-600 dark:text-emerald-400 font-semibold hover:bg-emerald-600 hover:text-white dark:hover:bg-emerald-600 dark:hover:text-white transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:bg-white disabled:hover:text-emerald-600 dark:disabled:hover:bg-gray-800 dark:disabled:hover:text-emerald-400"
-            >
-              <Download className="h-4 w-4" />
-              Download
-            </button>
-          </div>
-        </div>
-
-        {!isModelTrained && (
-          <div className="mt-4 p-3 bg-amber-50 dark:bg-amber-950/20 rounded-lg border border-amber-200 dark:border-amber-800 flex items-start gap-2">
-            <AlertCircle className="h-4 w-4 text-amber-600 dark:text-amber-400 flex-shrink-0 mt-0.5" />
-            <p className="text-xs text-amber-700 dark:text-amber-300">
-              Train a model first before downloading or making predictions
-            </p>
-          </div>
-        )}
-      </div>
-    </div>
   );
 }
 

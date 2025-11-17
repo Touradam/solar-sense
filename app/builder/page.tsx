@@ -10,8 +10,7 @@ import { withBasePath } from '@/lib/utils';
 // Components
 import { DataInputSection } from '@/components/data-input-section';
 import { DataSplitSection } from '@/components/data-split-section';
-import { ConfigControls } from '@/components/config-controls';
-import { PresetManager } from '@/components/preset-manager';
+import { NetworkConfigSelector } from '@/components/network-config-selector';
 import { NetworkDiagram } from '@/components/network-diagram';
 import { FunctionSelector } from '@/components/function-selector';
 import { TrainingSection } from '@/components/training-section';
@@ -317,232 +316,6 @@ export default function NeuralNetworkBuilder() {
     [model, dataInfo, normalizationScaler]
   );
 
-  /**
-   * Handle model download
-   */
-  const handleDownloadModel = useCallback(async () => {
-    if (!model) {
-      alert('No trained model to download');
-      return;
-    }
-
-    try {
-      const timestamp = Date.now();
-      
-      // Create comprehensive README with all information
-      const readme = `# Neural Network Model Package
-**Export Date**: ${new Date().toLocaleString()}
-**Model ID**: neural-network-model-${timestamp}
-
-## 📊 Model Information
-- **Input Features**: ${config.inputLayers}
-- **Output Classes**: ${config.outputLayers}
-- **Architecture**: ${config.hiddenLayers.join(' → ')} neurons per hidden layer
-- **Activation Functions**: ${config.hiddenActivation} (hidden), ${config.outputActivation} (output)
-- **Final Validation Accuracy**: ${summary?.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-- **Training Epochs**: ${summary?.totalEpochs || config.epochs}
-- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
-
-## 📦 Downloaded Files
-1. **neural-network-model-${timestamp}.json** - Model architecture
-2. **neural-network-model-${timestamp}.weights.bin** - Trained weights
-
-## 🚀 How to Use This Model
-
-### Step 1: Load the Model
-\`\`\`javascript
-import * as tf from '@tensorflow/tfjs';
-
-// Load the model (adjust path as needed)
-const model = await tf.loadLayersModel('path/to/neural-network-model-${timestamp}.json');
-// Or from a web server: 'https://yourserver.com/neural-network-model-${timestamp}.json'
-\`\`\`
-
-### Step 2: Preprocess Your Input
-${normalizationScaler ? `
-**⚠️ IMPORTANT: You MUST normalize your input data the same way it was during training!**
-
-**Normalization Method**: ${config.normalization.toUpperCase()}
-
-\`\`\`javascript
-${config.normalization === 'minmax' ? `// Min-Max Normalization values from training:
-const min = ${JSON.stringify(normalizationScaler.min)};
-const max = ${JSON.stringify(normalizationScaler.max)};
-
-// Normalization function: (x - min) / (max - min)
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    const range = max[index] - min[index];
-    return range === 0 ? 0.5 : (value - min[index]) / range;
-  });
-}` : ''}${config.normalization === 'standardization' ? `// Standardization (Z-score) values from training:
-const mean = ${JSON.stringify(normalizationScaler.mean)};
-const std = ${JSON.stringify(normalizationScaler.std)};
-
-// Normalization function: (x - mean) / std
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    return std[index] === 0 ? 0 : (value - mean[index]) / std[index];
-  });
-}` : ''}${config.normalization === 'robust' ? `// Robust Normalization values from training:
-const median = ${JSON.stringify(normalizationScaler.median)};
-const iqr = ${JSON.stringify(normalizationScaler.iqr)};
-
-// Normalization function: (x - median) / IQR
-function normalizeInput(features) {
-  return features.map((value, index) => {
-    return iqr[index] === 0 ? 0 : (value - median[index]) / iqr[index];
-  });
-}` : ''}
-
-// Example usage:
-const rawFeatures = [1.5, 2.3, 0.8${config.inputLayers > 3 ? ', ...' : ''}]; // Your ${config.inputLayers} raw feature values
-const normalizedFeatures = normalizeInput(rawFeatures);
-\`\`\`
-` : `
-**No preprocessing required** - You can use raw feature values directly.
-`}
-
-### Step 3: Make Predictions
-\`\`\`javascript
-// Prepare input (${config.inputLayers} features)
-const inputFeatures = [/* your ${config.inputLayers} feature values */];
-${normalizationScaler ? 'const normalizedFeatures = normalizeInput(inputFeatures);' : 'const normalizedFeatures = inputFeatures;'}
-
-// Create tensor (2D: [1, ${config.inputLayers}] for single prediction)
-const inputTensor = tf.tensor2d([normalizedFeatures]);
-
-// Make prediction
-const outputTensor = model.predict(inputTensor);
-const probabilities = await outputTensor.data();
-
-// Get predicted class (highest probability)
-const predictedClass = Array.from(probabilities).indexOf(Math.max(...probabilities));
-console.log('Predicted Class:', predictedClass);
-console.log('Class Probabilities:', probabilities);
-
-// IMPORTANT: Clean up tensors to prevent memory leaks
-inputTensor.dispose();
-outputTensor.dispose();
-\`\`\`
-
-### Batch Predictions
-\`\`\`javascript
-// For multiple predictions at once
-const batchFeatures = [
-  [feat1_1, feat1_2, ..., feat1_${config.inputLayers}],
-  [feat2_1, feat2_2, ..., feat2_${config.inputLayers}],
-  // ... more samples
-];
-${normalizationScaler ? 'const normalizedBatch = batchFeatures.map(normalizeInput);' : 'const normalizedBatch = batchFeatures;'}
-const batchTensor = tf.tensor2d(normalizedBatch);
-const predictions = model.predict(batchTensor);
-const allProbabilities = await predictions.data();
-batchTensor.dispose();
-predictions.dispose();
-\`\`\`
-
-## 📋 Technical Specifications
-
-### Input
-- **Shape**: [batchSize, ${config.inputLayers}]
-- **Type**: Float32 tensor
-- **Preprocessing**: ${config.normalization === 'none' ? 'None required' : config.normalization + ' normalization (see values above)'}
-
-### Output
-- **Shape**: [batchSize, ${config.outputLayers}]
-- **Type**: Float32 tensor (probabilities)
-- **Format**: ${config.outputLayers} values, one per class, summing to 1.0
-- **Activation**: ${config.outputActivation}
-
-### Architecture
-\`\`\`
-Input Layer (${config.inputLayers} features)
-    ↓
-${config.hiddenLayers.map((neurons, i) => `Hidden Layer ${i + 1} (${neurons} neurons, ${config.hiddenActivation} activation)${config.useDropout ? ` + Dropout(${config.dropoutRate})` : ''}${config.useBatchNormalization ? ' + BatchNorm' : ''}`).join('\n    ↓\n')}
-    ↓
-Output Layer (${config.outputLayers} classes, ${config.outputActivation} activation)
-\`\`\`
-
-### Training Configuration
-- **Optimizer**: ${config.optimizer}
-- **Learning Rate**: ${config.learningRate}
-- **Loss Function**: ${config.lossFunction}
-- **Batch Size**: ${config.batchSize}
-- **Epochs Trained**: ${summary?.totalEpochs || config.epochs}
-- **Best Epoch**: ${summary?.bestEpoch || 'N/A'}
-
-### Performance Metrics
-${summary ? `
-- **Training Loss**: ${summary.finalTrainLoss?.toFixed(4) || 'N/A'}
-- **Training Accuracy**: ${summary.finalTrainAccuracy ? (summary.finalTrainAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-- **Validation Loss**: ${summary.finalValLoss?.toFixed(4) || 'N/A'}
-- **Validation Accuracy**: ${summary.finalValAccuracy ? (summary.finalValAccuracy * 100).toFixed(2) + '%' : 'N/A'}
-` : 'No training metrics available'}
-
-## 💡 Important Tips
-
-1. **Always normalize inputs** using the exact same method and values from training
-2. **Dispose tensors** after use to prevent memory leaks: \`tensor.dispose()\`
-3. **Check input shape** - must be [batchSize, ${config.inputLayers}]
-4. **Interpret output** - returns probabilities, not class labels
-5. **Batch processing** - process multiple samples together for better performance
-
-## 🔧 Troubleshooting
-
-**Error: "Input shape mismatch"**
-- Ensure input has exactly ${config.inputLayers} features
-- Check tensor shape: should be 2D [batchSize, ${config.inputLayers}]
-
-**Error: "Memory leak detected"**
-- Call \`.dispose()\` on all tensors after use
-- Use \`tf.tidy()\` to automatically clean up: \`tf.tidy(() => { /* operations */ })\`
-
-**Poor predictions:**
-- Verify normalization is applied correctly
-- Check that features are in the same order as training
-- Ensure feature values are in reasonable ranges
-
-## 📚 Additional Resources
-- TensorFlow.js Documentation: https://js.tensorflow.org/
-- Model Loading Guide: https://js.tensorflow.org/tutorials/import-saved-model.html
-
----
-*Generated by Neural Network Builder*
-*Framework: TensorFlow.js*
-*Export Time: ${new Date().toISOString()}*
-`;
-
-      // Save model using TensorFlow.js (this downloads 2 files: model.json + weights.bin)
-      console.log('📦 Saving model files...');
-      await model.save(`downloads://neural-network-model-${timestamp}`);
-      
-      // Save README as a single comprehensive file
-      console.log('📝 Creating README...');
-      const readmeBlob = new Blob([readme], { type: 'text/markdown' });
-      const readmeUrl = URL.createObjectURL(readmeBlob);
-      const readmeLink = document.createElement('a');
-      readmeLink.href = readmeUrl;
-      readmeLink.download = `neural-network-README-${timestamp}.md`;
-      readmeLink.style.display = 'none';
-      document.body.appendChild(readmeLink);
-      
-      // Small delay to ensure model files start downloading first
-      setTimeout(() => {
-        readmeLink.click();
-        document.body.removeChild(readmeLink);
-        URL.revokeObjectURL(readmeUrl);
-      }, 1000);
-      
-      console.log('✅ Model export complete');
-      alert(`✅ Model download started!\n\nYou should receive 3 files:\n\n1. neural-network-model-${timestamp}.json\n2. neural-network-model-${timestamp}.weights.bin\n3. neural-network-README-${timestamp}.md\n\n⚠️ If your browser blocks multiple downloads, please allow them when prompted.\n\nCheck your Downloads folder!`);
-      
-    } catch (error) {
-      console.error('❌ Download error:', error);
-      alert('Failed to download model. Error: ' + (error as Error).message);
-    }
-  }, [model, config, normalizationScaler, dataInfo, summary]);
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
       {/* Header */}
@@ -589,18 +362,17 @@ ${summary ? `
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6 space-y-4 sm:space-y-6 max-w-full overflow-hidden">
         {/* Network Diagram */}
         <div className="w-full overflow-x-auto">
-          <NetworkDiagram
-            inputNodes={config.inputLayers}
-            hiddenLayers={config.hiddenLayers}
-            outputNodes={config.outputLayers}
-          />
+        <NetworkDiagram
+          inputNodes={config.inputLayers}
+          hiddenLayers={config.hiddenLayers}
+          outputNodes={config.outputLayers}
+        />
         </div>
 
         {/* Main Grid Layout - Stack on Mobile, Grid on Desktop */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
           {/* Left Sidebar - First on Mobile */}
           <aside className="lg:col-span-4 space-y-4 sm:space-y-6 order-1">
-            <PresetManager currentConfig={config} onLoadPreset={handleLoadPreset} />
             <DataInputSection onDataLoaded={handleDataLoaded} />
             <DataSplitSection
               splitRatios={splitRatios}
@@ -609,8 +381,8 @@ ${summary ? `
             />
           </aside>
 
-          {/* Center Column - Training & Testing (More Space for Graphs) - Second on Mobile */}
-          <main className="lg:col-span-5 space-y-4 sm:space-y-6 order-2">
+          {/* Center Column - Training & Testing (More Space for Graphs) - Third on Mobile */}
+          <main className="lg:col-span-5 space-y-4 sm:space-y-6 order-3">
             <TrainingSection
               isTraining={isTraining}
               trainingData={trainingData}
@@ -625,14 +397,17 @@ ${summary ? `
               inputSize={config.inputLayers}
               outputSize={config.outputLayers}
               onTest={handleTest}
-              onDownloadModel={handleDownloadModel}
               isModelTrained={model !== null && !isTraining}
             />
           </main>
 
-          {/* Right Column - Configuration Controls - Third on Mobile */}
-          <aside className="lg:col-span-3 space-y-4 sm:space-y-6 order-3">
-            <ConfigControls config={config} onConfigChange={handleConfigChange} />
+          {/* Right Column - Configuration Controls - Second on Mobile */}
+          <aside className="lg:col-span-3 space-y-4 sm:space-y-6 order-2">
+            <NetworkConfigSelector 
+              currentConfig={config} 
+              onConfigChange={handleConfigChange}
+              onLoadPreset={handleLoadPreset}
+            />
             <FunctionSelector
               hiddenActivation={config.hiddenActivation}
               outputActivation={config.outputActivation}
