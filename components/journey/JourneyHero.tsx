@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Globe, Rocket } from 'lucide-react';
+import { Globe, Rocket } from 'lucide-react';
 
 export function JourneyHero() {
   return (
@@ -12,17 +12,15 @@ export function JourneyHero() {
       <div className="relative bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-gray-800 shadow-2xl p-8 sm:p-12 lg:p-16">
         {/* Tag Line */}
         <div className="flex items-center justify-center gap-2 mb-6">
-          <Sparkles className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
           <span className="text-sm sm:text-base font-semibold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide">
             Summer 2023 – Present
           </span>
-          <Sparkles className="h-5 w-5 text-emerald-600 dark:text-emerald-400" />
         </div>
 
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6 leading-tight">
           <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-            From Denmark to Dashboard
+            Taking Ideas from Research Lab to Market
           </span>
         </h1>
 
@@ -48,50 +46,12 @@ export function JourneyHero() {
 
           <p className="text-center sm:text-left">
             <Rocket className="inline-block h-5 w-5 text-teal-600 dark:text-teal-400 mr-2 mb-1" />
-            Through <strong>6 prototypes</strong>, <strong>9+ accelerator programs</strong>, and countless iterations,
+            Through <strong>4 prototypes</strong>, <strong>4 startup programs</strong>, <strong>3 competitions</strong>, and countless iterations,
             we've discovered what the solar industry really needs: <strong className="text-emerald-600 dark:text-emerald-400">
             affordable, code-compliant monitoring that prevents premature panel decommissioning</strong>.
           </p>
         </div>
 
-        {/* Key Highlights */}
-        <div className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 max-w-4xl mx-auto">
-          <div className="bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/30 dark:to-teal-950/30 rounded-xl p-6 text-center border border-emerald-200 dark:border-emerald-800">
-            <div className="text-2xl font-bold text-emerald-600 dark:text-emerald-400 mb-2">
-              🌍
-            </div>
-            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-              International Origin
-            </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
-              NSF Program, Denmark
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-teal-50 to-cyan-50 dark:from-teal-950/30 dark:to-cyan-950/30 rounded-xl p-6 text-center border border-teal-200 dark:border-teal-800">
-            <div className="text-2xl font-bold text-teal-600 dark:text-teal-400 mb-2">
-              🔄
-            </div>
-            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-              Rapid Iteration
-            </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
-              6 prototypes in 18 months
-            </div>
-          </div>
-
-          <div className="bg-gradient-to-br from-cyan-50 to-emerald-50 dark:from-cyan-950/30 dark:to-emerald-950/30 rounded-xl p-6 text-center border border-cyan-200 dark:border-cyan-800">
-            <div className="text-2xl font-bold text-cyan-600 dark:text-cyan-400 mb-2">
-              🚀
-            </div>
-            <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
-              Market Driven
-            </div>
-            <div className="text-xs text-gray-600 dark:text-gray-400">
-              Pivoted based on feedback
-            </div>
-          </div>
-        </div>
       </div>
     </div>
   );

@@ -44,6 +44,9 @@ export default function LandingPage() {
               <Link href="#team" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Team
               </Link>
+              <Link href="/journey" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
+                Our Journey
+              </Link>
               <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Contact
               </Link>
@@ -111,6 +114,13 @@ export default function LandingPage() {
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Team
+              </Link>
+              <Link 
+                href="/journey" 
+                className="px-4 py-3 text-base font-medium text-gray-700 dark:text-gray-300 hover:bg-emerald-50 dark:hover:bg-emerald-950/30 hover:text-emerald-600 dark:hover:text-emerald-400 rounded-lg transition-colors"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Our Journey
               </Link>
               <Link 
                 href="#contact" 

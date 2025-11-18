@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Calendar, MapPin, Users, Lightbulb, Award, TrendingUp, Rocket, Repeat, Cpu } from 'lucide-react';
+import { Calendar, MapPin, Users, Lightbulb, Award, TrendingUp, Rocket, Repeat, Cpu, Target } from 'lucide-react';
 
 interface TimelineEvent {
   period: string;
@@ -12,89 +12,120 @@ interface TimelineEvent {
   icon: React.ReactNode;
   color: string;
   outcome?: string;
+  link?: {
+    url: string;
+    text: string;
+  };
+  video?: string;
 }
 
 const events: TimelineEvent[] = [
   {
     period: 'Summer 2023',
-    title: 'SEPT Founded',
+    title: 'NSF Innovators Program',
     location: 'Aalborg University, Denmark',
-    description: 'During the NSF Innovators Program, we identified the core challenge: understanding solar panel degradation and developing affordable solutions for second-life applications.',
+    description: 'Researched solar panel degradation and fault detection. Identified the need for a hardware system to collect real-time data.',
     icon: <Rocket className="h-5 w-5" />,
     color: 'emerald',
-    outcome: 'Research foundation established'
+    outcome: 'Research foundation established',
+    link: {
+      url: 'https://www.notion.so/touradam/NSF-Innovator-Internship-Program-in-Denmark-44d1690c5606455f9bca0f66dd9a8cc1',
+      text: 'Read about the NSF Program experience'
+    }
   },
   {
     period: 'Fall 2023',
-    title: 'Jordan Joins & First Prototype',
-    description: 'Adama returned to the U.S. and partnered with Jordan Harris-Toovy. His expertise in sensor design enabled us to quickly build the first PCB-based prototype providing basic sensor readings.',
+    title: 'Partnership & First Design',
+    description: 'Adama returned to the U.S. and partnered with Jordan Harris-Toovy. Jordan sketched the first design and began building Prototype 1.',
     icon: <Users className="h-5 w-5" />,
     color: 'teal',
-    outcome: 'Team formed, first hardware built'
+    outcome: 'Team formed, hardware design initiated'
   },
   {
-    period: 'Fall 2023',
-    title: 'First Competition Pitch',
-    description: 'Made our first pitch at the Catalyze Klamath Challenge and was selected for the InventOR Prototyping Competition.',
-    icon: <Award className="h-5 w-5" />,
+    period: 'Winter 2024',
+    title: 'Prototype 1 Built',
+    description: 'Built Prototype 1 (PCB + Arduino Nano) with basic multimeter-like readings. Determined it was insufficient for meaningful analysis.',
+    icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
+    outcome: 'First working prototype, identified limitations'
+  },
+  {
+    period: 'Spring 2024',
+    title: 'Catalyze Klamath',
+    description: 'Pitched at Catalyze Klamath Challenge using Prototype 1. Selected for the InventOR Prototyping Competition.',
+    icon: <Award className="h-5 w-5" />,
+    color: 'emerald',
     outcome: 'Market validation and resources secured'
   },
   {
-    period: 'Early 2024',
-    title: 'Interactive Demos Built',
-    description: 'Built cardboard and LED-based shading simulators that allowed audiences at OIT IdeaFest and InventOR to test concepts hands-on.',
+    period: 'Summer 2024',
+    title: 'OIT IdeaFest Demo',
+    description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing. Jordan built improved LED shading model for InventOR.',
     icon: <Lightbulb className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'Education tool for stakeholder engagement'
-  },
-  {
-    period: 'Mid 2024',
-    title: 'The Critical Pivot',
-    description: 'Major discovery: the landfill-prevention business case alone wasn\'t strong enough. We identified the real problem—lack of low-cost continuous monitoring causing premature panel decommissioning.',
-    icon: <Repeat className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Strategic shift to monitoring focus'
-  },
-  {
-    period: 'Summer 2024',
-    title: 'Breakthrough Prototype',
-    description: 'Developed the first fully working data-collection prototype capable of training a machine-learning model on a 30W panel.',
-    icon: <Cpu className="h-5 w-5" />,
     color: 'teal',
-    outcome: 'ML-powered monitoring validated'
+    outcome: 'Educational demonstrations validated concept'
   },
   {
     period: 'Summer 2024',
-    title: 'Market Research Insights',
-    description: 'Discovered that commercial PV operators need low-cost, code-compliant solutions, preferring a single device for both monitoring and safety.',
-    icon: <TrendingUp className="h-5 w-5" />,
-    color: 'cyan',
-    outcome: 'Product-market fit identified'
-  },
-  {
-    period: 'Summer-Fall 2024',
-    title: 'Accelerator Programs',
-    description: 'Applied to American-Made Solar Prize Round 8, joined VertueLab 45Camp, completed TiE XL Bootcamp, and finished the OEN Startup Program.',
-    icon: <Rocket className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'Business model strengthened'
+    title: 'InventOR 2024 Award Winner',
+    description: 'Pitched at InventOR focusing on second-life solar reuse. Won the Visionary Award—a pivotal moment for SEPT. Realized landfill-prevention business case was not strong enough. Built first fully functional data-collection prototype (30W ML training).',
+    icon: <Award className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Visionary Award winner + Strategic pivot + ML-capable prototype achieved',
+    link: {
+      url: 'https://www.oit.edu/news/oregon-tech-engineering-students-win-visionary-award-statewide-invention-competition',
+      text: 'Read about our Visionary Award'
+    },
+    video: 'https://www.youtube.com/embed/JyNVlf8DTV4?start=75'
   },
   {
     period: 'Fall 2024',
-    title: 'Software Dashboard v1',
-    description: 'Created the first prototype of our software dashboard for data visualization and panel monitoring.',
-    icon: <Cpu className="h-5 w-5" />,
-    color: 'teal',
-    outcome: 'Complete software solution'
+    title: 'American-Made Solar Prize',
+    description: 'Identified major industry gap: no low-cost panel-level monitoring device. Applied to American-Made Solar Prize Round 8. Built Prototype 3 for Demo Day.',
+    icon: <Target className="h-5 w-5" />,
+    color: 'cyan',
+    outcome: 'Clear problem definition and validation',
+    video: 'https://www.youtube.com/embed/f8RI_KhIVBY'
   },
   {
-    period: 'Present',
-    title: 'Positioned for Growth',
-    description: 'Working with Janus Innovation Hub on go-to-market strategy while releasing our redesigned Dashboard v2.',
-    icon: <TrendingUp className="h-5 w-5" />,
+    period: 'Fall 2024',
+    title: 'VertueLab 45Camp',
+    description: 'Participated in VertueLab 45Camp accelerator program to refine business model and develop go-to-market strategy.',
+    icon: <Rocket className="h-5 w-5" />,
     color: 'purple',
-    outcome: 'Ready for commercial deployment'
+    outcome: 'Enhanced entrepreneurial skills and network'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'Market Research',
+    description: 'Conducted market research: utility PV reluctant to add system costs. Expanded research to commercial PV. Learned commercial systems need low-cost, code-compliant, single-device solutions.',
+    icon: <TrendingUp className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'Product-market fit identified in commercial PV'
+  },
+  {
+    period: 'Winter 2025',
+    title: 'TiE XL Bootcamp',
+    description: 'Prepared next pitch addressing multi-device burden. Continued refining hardware and software. Completed TiE XL Bootcamp—learned about startup ecosystem, due diligence, investor relations.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'teal',
+    outcome: 'Business acumen strengthened, systems refined'
+  },
+  {
+    period: 'Summer 2025',
+    title: 'OEN Angel',
+    description: 'Built first prototype of software dashboard. Completed OEN Startup Program—clarified problem, value proposition, assumptions, and growth path.',
+    icon: <Rocket className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Complete solution with clear strategy'
+  },
+  {
+    period: 'Fall 2025',
+    title: 'Go-to-Market Strategy',
+    description: 'Working with Janus Innovation Hub for strategy and go-to-market mentorship. Refined software and developed new dashboard.',
+    icon: <TrendingUp className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'Positioned for commercial deployment'
   },
 ];
 
@@ -182,6 +213,38 @@ export function Timeline() {
                       <p className={`text-sm font-medium ${colors.text}`}>
                         ✓ {event.outcome}
                       </p>
+                    </div>
+                  )}
+
+                  {/* Video */}
+                  {event.video && (
+                    <div className="mt-4">
+                      <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
+                        <iframe
+                          src={event.video}
+                          title="SEPT Video"
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                          allowFullScreen
+                          className="absolute inset-0 w-full h-full"
+                        />
+                      </div>
+                    </div>
+                  )}
+
+                  {/* Link */}
+                  {event.link && (
+                    <div className="mt-4">
+                      <a
+                        href={event.link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={`inline-flex items-center gap-2 text-sm font-medium ${colors.text} hover:underline`}
+                      >
+                        {event.link.text}
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </a>
                     </div>
                   )}
                 </div>

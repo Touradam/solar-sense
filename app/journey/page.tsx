@@ -3,15 +3,16 @@
 import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ArrowLeft, Rocket, Lightbulb, Users, TrendingUp, Zap, Award } from 'lucide-react';
+import { ArrowLeft } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 import { JourneyHero } from '@/components/journey/JourneyHero';
 import { Timeline } from '@/components/journey/Timeline';
-import { PrototypeGallery } from '@/components/journey/PrototypeGallery';
-import { ProgramsSection } from '@/components/journey/ProgramsSection';
-import { LearningsSection } from '@/components/journey/LearningsSection';
-import { MetricsSection } from '@/components/journey/MetricsSection';
-import { FutureVision } from '@/components/journey/FutureVision';
+// TODO: Import other components when ready to add them
+// import { PrototypeGallery } from '@/components/journey/PrototypeGallery';
+// import { ProgramsSection } from '@/components/journey/ProgramsSection';
+// import { LearningsSection } from '@/components/journey/LearningsSection';
+// import { MetricsSection } from '@/components/journey/MetricsSection';
+// import { FutureVision } from '@/components/journey/FutureVision';
 
 export default function JourneyPage() {
   return (
@@ -63,15 +64,7 @@ export default function JourneyPage() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 sm:mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
             <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
-              18
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Months of Innovation
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
-              6
+              4
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
               Prototypes Built
@@ -79,10 +72,18 @@ export default function JourneyPage() {
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
             <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
-              9+
+              4
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Programs Completed
+              Startup Programs
+            </div>
+          </div>
+          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
+            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+              3
+            </div>
+            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
+              Competitions
             </div>
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
@@ -102,60 +103,20 @@ export default function JourneyPage() {
               Our Timeline
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              From a research program in Denmark to a growing cleantech startup—explore every milestone of our journey
+              Taking research projects from lab to market—explore every milestone of our journey
             </p>
           </div>
           <Timeline />
         </section>
 
-        {/* Prototypes Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Prototypes & Innovation
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Six generations of prototypes, each one teaching us something new
-            </p>
-          </div>
-          <PrototypeGallery />
-        </section>
-
-        {/* Programs Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Programs & Validation
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              Backed by leading accelerators and innovation programs
-            </p>
-          </div>
-          <ProgramsSection />
-        </section>
-
-        {/* Key Learnings Section */}
-        <section className="mb-12 sm:mb-16">
-          <div className="text-center mb-8 sm:mb-12">
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-              Key Learnings
-            </h2>
-            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              What we discovered building SEPT from the ground up
-            </p>
-          </div>
-          <LearningsSection />
-        </section>
-
-        {/* Metrics Section */}
-        <section className="mb-12 sm:mb-16">
-          <MetricsSection />
-        </section>
-
-        {/* Future Vision Section */}
-        <section className="mb-12">
-          <FutureVision />
-        </section>
+        {/* TODO: Add more sections later */}
+        {/* 
+        - Prototypes Section
+        - Programs Section  
+        - Key Learnings Section
+        - Metrics Section
+        - Future Vision Section
+        */}
       </main>
 
       {/* Footer */}
