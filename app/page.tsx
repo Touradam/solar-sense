@@ -300,39 +300,55 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          {/* Timeline Preview Images */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
-            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
-              <Image
-                src={withBasePath("/meetingAalborg.png")}
-                alt="NSF Program in Denmark"
-                fill
-                className="object-cover"
-              />
+          {/* Timeline Preview Images - Scrollable Carousel */}
+          <div className="mt-12 relative">
+            <div className="overflow-x-auto scrollbar-hide">
+              <div className="flex gap-4 pb-4 snap-x snap-mandatory">
+                {[
+                  { src: '/meetingAalborg.png', alt: 'NSF Program in Denmark' },
+                  { src: '/firstPrototype.png', alt: 'Prototype 1' },
+                  { src: '/secondPrototype.png', alt: 'Prototype 2' },
+                  { src: '/catalyzeKlamathPresentation.jpg', alt: 'Catalyze Klamath' },
+                  { src: '/ideaFestDemo.png', alt: 'IdeaFest Demo 1' },
+                  { src: '/ideaFestDemo1.png', alt: 'IdeaFest Demo 2' },
+                  { src: '/inventORwinners.png', alt: 'InventOR Winners' },
+                  { src: '/inventOrDemo.png', alt: 'InventOR Demo' },
+                  { src: '/solarSenseOnPV.png', alt: 'Prototype 3 - Solar Sense' },
+                  { src: '/americanMadeSolar.png', alt: 'American-Made Solar Prize' },
+                  { src: '/VertueLab.png', alt: 'VertueLab 45Camp' },
+                  { src: '/tieOregon.png', alt: 'TiE XL Bootcamp' },
+                  { src: '/solarSenseTech.png', alt: 'Prototype 4' },
+                  { src: '/dashboardPrototype.png', alt: 'Dashboard Prototype 1' },
+                  { src: '/dashboardPrototype1.png', alt: 'Dashboard Prototype 2' },
+                  { src: '/oen.jpg', alt: 'OEN Angel Oregon' },
+                  { src: '/janus.png', alt: 'Janus Innovation Hub' },
+                ].map((image, index) => (
+                  <div 
+                    key={index}
+                    className="relative flex-none w-72 sm:w-80 aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform snap-center"
+                  >
+                    <Image
+                      src={withBasePath(image.src)}
+                      alt={image.alt}
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
-            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
-              <Image
-                src={withBasePath("/firstPrototype.png")}
-                alt="First Prototype"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
-              <Image
-                src={withBasePath("/inventORwinners.png")}
-                alt="InventOR Award Winners"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
-              <Image
-                src={withBasePath("/catalyzeKlamathPresentation.jpg")}
-                alt="Catalyze Klamath Presentation"
-                fill
-                className="object-cover"
-              />
+            
+            {/* Scroll Hint */}
+            <div className="text-center mt-4">
+              <p className="text-emerald-200 text-sm flex items-center justify-center gap-2">
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+                Scroll to explore our journey
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </p>
             </div>
           </div>
         </div>

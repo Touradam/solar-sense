@@ -2,7 +2,8 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { Calendar, MapPin, Users, Lightbulb, Award, TrendingUp, Rocket, Repeat, Cpu, Target } from 'lucide-react';
+import Link from 'next/link';
+import { Calendar, MapPin, Users, Lightbulb, Award, TrendingUp, Rocket, Repeat, Cpu, Target, ArrowRight } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 
 interface TimelineEvent {
@@ -17,6 +18,7 @@ interface TimelineEvent {
   link?: {
     url: string;
     text: string;
+    buttonStyle?: boolean;
   };
   video?: string;
   images?: string | string[];
@@ -64,9 +66,18 @@ const events: TimelineEvent[] = [
     images: '/catalyzeKlamathPresentation.jpg'
   },
   {
+    period: 'Spring 2024',
+    title: 'Prototype 2: Enhanced PCB Design',
+    description: 'Developed second-generation PCB with improved sensor integration and data collection capabilities. This iteration enhanced voltage and current monitoring, laying the groundwork for machine learning data acquisition.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'cyan',
+    outcome: 'Improved hardware foundation for ML training',
+    images: '/secondPrototype.png'
+  },
+  {
     period: 'Summer 2024',
     title: 'OIT IdeaFest Demo',
-    description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing. Jordan built improved LED shading model for InventOR.',
+    description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing.',
     icon: <Lightbulb className="h-5 w-5" />,
     color: 'teal',
     outcome: 'Educational demonstrations validated concept',
@@ -75,7 +86,7 @@ const events: TimelineEvent[] = [
   {
     period: 'Summer 2024',
     title: 'InventOR 2024 Award Winner',
-    description: 'Pitched at InventOR focusing on second-life solar reuse. Won the Visionary Award—a pivotal moment for SEPT. Realized landfill-prevention business case was not strong enough. Built first fully functional data-collection prototype (30W ML training).',
+    description: 'Pitched at InventOR focusing on second-life solar reuse. Won the Visionary Award—a pivotal moment for SEPT. Realized landfill-prevention business case was not strong enough. Pivoted to provide a device for the utility PV industry to detect and locate panel faults.',
     icon: <Award className="h-5 w-5" />,
     color: 'purple',
     outcome: 'Visionary Award winner + Strategic pivot + ML-capable prototype achieved',
@@ -84,17 +95,26 @@ const events: TimelineEvent[] = [
       text: 'Read about our Visionary Award'
     },
     video: 'https://www.youtube.com/embed/JyNVlf8DTV4?start=75',
-    images: '/inventORwinners.png'
+    images: ['/inventORwinners.png', '/inventOrDemo.png']
   },
   {
     period: 'Fall 2024',
     title: 'American-Made Solar Prize',
-    description: 'Identified major industry gap: no low-cost panel-level monitoring device. Applied to American-Made Solar Prize Round 8. Built Prototype 3 for Demo Day.',
+    description: 'Identified critical market gap: utility PV operators lack affordable tools for panel-level fault detection. Applied to American-Made Solar Prize Round 8 with this new solution.',
     icon: <Target className="h-5 w-5" />,
     color: 'cyan',
     outcome: 'Clear problem definition and validation',
     video: 'https://www.youtube.com/embed/f8RI_KhIVBY',
     images: '/americanMadeSolar.png'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'Prototype 3: Solar Sense',
+    description: 'Built Prototype 3 featuring real-time fault localization capabilities. This working prototype demonstrated panel-level monitoring with ML-powered fault detection—a complete solution integrating hardware sensors with intelligent software analytics.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'First production-ready prototype with commercial viability',
+    images: '/solarSenseOnPV.png'
   },
   {
     period: 'Fall 2024',
@@ -123,13 +143,45 @@ const events: TimelineEvent[] = [
     images: '/tieOregon.png'
   },
   {
+    period: 'Winter 2025',
+    title: 'Prototype 4: In-House Manufacturing',
+    description: 'Developed in-house manufacturing capabilities, enabling production of professional-grade PCBs from Jordan\'s home lab. Fourth-generation design features SEPT branding, advanced component integration, and optimized sensor architecture—demonstrating our ability to manufacture commercial-quality hardware independently.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Manufacturing capability established, commercial-quality production achieved',
+    images: '/solarSenseTech.png'
+  },
+  {
     period: 'Summer 2025',
-    title: 'OEN Angel',
-    description: 'Built first prototype of software dashboard. Completed OEN Startup Program—clarified problem, value proposition, assumptions, and growth path.',
+    title: 'OEN Angel Oregon',
+    description: 'Participated in the AOBIO Capital Readiness program—a transformative experience that taught us the essential vocabulary of entrepreneurship and how to avoid costly mistakes as new founders. Through mentorship, cohort discussions, and structured guidance, we clarified our problem, value proposition, and growth path.',
     icon: <Rocket className="h-5 w-5" />,
     color: 'purple',
-    outcome: 'Complete solution with clear strategy',
+    outcome: 'Capital readiness achieved, entrepreneurial foundation strengthened',
     images: '/oen.jpg'
+  },
+  {
+    period: 'Summer 2025',
+    title: 'Software Dashboard Prototype',
+    description: 'Built first prototype of software dashboard to visualize real-time panel data and fault detection. Transformed hardware solution into a complete monitoring system for solar operators.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'cyan',
+    outcome: 'Complete hardware-software solution achieved',
+    images: '/dashboardPrototype.png'
+  },
+  {
+    period: 'Fall 2025',
+    title: 'Neural Network Builder Launch',
+    description: 'Reimagined and rebuilt our software from the ground up. Launched an interactive Neural Network Builder as an educational tool—allowing anyone to learn the process of building neural networks. Currently in development, this platform demonstrates our commitment to making AI-powered solar monitoring accessible and transparent.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Educational platform launched, software architecture modernized',
+    link: {
+      url: '/builder',
+      text: 'Try the Neural Network Builder',
+      buttonStyle: true
+    },
+    images: '/dashboardPrototype1.png'
   },
   {
     period: 'Fall 2025',
@@ -278,17 +330,31 @@ export function Timeline() {
                   {/* Link */}
                   {event.link && (
                     <div className="mt-4">
-                      <a
-                        href={event.link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={`inline-flex items-center gap-2 text-sm font-medium ${colors.text} hover:underline`}
-                      >
-                        {event.link.text}
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                        </svg>
-                      </a>
+                      {event.link.buttonStyle ? (
+                        <Link href={event.link.url}>
+                          <button className={`w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 ${
+                            event.color === 'purple' ? 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800' :
+                            event.color === 'emerald' ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800' :
+                            event.color === 'teal' ? 'bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800' :
+                            'bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800'
+                          }`}>
+                            {event.link.text}
+                            <ArrowRight className="w-5 h-5" />
+                          </button>
+                        </Link>
+                      ) : (
+                        <a
+                          href={event.link.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`inline-flex items-center gap-2 text-sm font-medium ${colors.text} hover:underline`}
+                        >
+                          {event.link.text}
+                          <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                          </svg>
+                        </a>
+                      )}
                     </div>
                   )}
                 </div>
