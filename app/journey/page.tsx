@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { ArrowLeft } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 import { JourneyHero } from '@/components/journey/JourneyHero';
+import FounderStory from '@/components/journey/FounderStory';
 import { Timeline } from '@/components/journey/Timeline';
 // TODO: Import other components when ready to add them
 // import { PrototypeGallery } from '@/components/journey/PrototypeGallery';
@@ -95,6 +96,9 @@ export default function JourneyPage() {
             </div>
           </div>
         </div>
+
+        {/* Founder Story Section */}
+        <FounderStory />
 
         {/* Timeline Section */}
         <section className="mb-12 sm:mb-16">
