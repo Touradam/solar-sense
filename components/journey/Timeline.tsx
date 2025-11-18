@@ -1,7 +1,9 @@
 'use client';
 
 import React from 'react';
+import Image from 'next/image';
 import { Calendar, MapPin, Users, Lightbulb, Award, TrendingUp, Rocket, Repeat, Cpu, Target } from 'lucide-react';
+import { withBasePath } from '@/lib/utils';
 
 interface TimelineEvent {
   period: string;
@@ -17,6 +19,7 @@ interface TimelineEvent {
     text: string;
   };
   video?: string;
+  images?: string | string[];
 }
 
 const events: TimelineEvent[] = [
@@ -31,7 +34,8 @@ const events: TimelineEvent[] = [
     link: {
       url: 'https://www.notion.so/touradam/NSF-Innovator-Internship-Program-in-Denmark-44d1690c5606455f9bca0f66dd9a8cc1',
       text: 'Read about the NSF Program experience'
-    }
+    },
+    images: '/meetingAalborg.png'
   },
   {
     period: 'Fall 2023',
@@ -47,7 +51,8 @@ const events: TimelineEvent[] = [
     description: 'Built Prototype 1 (PCB + Arduino Nano) with basic multimeter-like readings. Determined it was insufficient for meaningful analysis.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'First working prototype, identified limitations'
+    outcome: 'First working prototype, identified limitations',
+    images: '/firstPrototype.png'
   },
   {
     period: 'Spring 2024',
@@ -55,7 +60,8 @@ const events: TimelineEvent[] = [
     description: 'Pitched at Catalyze Klamath Challenge using Prototype 1. Selected for the InventOR Prototyping Competition.',
     icon: <Award className="h-5 w-5" />,
     color: 'emerald',
-    outcome: 'Market validation and resources secured'
+    outcome: 'Market validation and resources secured',
+    images: '/catalyzeKlamathPresentation.jpg'
   },
   {
     period: 'Summer 2024',
@@ -63,7 +69,8 @@ const events: TimelineEvent[] = [
     description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing. Jordan built improved LED shading model for InventOR.',
     icon: <Lightbulb className="h-5 w-5" />,
     color: 'teal',
-    outcome: 'Educational demonstrations validated concept'
+    outcome: 'Educational demonstrations validated concept',
+    images: ['/ideaFestDemo.png', '/ideaFestDemo1.png']
   },
   {
     period: 'Summer 2024',
@@ -76,7 +83,8 @@ const events: TimelineEvent[] = [
       url: 'https://www.oit.edu/news/oregon-tech-engineering-students-win-visionary-award-statewide-invention-competition',
       text: 'Read about our Visionary Award'
     },
-    video: 'https://www.youtube.com/embed/JyNVlf8DTV4?start=75'
+    video: 'https://www.youtube.com/embed/JyNVlf8DTV4?start=75',
+    images: '/inventORwinners.png'
   },
   {
     period: 'Fall 2024',
@@ -85,7 +93,8 @@ const events: TimelineEvent[] = [
     icon: <Target className="h-5 w-5" />,
     color: 'cyan',
     outcome: 'Clear problem definition and validation',
-    video: 'https://www.youtube.com/embed/f8RI_KhIVBY'
+    video: 'https://www.youtube.com/embed/f8RI_KhIVBY',
+    images: '/americanMadeSolar.png'
   },
   {
     period: 'Fall 2024',
@@ -93,7 +102,8 @@ const events: TimelineEvent[] = [
     description: 'Participated in VertueLab 45Camp accelerator program to refine business model and develop go-to-market strategy.',
     icon: <Rocket className="h-5 w-5" />,
     color: 'purple',
-    outcome: 'Enhanced entrepreneurial skills and network'
+    outcome: 'Enhanced entrepreneurial skills and network',
+    images: '/VertueLab.png'
   },
   {
     period: 'Fall 2024',
@@ -109,7 +119,8 @@ const events: TimelineEvent[] = [
     description: 'Prepared next pitch addressing multi-device burden. Continued refining hardware and software. Completed TiE XL Bootcamp—learned about startup ecosystem, due diligence, investor relations.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'teal',
-    outcome: 'Business acumen strengthened, systems refined'
+    outcome: 'Business acumen strengthened, systems refined',
+    images: '/tieOregon.png'
   },
   {
     period: 'Summer 2025',
@@ -117,15 +128,17 @@ const events: TimelineEvent[] = [
     description: 'Built first prototype of software dashboard. Completed OEN Startup Program—clarified problem, value proposition, assumptions, and growth path.',
     icon: <Rocket className="h-5 w-5" />,
     color: 'purple',
-    outcome: 'Complete solution with clear strategy'
+    outcome: 'Complete solution with clear strategy',
+    images: '/oen.jpg'
   },
   {
     period: 'Fall 2025',
-    title: 'Go-to-Market Strategy',
-    description: 'Working with Janus Innovation Hub for strategy and go-to-market mentorship. Refined software and developed new dashboard.',
+    title: 'Janus Innovation Hub',
+    description: 'Janus Innovation Hub is a startup accelerator that empowers immigrant-led ventures through mentorship, resources, and connections to transform innovative ideas into impactful, investment-ready businesses. The Janus program aims to set SEPT on the right path toward becoming a sustainable enterprise, achieving its mission of making solar smart and safe.',
     icon: <TrendingUp className="h-5 w-5" />,
     color: 'emerald',
-    outcome: 'Positioned for commercial deployment'
+    outcome: 'Positioned for commercial deployment',
+    images: '/janus.png'
   },
 ];
 
@@ -206,6 +219,37 @@ export function Timeline() {
                   <p className="text-gray-700 dark:text-gray-300 text-sm leading-relaxed mb-4">
                     {event.description}
                   </p>
+
+                  {/* Images */}
+                  {event.images && (
+                    <div className="mb-4">
+                      {Array.isArray(event.images) ? (
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                          {event.images.map((img, idx) => (
+                            <div key={idx} className="relative w-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                              <Image
+                                src={withBasePath(img)}
+                                alt={`${event.title} ${idx + 1}`}
+                                width={800}
+                                height={600}
+                                className="w-full h-auto object-contain"
+                              />
+                            </div>
+                          ))}
+                        </div>
+                      ) : (
+                        <div className="relative w-full rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800 border border-gray-200 dark:border-gray-700">
+                          <Image
+                            src={withBasePath(event.images)}
+                            alt={event.title}
+                            width={1200}
+                            height={800}
+                            className="w-full h-auto object-contain"
+                          />
+                        </div>
+                      )}
+                    </div>
+                  )}
 
                   {/* Outcome */}
                   {event.outcome && (

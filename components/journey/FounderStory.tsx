@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { GraduationCap, Globe, Lightbulb, Rocket } from 'lucide-react';
+import { GraduationCap, Globe, Lightbulb } from 'lucide-react';
 
 export default function FounderStory() {
   return (
@@ -78,7 +78,7 @@ export default function FounderStory() {
             </div>
 
             {/* Founding SEPT */}
-            <div className="mb-10 pb-10 border-b border-gray-200 dark:border-gray-700">
+            <div>
               <div className="flex items-start gap-4 mb-6">
                 <div className="flex-shrink-0 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
                   <Lightbulb className="h-6 w-6 sm:h-7 sm:w-7" />
@@ -97,45 +97,6 @@ export default function FounderStory() {
                   He founded <strong>SEPT (Solar Energy Protection Technology)</strong> with his classmate <strong>Jordan 
                   Harris-Toovy</strong> to bring a low-cost monitoring device to the second-life PV market.
                 </p>
-              </div>
-            </div>
-
-            {/* Research Interests */}
-            <div>
-              <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl p-3 text-white shadow-lg">
-                  <Rocket className="h-6 w-6 sm:h-7 sm:w-7" />
-                </div>
-                <div>
-                  <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    Research Interests
-                  </h3>
-                  <p className="text-sm sm:text-base text-purple-600 dark:text-purple-400 font-semibold">
-                    Focus areas in renewable energy
-                  </p>
-                </div>
-              </div>
-              <div className="bg-gradient-to-br from-purple-50 to-pink-50 dark:from-purple-950/20 dark:to-pink-950/20 rounded-xl p-6 border border-purple-200 dark:border-purple-800">
-                <ul className="space-y-3 text-gray-700 dark:text-gray-300">
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold mt-1">•</span>
-                    <span className="text-sm sm:text-base lg:text-lg">
-                      <strong>Solar thermal energy</strong> for co-generation of electricity and fresh water
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold mt-1">•</span>
-                    <span className="text-sm sm:text-base lg:text-lg">
-                      <strong>PV dynamic modeling</strong> for advanced panel analysis
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-3">
-                    <span className="text-purple-600 dark:text-purple-400 font-bold mt-1">•</span>
-                    <span className="text-sm sm:text-base lg:text-lg">
-                      <strong>Machine learning applications</strong> in energy systems
-                    </span>
-                  </li>
-                </ul>
               </div>
             </div>
 

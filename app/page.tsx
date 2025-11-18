@@ -238,6 +238,106 @@ export default function LandingPage() {
         </div>
       </div>
 
+      {/* Journey Hero Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-900 via-teal-900 to-cyan-900 dark:from-emerald-950 dark:via-teal-950 dark:to-cyan-950 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
+        </div>
+        
+        <div className="max-w-7xl mx-auto relative z-10">
+          <div className="text-center mb-12">
+            {/* Badge */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white text-sm font-semibold mb-6">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              Our Story
+            </div>
+
+            {/* Main Headline */}
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              From Research Lab to Market:<br />
+              <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
+                The SEPT Journey
+              </span>
+            </h2>
+
+            {/* Description */}
+            <p className="text-lg sm:text-xl text-emerald-100 dark:text-emerald-200 max-w-3xl mx-auto mb-8 leading-relaxed">
+              Follow our path from an NSF research program in Denmark to building award-winning solar monitoring technology. 
+              Through <strong className="text-white">4 prototypes</strong>, <strong className="text-white">4 startup programs</strong>, 
+              and <strong className="text-white">3 competitions</strong>, we've discovered what the solar industry really needs.
+            </p>
+
+            {/* Key Highlights */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-4xl mx-auto mb-10">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">2023</div>
+                <div className="text-sm text-emerald-200">Started in Denmark</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">4</div>
+                <div className="text-sm text-emerald-200">Prototypes Built</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">🏆</div>
+                <div className="text-sm text-emerald-200">InventOR Winner</div>
+              </div>
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                <div className="text-3xl font-bold text-white mb-1">12+</div>
+                <div className="text-sm text-emerald-200">Major Milestones</div>
+              </div>
+            </div>
+
+            {/* CTA Button */}
+            <Link href="/journey">
+              <Button size="lg" className="px-10 py-6 text-lg bg-white text-emerald-900 hover:bg-emerald-50 shadow-2xl hover:shadow-emerald-500/50 transition-all transform hover:scale-105">
+                Read Our Full Journey
+                <ArrowRight className="ml-2 w-6 h-6" />
+              </Button>
+            </Link>
+          </div>
+
+          {/* Timeline Preview Images */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
+              <Image
+                src={withBasePath("/meetingAalborg.png")}
+                alt="NSF Program in Denmark"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
+              <Image
+                src={withBasePath("/firstPrototype.png")}
+                alt="First Prototype"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
+              <Image
+                src={withBasePath("/inventORwinners.png")}
+                alt="InventOR Award Winners"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="relative aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform">
+              <Image
+                src={withBasePath("/catalyzeKlamathPresentation.jpg")}
+                alt="Catalyze Klamath Presentation"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Value Propositions Section */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
         <div className="max-w-7xl mx-auto">
