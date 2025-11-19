@@ -86,7 +86,7 @@ const events: TimelineEvent[] = [
   {
     period: 'Summer 2024',
     title: 'InventOR 2024 Award Winner',
-    description: 'Pitched at InventOR focusing on second-life solar reuse. Won the Visionary Award—a pivotal moment for SEPT. Realized landfill-prevention business case was not strong enough. Pivoted to provide a device for the utility PV industry to detect and locate panel faults.',
+    description: 'Pitched at InventOR focusing on second-life solar reuse. Received the Visionary Award—a pivotal moment for SEPT. InventOR has been supporting SEPT throughout its journey by providing connections to resources, mentorship, and opportunities that have been instrumental in our growth.',
     icon: <Award className="h-5 w-5" />,
     color: 'purple',
     outcome: 'Visionary Award winner + Strategic pivot + ML-capable prototype achieved',
