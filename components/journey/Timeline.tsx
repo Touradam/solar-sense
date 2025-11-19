@@ -89,13 +89,21 @@ const events: TimelineEvent[] = [
     description: 'Pitched at InventOR focusing on second-life solar reuse. Received the Visionary Award—a pivotal moment for SEPT. InventOR has been supporting SEPT throughout its journey by providing connections to resources, mentorship, and opportunities that have been instrumental in our growth.',
     icon: <Award className="h-5 w-5" />,
     color: 'purple',
-    outcome: 'Visionary Award winner + Strategic pivot + ML-capable prototype achieved',
+    outcome: 'Visionary Award winner and ongoing partnership',
     link: {
       url: 'https://www.oit.edu/news/oregon-tech-engineering-students-win-visionary-award-statewide-invention-competition',
       text: 'Read about our Visionary Award'
     },
     video: 'https://www.youtube.com/embed/JyNVlf8DTV4?start=75',
     images: ['/inventORwinners.png', '/inventOrDemo.png']
+  },
+  {
+    period: 'Summer 2024',
+    title: 'Strategic Pivot',
+    description: 'Realized landfill-prevention business case was not strong enough. Pivoted to provide a device for the utility PV industry to detect and locate panel faults—addressing a critical gap in solar operations.',
+    icon: <Repeat className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'New market direction identified with clear value proposition'
   },
   {
     period: 'Fall 2024',
