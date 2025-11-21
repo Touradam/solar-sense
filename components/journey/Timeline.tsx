@@ -200,6 +200,14 @@ const events: TimelineEvent[] = [
     outcome: 'Positioned for commercial deployment',
     images: '/janus.png'
   },
+  {
+    period: 'Winter 2025-2026',
+    title: 'Plug and Play 2025 Summit',
+    description: 'Selected to participate in the prestigious Plug and Play Tech Center Summit—one of the world\'s largest innovation platforms connecting startups with corporate partners. This opportunity positions SEPT to engage with global energy leaders, explore strategic partnerships, and scale our solar monitoring technology into enterprise markets.',
+    icon: <Rocket className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Global network expansion and corporate partnership opportunities'
+  },
 ];
 
 const colorClasses = {

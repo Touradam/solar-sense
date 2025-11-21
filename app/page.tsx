@@ -325,13 +325,13 @@ export default function LandingPage() {
                 ].map((image, index) => (
                   <div 
                     key={index}
-                    className="relative flex-none w-72 sm:w-80 aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform snap-center"
+                    className="relative flex-none w-72 sm:w-80 aspect-video rounded-lg overflow-hidden border-2 border-white/20 shadow-xl hover:scale-105 transition-transform snap-center bg-white/5"
                   >
                     <Image
                       src={withBasePath(image.src)}
                       alt={image.alt}
                       fill
-                      className="object-cover"
+                      className="object-contain p-2"
                     />
                   </div>
                 ))}
