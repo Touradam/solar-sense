@@ -50,11 +50,6 @@ export default function LandingPage() {
               <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Contact
               </Link>
-              <Link href="/builder">
-                <Button variant="outline" size="sm" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950 whitespace-nowrap">
-                  Builder
-                </Button>
-              </Link>
             </nav>
 
             {/* Mobile Menu Button */}
@@ -129,17 +124,6 @@ export default function LandingPage() {
               >
                 Contact
               </Link>
-              <div className="pt-2">
-                <Link href="/builder" onClick={() => setMobileMenuOpen(false)}>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-center border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950"
-                    size="lg"
-                  >
-                    Neural Network Builder
-                  </Button>
-                </Link>
-              </div>
             </nav>
           </div>
         </div>
@@ -799,17 +783,6 @@ export default function LandingPage() {
                       AI-Powered Intelligence
                     </div>
                   </div>
-
-                  {/* Neural Network Builder CTA */}
-                  <div className="pt-4">
-                    <Link href="/builder">
-                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all">
-                        <Brain className="w-4 h-4 mr-2" />
-                        Try Our Neural Network Builder
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
-                  </div>
                 </div>
               </div>
             </div>
@@ -1198,7 +1171,7 @@ export default function LandingPage() {
           </div>
 
           {/* Contact Grid */}
-          <div className="grid md:grid-cols-3 gap-8 mb-12">
+          <div className="grid md:grid-cols-2 gap-8 mb-12">
             {/* Email */}
             <div className="p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10 hover:bg-white/10 transition-all">
               <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center mb-6 mx-auto">
@@ -1222,21 +1195,6 @@ export default function LandingPage() {
               </div>
               <h3 className="text-lg font-bold mb-2 text-center">Location</h3>
               <p className="text-gray-300 text-center">Portland, Oregon, USA</p>
-            </div>
-
-            {/* Try Builder */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 transition-all shadow-xl">
-              <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6 mx-auto">
-                <Brain className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-lg font-bold mb-2 text-center">Try Our Tool</h3>
-              <p className="text-white/90 text-center mb-4 text-sm">Build and train your own Neural Network</p>
-              <Link href="/builder">
-                <Button className="w-full bg-white text-emerald-600 hover:bg-gray-100">
-                  Launch Builder
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
             </div>
           </div>
 

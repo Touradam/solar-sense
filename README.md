@@ -1,46 +1,65 @@
-# 🧠 Neural Network Builder
+# ☀️ SEPT - Solar Energy Protection Technology
 
-[![Production Ready](https://img.shields.io/badge/Production-Ready-brightgreen.svg)](https://github.com)
-[![TensorFlow.js](https://img.shields.io/badge/TensorFlow.js-Powered-orange.svg)](https://www.tensorflow.org/js)
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black.svg)](https://nextjs.org/)
+[![Next.js 16](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.x-38B2AC.svg)](https://tailwindcss.com/)
 
-**A powerful, visual, no-code neural network training platform for students, data scientists, and ML engineers.** Build, train, and deploy neural networks directly in your browser with production-ready machine learning features.
+**Making Solar Energy Safer, Smarter & More Sustainable**
+
+SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through **Solar Sense** — the all-in-one device that protects solar systems while maximizing performance.
+
+## 🌟 About SEPT
+
+SEPT (Solar Energy Protection Technology) is a solar technology company founded by renewable energy and electrical engineering experts. We develop intelligent monitoring and safety solutions for photovoltaic systems.
+
+### Our Mission
+
+To make solar energy systems safer, smarter, and more sustainable through intelligent sensing and machine learning, ensuring every solar panel operates at peak efficiency while protecting people, property, and the planet.
+
+## 🔌 Solar Sense
+
+**Solar Sense** is a low-cost, wireless module-level power electronic (MLPE) device that combines two critical functions:
+
+### 1. ⚡ Rapid Shutdown Mode
+- **NEC 690.12 Compliant**: Meets mandatory safety requirements in 12+ countries
+- **Emergency Response**: Responds to emergency commands instantly
+- **Auto-Detection**: Automatically detects hazardous conditions
+- **Instant Shutdown**: Disconnects panels within seconds to stop power flow
+
+### 2. 🧠 Digital Twin ML-Based Monitoring
+- **Continuous Monitoring**: 24/7 electrical and thermal data collection
+- **Digital Twin**: Creates a physics-informed model of each solar cell
+- **Early Detection**: Detects shading, soiling, hotspots, and degradation
+- **Real-Time Alerts**: Mobile and web app notifications for immediate action
 
 ## ✨ Key Features
 
-### 🎯 **Production-Ready for Real Data**
-- ✅ **Data Normalization** (MinMax, Standardization, Robust scaling)
-- ✅ **Train/Validation/Test Split** (proper 3-way split with stratification)
-- ✅ **Regularization** (Dropout, L1/L2, Batch Normalization)
-- ✅ **Early Stopping** with patience and minDelta
-- ✅ **Class Imbalance Handling** (automatic class weighting)
-- ✅ **Learning Rate Scheduling** and gradient clipping
-- ✅ **Comprehensive Metrics** (Precision, Recall, F1-Score, Confusion Matrix)
+### Safety & Compliance
+✅ Code-compliant rapid shutdown for first responder protection  
+✅ Required in 12+ countries worldwide  
+✅ NEC Article 690.12 certified
 
-### 🚀 **User-Friendly Interface**
-- 📊 **Real-time Training Visualization** with Recharts
-- 🎨 **4 Built-in Presets** (Beginner, Standard, Deep Learning, Fast Training)
-- 🔧 **30+ Configurable Hyperparameters** across 4 organized tabs
-- 📈 **Live Loss & Accuracy Graphs** (training + validation)
-- 🎯 **Interactive Predictions** with confidence scores
-- 💾 **Model Export** in TensorFlow.js format
+### Smart Monitoring
+✅ AI-powered fault detection  
+✅ Panel-level performance monitoring  
+✅ Predictive maintenance alerts  
+✅ Real-time dashboard access
 
-### 🧪 **Data Handling**
-- 📁 **CSV/Excel Upload** with drag & drop
-- ✨ **Synthetic Data Generation** for testing
-- 🔄 **Flexible Data Format** (headers, label column position)
-- 📊 **Data Preview** with statistics
-- 🎛️ **Adjustable Split Ratios** (60/20/20 default)
+### Cost Efficiency
+✅ Two systems in one device  
+✅ Lower installation costs  
+✅ Reduced maintenance expenses  
+✅ Extended system lifespan
 
-### 🎓 **Educational**
-- 📚 **Formula Display** for activation & loss functions
-- 📉 **Interactive Graphs** showing function behavior
-- 💡 **Tooltips & Explanations** for all features
-- ✅ **Pros/Cons** for each algorithm choice
-- 🎯 **Use Case Recommendations**
+### Plug & Play
+✅ Wireless connectivity  
+✅ Self-powered operation  
+✅ Simple installation  
+✅ Scalable for any system size
 
-## 🚀 Quick Start
+## 🚀 Website Quick Start
+
+This is a Next.js website showcasing SEPT's technology and products.
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -50,7 +69,7 @@
 ```bash
 # Clone the repository
 git clone <your-repo-url>
-cd huit
+cd "Solar Sense"
 
 # Install dependencies
 npm install
@@ -61,354 +80,106 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-### 🎯 Your First Neural Network in 3 Steps
+### Build for Production
 
-1. **Generate Sample Data**
-   - Click "Generate Sample Data" button
-   - Default: 300 samples, 3 classes, 2 features
+```bash
+# Create optimized production build
+npm run build
 
-2. **Select a Preset**
-   - Choose "Standard (Recommended)" preset
-   - Or customize your own configuration
+# Start production server
+npm start
 
-3. **Start Training**
-   - Click "Start Training" button
-   - Watch live training graphs
-   - Get comprehensive evaluation metrics
-
-That's it! 🎉
-
-## 📖 Detailed Usage
-
-### Data Input
-
-#### Upload CSV Data
-```csv
-feature1,feature2,feature3,label
-1.2,3.4,5.6,0
-2.3,4.5,6.7,1
-...
+# Or export as static site
+npm run build && npx next export
 ```
 
-- **Headers**: Toggle "First row contains headers"
-- **Label Column**: Select position (First/Last)
-- **Format**: Automatic validation and preview
+## 📁 Project Structure
 
-#### Generate Synthetic Data
-- **Samples**: 50-5000
-- **Classes**: 2-10
-- **Features**: 2-20
-- Creates non-linear decision boundaries for testing
-
-### Configuration
-
-#### Architecture Tab
-- **Hidden Layers**: 1-10 layers
-- **Neurons per Layer**: 4-512 neurons
-- **Epochs**: 10-500 epochs
-- **Batch Size**: 4-256
-- **Learning Rate**: 0.0001-1.0
-- **Random Seed**: For reproducibility
-
-#### Data Preprocessing Tab
-- **Normalization**:
-  - MinMax (0-1 scaling)
-  - Standardization (Z-score normalization)
-  - Robust (median/IQR scaling)
-- **Class Imbalance**: Auto-weight classes
-- **Feature Scaling**: Ensure similar scales
-
-#### Regularization Tab
-- **Dropout**: 0-0.5 rate (recommended: 0.2-0.3)
-- **Weight Regularization**: L1, L2, or L1+L2
-- **Batch Normalization**: Speeds up training
-- **Weight Initialization**:
-  - GlorotUniform (Xavier) - for Tanh/Sigmoid
-  - HeNormal (Kaiming) - for ReLU
-  - LeCunNormal - for SELU
-- **Gradient Clipping**: Prevent exploding gradients
-
-#### Training Control Tab
-- **Early Stopping**:
-  - Patience: 3-30 epochs
-  - Min Delta: 0.0001-0.01
-- **Learning Rate Decay**:
-  - Decay Rate: 0.85-0.99
-  - Decay Steps: Apply every N steps
-
-### Function Selection
-
-#### Activation Functions
-- **ReLU**: Fast, no vanishing gradient (recommended for hidden layers)
-- **Sigmoid**: Binary classification output
-- **Tanh**: Zero-centered, good for hidden layers
-- **Softmax**: Multi-class output (recommended)
-- **Linear**: Regression tasks
-
-#### Loss Functions
-- **Categorical Cross-Entropy**: Multi-class classification (recommended)
-- **MSE**: Regression, penalizes large errors
-- **MAE**: Robust to outliers
-- **Hinge**: Maximum-margin classification
-
-#### Optimizers
-- **Adam**: Best default choice (recommended)
-- **SGD**: Simple, memory efficient
-- **RMSprop**: Good for RNNs
-- **Adadelta**: No learning rate needed
-- **Adamax**: More stable for large gradients
-
-### Training
-
-#### Real-time Monitoring
-- **Dual Y-Axis Graph**: Loss (left) and Accuracy (right)
-- **4 Metrics Lines**:
-  - Training Loss (solid red)
-  - Validation Loss (dashed orange)
-  - Training Accuracy (solid green)
-  - Validation Accuracy (dashed blue)
-- **Best Epoch Marker**: Purple vertical line
-- **Early Stopping Indicator**: Badge when triggered
-
-#### Training Summary
-- Final training/validation/test metrics
-- Best epoch tracking
-- Training time in seconds
-- Early stopping status
-
-#### Detailed Metrics
-- **Per-Class Performance**:
-  - Precision: TP / (TP + FP)
-  - Recall: TP / (TP + FN)
-  - F1-Score: Harmonic mean of precision & recall
-  - Support: Number of samples per class
-- **Confusion Matrix**: Color-coded heatmap
-  - Green diagonal: Correct predictions
-  - Red off-diagonal: Errors
-
-### Testing & Deployment
-
-#### Make Predictions
-1. Enter feature values
-2. Click "Run Prediction"
-3. View predicted class and confidence
-4. See probability distribution for all classes
-
-#### Download Model
-- Export in TensorFlow.js format
-- Includes:
-  - Model architecture and weights
-  - Normalization parameters
-  - Configuration used for training
-- Use in browser or Node.js applications
-
-### Preset Management
-
-#### Built-in Presets
-
-**Beginner** 🌱
-- 1 hidden layer (16 neurons)
-- Standardization enabled
-- 50 epochs, simple setup
-- Perfect for learning
-
-**Standard (⭐ Recommended)**
-- 2 hidden layers (64, 32 neurons)
-- Full regularization suite
-- Early stopping, class weighting
-- Production-ready configuration
-
-**Deep Learning** 🚀
-- 4 hidden layers (128, 64, 32, 16)
-- Dropout 0.4, L1+L2 regularization
-- Learning rate decay
-- For complex patterns
-
-**Fast Training** ⚡
-- 1 hidden layer (32 neurons)
-- 30 epochs, quick results
-- Good for rapid prototyping
-
-#### Custom Presets
-- Save current configuration
-- Add name and description
-- Export/import as JSON
-- Sync across sessions (localStorage)
-
-## 🏗️ Architecture
-
-### Tech Stack
-- **Frontend**: Next.js 15 (App Router)
-- **ML**: TensorFlow.js 4.x
-- **UI**: Tailwind CSS + shadcn/ui
-- **Charts**: Recharts
-- **Language**: TypeScript 5.x
-- **Data Parsing**: PapaParse
-- **File Upload**: react-dropzone
-
-### Project Structure
 ```
-huit/
+Solar Sense/
 ├── app/
-│   ├── page.tsx                 # Main application (integrated)
-│   ├── test/page.tsx            # Component testing page
-│   └── globals.css              # Global styles
+│   ├── page.tsx                # Main landing page
+│   ├── journey/                # Company journey/timeline page
+│   ├── plugandplay/            # Plug & Play product info
+│   ├── layout.tsx              # Root layout
+│   └── globals.css             # Global styles
 ├── components/
-│   ├── data-input-section.tsx   # CSV upload & synthetic data
-│   ├── data-split-section.tsx   # Train/val/test split controls
-│   ├── config-controls.tsx      # 4-tab configuration panel
-│   ├── preset-manager.tsx       # Preset loading/saving
-│   ├── network-diagram.tsx      # Architecture visualization
-│   ├── function-selector.tsx    # Activation/loss/optimizer
-│   ├── training-section.tsx     # Training graphs & metrics
-│   ├── testing-section.tsx      # Predictions & model download
-│   └── ui/                      # shadcn/ui components
+│   ├── journey/                # Journey page components
+│   ├── plugandplay/            # Plug & Play components
+│   └── ui/                     # Reusable UI components (shadcn/ui)
 ├── lib/
-│   ├── types.ts                 # TypeScript type definitions
-│   ├── ml-utils.ts              # TensorFlow.js ML functions
-│   ├── presets.ts               # Built-in configurations
-│   └── storage-utils.ts         # localStorage management
-└── public/
-    └── neural-network-diagram.png
+│   └── utils.ts                # Utility functions
+├── public/                     # Static assets (images, logos)
+├── image asset/                # Source images
+└── package.json
 ```
 
-### Key Components
+## 🎨 Tech Stack
 
-#### ML Pipeline (`lib/ml-utils.ts`)
-- Data normalization with multiple methods
-- Stratified train/val/test splitting
-- Model creation with advanced features
-- Training with callbacks and early stopping
-- Comprehensive evaluation metrics
+- **Framework**: Next.js 16 (App Router)
+- **Language**: TypeScript 5.x
+- **Styling**: Tailwind CSS 4.x
+- **UI Components**: shadcn/ui
+- **Icons**: Lucide React
+- **Deployment**: Vercel / Static Export
 
-#### Main App (`app/page.tsx`)
-- Complete state management (15+ state variables)
-- Event handling for all interactions
-- TensorFlow.js model lifecycle
-- Real-time training updates
-- Prediction pipeline with normalization
+## 👥 Team
 
-## 🎓 Best Practices
+### Adama Toure
+**Founder, Renewable Energy and ML Engineer**
+- NSF 2023 Innovator Program participant
+- Research at Aalborg University on PV degradation
+- Developer of physics-informed ML model for solar fault detection
+- Email: adama.toure@sept.energy
 
-### Data Preparation
-✅ **Always normalize your data** unless you have specific reasons not to
-- Use Standardization for most cases (mean=0, std=1)
-- Use MinMax when you need 0-1 range
-- Use Robust for data with outliers
+### Jordan Harris-Toovy
+**Co-Founder, Electrical Engineer**
+- Expert in sensor design and PCB layout
+- Specializes in electronics manufacturing
+- Embedded programming specialist
+- Email: jordan.harris-toovy@sept.energy
 
-✅ **Use proper split ratios**
-- 60/20/20 (train/val/test) for medium datasets
-- 70/15/15 for larger datasets
-- Never train on test data!
+## 🏆 Achievements
 
-### Preventing Overfitting
-✅ **Use regularization**
-- Start with dropout 0.3
-- Add L2 regularization (0.001)
-- Enable batch normalization
+- 🥇 **InventOR 2024 Winner**
+- 🎓 **NSF Innovation Program** (Denmark, 2023)
+- 🚀 **American-Made Solar Prize** Semi-Finalist
+- 💡 **IdeaFest Demo** Award Winner
+- 🏢 **4 Startup Programs**: Catalyze Klamath, VertueLab, TiE XL, Janus Innovation Hub
+- 🔬 **4 Prototype Generations** developed and tested
+- 🌍 **12+ Major Milestones** since 2023
 
-✅ **Enable early stopping**
-- Patience: 10-15 epochs
-- Min Delta: 0.0001
+## 🎯 Our Vision
 
-✅ **Monitor validation loss**
-- Should decrease with training loss
-- If val loss increases while train decreases: OVERFITTING!
+A sustainable solar ecosystem where every panel can monitor, report, and protect itself — making solar energy truly resilient and future-proof.
 
-### Handling Class Imbalance
-✅ **Enable "Handle Class Imbalance"** when:
-- One class has < 10% of samples
-- Classes are not evenly distributed
-- Minority class is important
+By merging rapid shutdown compliance with real-time diagnostics, we are enabling smart solar systems that work harder, last longer, and deliver more value to their owners.
 
-### Hyperparameter Tuning
-✅ **Start with Standard preset**, then adjust:
-- Increase layers/neurons for complex patterns
-- Decrease learning rate if loss is unstable
-- Increase dropout if overfitting
-- Use more epochs for larger datasets
+## 🌍 Impact
 
-## 🔧 Troubleshooting
+Solar Sense enables a new generation of smart solar by:
 
-### NaN Loss
-**Problem**: Loss becomes NaN during training
+- 🛡️ **Protecting lives and property** with advanced safety systems
+- ⚡ **Maximizing power output** through continuous optimization
+- 🔄 **Extending asset lifespan** with early issue detection
+- ♻️ **Preventing premature waste** by reducing unnecessary decommissioning
 
-**Solutions**:
-- ✅ Enable data normalization (Standardization)
-- ✅ Reduce learning rate (try 0.001 or 0.0001)
-- ✅ Enable gradient clipping (value: 1.0)
-- ✅ Check data for inf/NaN values
-- ✅ Use batch normalization
+## 📞 Contact
 
-### Overfitting
-**Problem**: Training accuracy high, validation accuracy low
+**Email**: support@SEPT.energy  
+**Location**: Portland, Oregon, USA  
+**Website**: [sept.energy](https://sept.energy)
 
-**Solutions**:
-- ✅ Enable dropout (0.3-0.4)
-- ✅ Add L2 regularization (0.001)
-- ✅ Enable early stopping (patience: 10)
-- ✅ Reduce model complexity (fewer layers/neurons)
-- ✅ Get more training data
-
-### Slow Convergence
-**Problem**: Loss decreases very slowly
-
-**Solutions**:
-- ✅ Increase learning rate (try 0.01)
-- ✅ Enable batch normalization
-- ✅ Use Adam optimizer (recommended)
-- ✅ Increase batch size
-- ✅ Check if data is normalized
-
-### Poor Performance
-**Problem**: Low accuracy on all sets
-
-**Solutions**:
-- ✅ Increase model complexity (more layers/neurons)
-- ✅ Train for more epochs
-- ✅ Try different activation functions
-- ✅ Ensure data is properly labeled
-- ✅ Check if problem is solvable with your features
-
-## 📊 Feature Comparison
-
-### Without Advanced Features ❌
-- Training may fail (NaN loss)
-- Poor generalization to new data
-- Biased predictions on imbalanced data
-- Difficult to know when to stop training
-- No insight into per-class performance
-
-### With Advanced Features ✅
-- Stable training with normalization
-- Good generalization with regularization
-- Fair predictions with class weighting
-- Automatic stopping at optimal point
-- Comprehensive evaluation metrics
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
+### Follow Us
+- [LinkedIn](https://www.linkedin.com/company/104113925)
+- [YouTube](https://youtu.be/f8RI_KhIVBY)
 
 ## 📄 License
 
-MIT License - feel free to use in your projects!
-
-## 🙏 Acknowledgments
-
-- **TensorFlow.js Team** - Amazing ML library
-- **shadcn/ui** - Beautiful UI components
-- **Recharts** - Powerful charting library
-
-## 📞 Support
-
-Need help? Check the:
-- [Quick Start Guide](#-quick-start)
-- [Troubleshooting Section](#-troubleshooting)
-- [Best Practices](#-best-practices)
+© 2025 SEPT LLC. All rights reserved.
 
 ---
 
-**Built with ❤️ for the ML community**
+**Design and Build by SEPT LLC**
 
-⭐ If you find this useful, please star the repo!
+*Making Solar Smart and Safe* ☀️
