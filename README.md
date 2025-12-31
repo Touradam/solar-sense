@@ -1,4 +1,4 @@
-# ☀️ SEPT - Solar Energy Protection Technology
+# ☀️ Solar Sense - Smart Solar Monitoring & Safety
 
 [![Next.js 16](https://img.shields.io/badge/Next.js-16-black.svg)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
@@ -6,17 +6,17 @@
 
 **Making Solar Energy Safer, Smarter & More Sustainable**
 
-SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through **Solar Sense** — the all-in-one device that protects solar systems while maximizing performance.
+Solar Sense delivers intelligent rapid shutdown compliance and real-time fault detection — the all-in-one device that protects solar systems while maximizing performance.
 
-## 🌟 About SEPT
+## 🌟 About Solar Sense
 
-SEPT (Solar Energy Protection Technology) is a solar technology company founded by renewable energy and electrical engineering experts. We develop intelligent monitoring and safety solutions for photovoltaic systems.
+Solar Sense is a solar technology company founded by renewable energy and electrical engineering experts. We develop intelligent monitoring and safety solutions for photovoltaic systems.
 
 ### Our Mission
 
 To make solar energy systems safer, smarter, and more sustainable through intelligent sensing and machine learning, ensuring every solar panel operates at peak efficiency while protecting people, property, and the planet.
 
-## 🔌 Solar Sense
+## 🔌 Solar Sense Device
 
 **Solar Sense** is a low-cost, wireless module-level power electronic (MLPE) device that combines two critical functions:
 
@@ -59,7 +59,7 @@ To make solar energy systems safer, smarter, and more sustainable through intell
 
 ## 🚀 Website Quick Start
 
-This is a Next.js website showcasing SEPT's technology and products.
+This is a Next.js website showcasing Solar Sense technology and products.
 
 ### Prerequisites
 - Node.js 18+ and npm
@@ -130,14 +130,14 @@ Solar Sense/
 - NSF 2023 Innovator Program participant
 - Research at Aalborg University on PV degradation
 - Developer of physics-informed ML model for solar fault detection
-- Email: adama.toure@sept.energy
+- Email: adama.toure@solarsense.energy
 
 ### Jordan Harris-Toovy
 **Co-Founder, Electrical Engineer**
 - Expert in sensor design and PCB layout
 - Specializes in electronics manufacturing
 - Embedded programming specialist
-- Email: jordan.harris-toovy@sept.energy
+- Email: jordan.harris-toovy@solarsense.energy
 
 ## 🏆 Achievements
 
@@ -166,9 +166,9 @@ Solar Sense enables a new generation of smart solar by:
 
 ## 📞 Contact
 
-**Email**: support@SEPT.energy  
+**Email**: support@solarsense.energy  
 **Location**: Portland, Oregon, USA  
-**Website**: [sept.energy](https://sept.energy)
+**Website**: [solarsense.energy](https://solarsense.energy)
 
 ### Follow Us
 - [LinkedIn](https://www.linkedin.com/company/104113925)
@@ -176,10 +176,10 @@ Solar Sense enables a new generation of smart solar by:
 
 ## 📄 License
 
-© 2025 SEPT LLC. All rights reserved.
+© 2025 Solar Sense. All rights reserved.
 
 ---
 
-**Design and Build by SEPT LLC**
+**Design and Build by Solar Sense**
 
 *Making Solar Smart and Safe* ☀️

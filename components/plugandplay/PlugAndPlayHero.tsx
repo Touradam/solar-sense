@@ -22,7 +22,7 @@ export default function PlugAndPlayHero() {
 
         {/* Subheadline */}
         <p className="text-lg sm:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 max-w-4xl mx-auto mb-8 leading-relaxed">
-          SEPT delivers <strong>affordable, code-compliant panel-level monitoring</strong> that extends solar asset lifespan 
+          Solar Sense delivers <strong>affordable, code-compliant panel-level monitoring</strong> that extends solar asset lifespan 
           and prevents millions of panels from ending up in landfills.
         </p>
 

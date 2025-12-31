@@ -23,7 +23,7 @@ const programs: Program[] = [
     status: 'completed',
     description: 'Identified the core challenge of solar panel degradation and second-life applications',
     outcomes: [
-      'Founded SEPT concept',
+      'Founded Solar Sense concept',
       'Identified technical approach',
       'Established research foundation',
     ],

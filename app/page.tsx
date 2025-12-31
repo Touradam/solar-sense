@@ -21,7 +21,7 @@ export default function LandingPage() {
               <div className="relative h-14 w-14 transition-transform group-hover:scale-110">
         <Image
                   src={withBasePath("/SEPT_logo_Transparent.png")}
-                  alt="SEPT Logo"
+                  alt="Solar Sense Logo"
                   fill
                   className="object-contain"
           priority
@@ -80,7 +80,7 @@ export default function LandingPage() {
               <div className="relative h-10 w-10">
                 <Image
                   src={withBasePath("/SEPT_logo_Transparent.png")}
-                  alt="SEPT Logo"
+                  alt="Solar Sense Logo"
                   fill
                   className="object-contain"
                 />
@@ -146,9 +146,8 @@ export default function LandingPage() {
                   {' '}& More Sustainable
           </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                  SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through{' '}
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">Solar Sense</span>{' '}
-                  — the all-in-one device that protects solar systems while maximizing performance.
+                  Solar Sense delivers intelligent rapid shutdown compliance and real-time fault detection — 
+                  the all-in-one device that protects solar systems while maximizing performance.
                 </p>
               </div>
 
@@ -200,7 +199,7 @@ export default function LandingPage() {
                 </div>
                 {/* Caption */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-white font-semibold text-lg">SEPT Co-Founders</p>
+                  <p className="text-white font-semibold text-lg">Solar Sense Co-Founders</p>
                   <p className="text-gray-200 text-sm">Adama Toure & Jordan Harris-Toovy</p>
                 </div>
               </div>
@@ -244,7 +243,7 @@ export default function LandingPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               From Research Lab to Market:<br />
               <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                The SEPT Journey
+                The Solar Sense Journey
               </span>
             </h2>
 
@@ -593,7 +592,7 @@ export default function LandingPage() {
                     </svg>
                   </div>
                   <div className="flex-1">
-                    <h4 className="text-lg font-bold text-gray-900 dark:text-white mb-2">
+                    <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
                       📱 Real-Time Monitoring and Alerts
                     </h4>
                     <p className="text-gray-600 dark:text-gray-300">
@@ -953,9 +952,9 @@ export default function LandingPage() {
                     <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
                       Founder, Renewable Energy and ML Engineer
                     </p>
-                    <a href="mailto:adama.toure@sept.energy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors">
-                      adama.toure@sept.energy
-                    </a>
+                    <p className="text-emerald-600 dark:text-emerald-400 font-semibold mb-2">
+                      adama.toure@solarsense.energy
+                    </p>
                   </div>
 
                   {/* Bio */}
@@ -1011,14 +1010,14 @@ export default function LandingPage() {
                     <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">
                       Co-Founder, Electrical Engineer
                     </p>
-                    <a href="mailto:jordan.harris-toovy@sept.energy" className="text-sm text-gray-600 dark:text-gray-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
-                      jordan.harris-toovy@sept.energy
-                    </a>
+                    <p className="text-blue-600 dark:text-blue-400 font-semibold mb-2">
+                      jordan.harris-toovy@solarsense.energy
+                    </p>
                   </div>
 
                   {/* Bio */}
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-center">
-                    Jordan is an Electrical Engineer with expertise in sensor design, PCB layout, electronics manufacturing, and embedded programming. He co-founded SEPT to apply his experience in advanced sensing technologies to the solar industry, driving the creation and refinement of Solar Sense prototypes.
+                    Jordan is an Electrical Engineer with expertise in sensor design, PCB layout, electronics manufacturing, and embedded programming. He co-founded Solar Sense to apply his experience in advanced sensing technologies to the solar industry, driving the creation and refinement of Solar Sense prototypes.
                   </p>
 
                   {/* Achievements */}
@@ -1058,7 +1057,7 @@ export default function LandingPage() {
               Our Vision for the Future
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              At SEPT, we believe that the future of solar energy lies in systems that are intelligent, self-aware, and safe by design.
+              At Solar Sense, we believe that the future of solar energy lies in systems that are intelligent, self-aware, and safe by design.
             </p>
           </div>
 
@@ -1180,8 +1179,8 @@ export default function LandingPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold mb-2 text-center">Email Us</h3>
-              <a href="mailto:support@SEPT.energy" className="text-emerald-400 hover:text-emerald-300 text-center block">
-                support@SEPT.energy
+              <a href="mailto:support@solarsense.energy" className="text-emerald-400 hover:text-emerald-300 text-center block">
+                support@solarsense.energy
               </a>
             </div>
 
@@ -1226,7 +1225,7 @@ export default function LandingPage() {
       <footer className="bg-black dark:bg-gray-950 text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center text-sm text-gray-500">
-            <p>Design and Build by SEPT LLC</p>
+            <p>Design and Build by Solar Sense</p>
           </div>
         </div>
       </footer>

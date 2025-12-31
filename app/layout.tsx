@@ -13,8 +13,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SEPT - Solar Energy Protection Technology",
-  description: "Making Solar Energy Safer, Smarter & More Sustainable. SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through Solar Sense.",
+  title: "Solar Sense - Smart Solar Monitoring & Safety",
+  description: "Making Solar Energy Safer, Smarter & More Sustainable. Solar Sense delivers intelligent rapid shutdown compliance and real-time fault detection for photovoltaic systems.",
   viewport: "width=device-width, initial-scale=1, maximum-scale=5, user-scalable=yes",
   themeColor: "#059669",
   manifest: "/manifest.json",
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     apple: "/SEPT_logo_Transparent.png",
   },
   openGraph: {
-    title: "SEPT - Solar Energy Protection Technology",
+    title: "Solar Sense - Smart Solar Monitoring & Safety",
     description: "Making Solar Energy Safer, Smarter & More Sustainable",
     type: "website",
   },

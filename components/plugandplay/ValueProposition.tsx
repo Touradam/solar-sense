@@ -9,7 +9,7 @@ export default function ValueProposition() {
       <div className="text-center mb-8 sm:mb-12">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
           <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
-            The SEPT Solution
+            The Solar Sense Solution
           </span>
         </h2>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">

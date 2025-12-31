@@ -13,7 +13,7 @@ export default function PartnershipOpportunities() {
           </span>
         </h2>
         <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-            How Plug and Play partners can accelerate SEPT's growth
+            How Plug and Play partners can accelerate Solar Sense's growth
         </p>
       </div>
 
@@ -36,7 +36,7 @@ export default function PartnershipOpportunities() {
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
                   <div className="font-semibold text-gray-900 dark:text-white mb-1">Pilot Programs</div>
                   <p className="text-sm text-gray-600 dark:text-gray-400">
-                    Deploy SEPT devices in existing commercial solar arrays
+                    Deploy Solar Sense devices in existing commercial solar arrays
                   </p>
                 </div>
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-emerald-200 dark:border-emerald-800">
@@ -88,7 +88,7 @@ export default function PartnershipOpportunities() {
               </h3>
               <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
                 Collaborate with research institutions, testing facilities, and certification bodies to validate 
-                and refine SEPT technology.
+                and refine Solar Sense technology.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="bg-white dark:bg-gray-900 rounded-lg p-4 border border-purple-200 dark:border-purple-800">
@@ -119,7 +119,7 @@ export default function PartnershipOpportunities() {
                 Channel & Distribution Partners
               </h3>
               <p className="text-sm sm:text-base text-gray-700 dark:text-gray-300 mb-4">
-                Solar installers, EPCs, and distributors who can integrate SEPT devices into their existing 
+                Solar installers, EPCs, and distributors who can integrate Solar Sense devices into their existing 
                 product offerings.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -147,7 +147,7 @@ export default function PartnershipOpportunities() {
           Let's Build the Future of Solar Together
         </h3>
         <p className="text-base sm:text-lg mb-6 text-white/90">
-          Interested in partnering with SEPT? We'd love to discuss how we can collaborate to make solar truly sustainable.
+          Interested in partnering with Solar Sense? We'd love to discuss how we can collaborate to make solar truly sustainable.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center">
           <a
@@ -160,7 +160,7 @@ export default function PartnershipOpportunities() {
             href="/"
             className="inline-flex items-center justify-center px-6 py-3 rounded-lg bg-white/10 backdrop-blur-sm border-2 border-white text-white font-semibold hover:bg-white/20 transition-colors"
           >
-            Learn More About SEPT
+            Learn More About Solar Sense
           </a>
         </div>
       </div>

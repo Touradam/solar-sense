@@ -32,7 +32,7 @@ export function JourneyHero() {
         <div className="max-w-4xl mx-auto space-y-6 text-base sm:text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
           <p className="text-center sm:text-left">
             <Globe className="inline-block h-5 w-5 text-emerald-600 dark:text-emerald-400 mr-2 mb-1" />
-            SEPT's journey began in <strong>Summer 2023</strong> during the <strong>NSF Innovators Program</strong> at{' '}
+            Solar Sense's journey began in <strong>Summer 2023</strong> during the <strong>NSF Innovators Program</strong> at{' '}
             <strong className="text-emerald-600 dark:text-emerald-400">Aalborg University in Denmark</strong>, where
             we identified a critical challenge: understanding solar panel degradation and developing affordable
             solutions for second-life applications.

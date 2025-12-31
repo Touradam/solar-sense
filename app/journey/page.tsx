@@ -26,7 +26,7 @@ export default function JourneyPage() {
             <Link href="/" className="flex-shrink-0 group">
               <Image
                 src={withBasePath("/SEPT_logo_Transparent.png")}
-                alt="SEPT Logo"
+                alt="Solar Sense Logo"
                 width={100}
                 height={33}
                 className="h-8 sm:h-10 w-auto transition-transform group-hover:scale-105"
@@ -127,7 +127,7 @@ export default function JourneyPage() {
       <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 py-8">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
           <div className="text-center text-sm text-gray-600 dark:text-gray-400">
-            <p>© 2024 SEPT LLC. Building the future of solar energy protection.</p>
+            <p>© 2024 Solar Sense. Building the future of solar energy protection.</p>
             <p className="mt-2">
               <Link href="/" className="text-emerald-600 dark:text-emerald-400 hover:underline">
                 Back to Home
