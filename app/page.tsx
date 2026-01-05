@@ -52,6 +52,23 @@ export default function RebrandingLandingPage() {
           0%, 100% { opacity: 0.3; }
           50% { opacity: 1; }
         }
+        @keyframes float {
+          0%, 100% { transform: translateY(0px) scale(1); }
+          50% { transform: translateY(-10px) scale(1.05); }
+        }
+        @keyframes shimmer {
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
+        }
+        @keyframes rotate3d {
+          0% { transform: perspective(1000px) rotateY(0deg); }
+          50% { transform: perspective(1000px) rotateY(180deg); }
+          100% { transform: perspective(1000px) rotateY(360deg); }
+        }
+        @keyframes glowPulse {
+          0%, 100% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(250, 204, 21, 0.3); }
+          50% { box-shadow: 0 0 40px rgba(250, 204, 21, 0.8), 0 0 80px rgba(250, 204, 21, 0.5); }
+        }
       `}</style>
 
       <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
@@ -121,10 +138,34 @@ export default function RebrandingLandingPage() {
                   
                   <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
                   
-                  {/* Rebranding Label */}
+                  {/* Rebranding Label - Animated */}
                   <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs shadow-lg">
-                      REBRANDING
+                    <div className="relative">
+                      {/* Animated glow rings */}
+                      <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-xl animate-ping"></div>
+                      <div className="absolute inset-0 rounded-full bg-amber-400/20 blur-lg animate-pulse"></div>
+                      
+                      {/* Sparkles around badge */}
+                      <Sparkles className="absolute -top-2 -left-2 w-4 h-4 text-yellow-400 animate-spin" style={{animationDuration: '3s'}} />
+                      <Sparkles className="absolute -top-2 -right-2 w-4 h-4 text-amber-400 animate-spin" style={{animationDuration: '3s', animationDelay: '1s'}} />
+                      <Sparkles className="absolute -bottom-2 -left-3 w-3 h-3 text-yellow-300 animate-spin" style={{animationDuration: '3s', animationDelay: '2s'}} />
+                      <Sparkles className="absolute -bottom-2 -right-3 w-3 h-3 text-amber-300 animate-spin" style={{animationDuration: '3s', animationDelay: '0.5s'}} />
+                      
+                      {/* Main badge with multiple animations */}
+                      <div 
+                        className="relative px-6 py-2 rounded-full font-bold text-sm text-gray-900 border-2 border-yellow-300"
+                        style={{
+                          background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
+                          backgroundSize: '200% auto',
+                          animation: 'shimmer 3s linear infinite, float 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite',
+                        }}
+                      >
+                        <span className="relative z-10 flex items-center gap-2">
+                          <span className="inline-block animate-pulse">✨</span>
+                          REBRANDING
+                          <span className="inline-block animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
