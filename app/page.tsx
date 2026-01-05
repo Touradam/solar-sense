@@ -7,11 +7,56 @@ import { Button } from '@/components/ui/button';
 import { ArrowRight, Sparkles } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 
+interface Star {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+}
+
 export default function RebrandingLandingPage() {
   const [isVisible, setIsVisible] = useState(false);
+  const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
     setIsVisible(true);
+    
+    // Initialize random stars
+    const initialStars: Star[] = Array.from({ length: 30 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      vx: (Math.random() - 0.5) * 0.02,
+      vy: (Math.random() - 0.5) * 0.02,
+      size: Math.random() * 1.5 + 1.5,
+    }));
+    setStars(initialStars);
+
+    // Animate stars
+    const interval = setInterval(() => {
+      setStars(prevStars =>
+        prevStars.map(star => {
+          let newX = star.x + star.vx;
+          let newY = star.y + star.vy;
+          let newVx = star.vx;
+          let newVy = star.vy;
+
+          // Bounce off edges
+          if (newX <= 0 || newX >= 100) {
+            newVx = -star.vx;
+            newX = Math.max(0, Math.min(100, newX));
+          }
+          if (newY <= 0 || newY >= 100) {
+            newVy = -star.vy;
+            newY = Math.max(0, Math.min(100, newY));
+          }
+
+          return { ...star, x: newX, y: newY, vx: newVx, vy: newVy };
+        })
+      );
+    }, 50);
+
+    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -19,78 +64,50 @@ export default function RebrandingLandingPage() {
       {/* Deep Space Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
       
-      {/* Constellation Field */}
+      {/* Dynamic Constellation Field */}
       <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        {/* Big Dipper - Top Left */}
-        <g className="animate-pulse" style={{animationDuration: '4s'}}>
-          <line x1="10%" y1="15%" x2="12%" y2="18%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="12%" y1="18%" x2="15%" y2="20%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="15%" y1="20%" x2="18%" y2="19%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="18%" y1="19%" x2="20%" y2="16%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="20%" y1="16%" x2="22%" y2="14%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="22%" y1="14%" x2="24%" y2="15%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <circle cx="10%" cy="15%" r="2" fill="#FCD34D" className="animate-pulse" />
-          <circle cx="12%" cy="18%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.5s'}} />
-          <circle cx="15%" cy="20%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1s'}} />
-          <circle cx="18%" cy="19%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1.5s'}} />
-          <circle cx="20%" cy="16%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '2s'}} />
-          <circle cx="22%" cy="14%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.3s'}} />
-          <circle cx="24%" cy="15%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.7s'}} />
-        </g>
-
-        {/* Orion's Belt - Center */}
-        <g className="animate-pulse" style={{animationDuration: '3s', animationDelay: '1s'}}>
-          <line x1="45%" y1="45%" x2="50%" y2="44%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="50%" y1="44%" x2="55%" y2="45%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <circle cx="45%" cy="45%" r="2.5" fill="#F59E0B" className="animate-pulse" />
-          <circle cx="50%" cy="44%" r="3" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.5s'}} />
-          <circle cx="55%" cy="45%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1s'}} />
-        </g>
-
-        {/* Leo - Right Side */}
-        <g className="animate-pulse" style={{animationDuration: '5s', animationDelay: '2s'}}>
-          <line x1="75%" y1="25%" x2="78%" y2="28%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="78%" y1="28%" x2="82%" y2="30%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="82%" y1="30%" x2="85%" y2="27%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="85%" y1="27%" x2="88%" y2="25%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <circle cx="75%" cy="25%" r="2" fill="#FCD34D" className="animate-pulse" />
-          <circle cx="78%" cy="28%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.4s'}} />
-          <circle cx="82%" cy="30%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.8s'}} />
-          <circle cx="85%" cy="27%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1.2s'}} />
-          <circle cx="88%" cy="25%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.6s'}} />
-        </g>
-
-        {/* Southern Cross - Bottom Right */}
-        <g className="animate-pulse" style={{animationDuration: '4s', animationDelay: '0.5s'}}>
-          <line x1="80%" y1="75%" x2="82%" y2="78%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="82%" y1="78%" x2="84%" y2="75%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="82%" y1="78%" x2="82%" y2="82%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <circle cx="80%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" />
-          <circle cx="82%" cy="78%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.5s'}} />
-          <circle cx="84%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1s'}} />
-          <circle cx="82%" cy="82%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.5s'}} />
-        </g>
-
-        {/* Custom Constellation - Bottom Left */}
-        <g className="animate-pulse" style={{animationDuration: '3.5s', animationDelay: '1.5s'}}>
-          <line x1="15%" y1="70%" x2="18%" y2="72%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="18%" y1="72%" x2="20%" y2="75%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <line x1="20%" y1="75%" x2="23%" y2="73%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
-          <circle cx="15%" cy="70%" r="2" fill="#FCD34D" className="animate-pulse" />
-          <circle cx="18%" cy="72%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.6s'}} />
-          <circle cx="20%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.2s'}} />
-          <circle cx="23%" cy="73%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.8s'}} />
-        </g>
-
-        {/* Additional scattered gold stars for depth */}
-        <circle cx="30%" cy="35%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2s'}} />
-        <circle cx="60%" cy="20%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '1s'}} />
-        <circle cx="70%" cy="60%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '3s'}} />
-        <circle cx="40%" cy="80%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '0.5s'}} />
-        <circle cx="90%" cy="45%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2.5s'}} />
-        <circle cx="25%" cy="55%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '1.8s'}} />
-        <circle cx="55%" cy="85%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2.2s'}} />
-        <circle cx="35%" cy="10%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '0.8s'}} />
+        {/* Draw connections when stars are close */}
+        {stars.map((star, i) =>
+          stars.slice(i + 1).map((otherStar, j) => {
+            const distance = Math.sqrt(
+              Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
+            );
+            // Draw line if distance is less than 15% of screen
+            if (distance < 15) {
+              const opacity = Math.max(0, (15 - distance) / 15) * 0.5;
+              return (
+                <line
+                  key={`line-${i}-${j}`}
+                  x1={`${star.x}%`}
+                  y1={`${star.y}%`}
+                  x2={`${otherStar.x}%`}
+                  y2={`${otherStar.y}%`}
+                  stroke="#FCD34D"
+                  strokeWidth="0.5"
+                  opacity={opacity}
+                  className="transition-opacity duration-500"
+                />
+              );
+            }
+            return null;
+          })
+        )}
+        
+        {/* Draw stars */}
+        {stars.map((star, i) => (
+          <circle
+            key={`star-${i}`}
+            cx={`${star.x}%`}
+            cy={`${star.y}%`}
+            r={star.size}
+            fill={i % 3 === 0 ? '#F59E0B' : '#FCD34D'}
+            className="animate-pulse transition-all duration-500"
+            style={{
+              animationDelay: `${i * 0.1}s`,
+              animationDuration: `${2 + (i % 3)}s`
+            }}
+          />
+        ))}
       </svg>
 
       {/* Nebula/Galaxy Effects */}
