@@ -1,17 +1,128 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Shield, Zap, DollarSign, Menu, X } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 
+interface Star {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+}
+
 export default function LandingPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [stars, setStars] = useState<Star[]>([]);
+
+  useEffect(() => {
+    // Initialize random stars
+    const initialStars: Star[] = Array.from({ length: 30 }, () => ({
+      x: Math.random() * 100,
+      y: Math.random() * 100,
+      vx: (Math.random() - 0.5) * 0.02,
+      vy: (Math.random() - 0.5) * 0.02,
+      size: Math.random() * 1.5 + 1.5,
+    }));
+    setStars(initialStars);
+
+    // Animate stars
+    const interval = setInterval(() => {
+      setStars(prevStars =>
+        prevStars.map(star => {
+          let newX = star.x + star.vx;
+          let newY = star.y + star.vy;
+          let newVx = star.vx;
+          let newVy = star.vy;
+
+          // Bounce off edges
+          if (newX <= 0 || newX >= 100) {
+            newVx = -star.vx;
+            newX = Math.max(0, Math.min(100, newX));
+          }
+          if (newY <= 0 || newY >= 100) {
+            newVy = -star.vy;
+            newY = Math.max(0, Math.min(100, newY));
+          }
+
+          return { ...star, x: newX, y: newY, vx: newVx, vy: newVy };
+        })
+      );
+    }, 50);
+
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-cyan-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
+    <div className="min-h-screen bg-black relative overflow-hidden">
+      {/* Deep Space Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
+      
+      {/* Dynamic Constellation Field */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        {/* Draw connections when stars are close */}
+        {stars.map((star, i) =>
+          stars.slice(i + 1).map((otherStar, j) => {
+            const distance = Math.sqrt(
+              Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
+            );
+            // Draw line if distance is less than 15% of screen
+            if (distance < 15) {
+              const opacity = Math.max(0, (15 - distance) / 15) * 0.5;
+              return (
+                <line
+                  key={`line-${i}-${j}`}
+                  x1={`${star.x}%`}
+                  y1={`${star.y}%`}
+                  x2={`${otherStar.x}%`}
+                  y2={`${otherStar.y}%`}
+                  stroke="#FCD34D"
+                  strokeWidth="0.5"
+                  opacity={opacity}
+                  className="transition-opacity duration-500"
+                />
+              );
+            }
+            return null;
+          })
+        )}
+        
+        {/* Draw stars */}
+        {stars.map((star, i) => (
+          <circle
+            key={`star-${i}`}
+            cx={`${star.x}%`}
+            cy={`${star.y}%`}
+            r={star.size}
+            fill={i % 3 === 0 ? '#F59E0B' : '#FCD34D'}
+            className="animate-pulse transition-all duration-500"
+            style={{
+              animationDelay: `${i * 0.1}s`,
+              animationDuration: `${2 + (i % 3)}s`
+            }}
+          />
+        ))}
+      </svg>
+
+      {/* Nebula/Galaxy Effects */}
+      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
+      <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{animationDelay: '1.5s'}}></div>
+      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
+      
+      {/* Solar glow effect */}
+      <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+
+      {/* Shooting stars - Gold */}
+      <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
+      <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
+      <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-yellow-300 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
+
+      <div className="relative z-10">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -1357,13 +1468,14 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black dark:bg-gray-950 text-white py-8 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-black/50 backdrop-blur-sm text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center text-sm text-gray-500">
             <p>Design and Build by Solar Sense LLC</p>
           </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
