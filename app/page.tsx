@@ -120,7 +120,18 @@ export default function RebrandingLandingPage() {
               {/* Transformation Arrow */}
               <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-gray-400 to-yellow-400 rounded-full"></div>
+                  {/* Left line with animation */}
+                  <div className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden">
+                    <div className="absolute inset-0 bg-yellow-400/30 blur-lg animate-ping"></div>
+                    <div 
+                      className="relative w-full h-full rounded-full"
+                      style={{
+                        background: 'linear-gradient(90deg, #9CA3AF, #FCD34D, #F59E0B, #FCD34D)',
+                        backgroundSize: '200% auto',
+                        animation: 'shimmer 3s linear infinite',
+                      }}
+                    ></div>
+                  </div>
                   
                   {/* Arrow pointing right (desktop) */}
                   <div className="hidden md:block relative">
@@ -136,7 +147,18 @@ export default function RebrandingLandingPage() {
                     </svg>
                   </div>
                   
-                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
+                  {/* Right line with animation */}
+                  <div className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden">
+                    <div className="absolute inset-0 bg-yellow-400/30 blur-lg animate-ping"></div>
+                    <div 
+                      className="relative w-full h-full rounded-full"
+                      style={{
+                        background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
+                        backgroundSize: '200% auto',
+                        animation: 'shimmer 3s linear infinite',
+                      }}
+                    ></div>
+                  </div>
                   
                   {/* Rebranding Label - Animated */}
                   <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
