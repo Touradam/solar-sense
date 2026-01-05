@@ -160,34 +160,10 @@ export default function RebrandingLandingPage() {
                     ></div>
                   </div>
                   
-                  {/* Rebranding Label - Animated */}
+                  {/* Rebranding Label - Simple */}
                   <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    <div className="relative">
-                      {/* Animated glow rings */}
-                      <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-xl animate-ping"></div>
-                      <div className="absolute inset-0 rounded-full bg-amber-400/20 blur-lg animate-pulse"></div>
-                      
-                      {/* Sparkles around badge */}
-                      <Sparkles className="absolute -top-2 -left-2 w-4 h-4 text-yellow-400 animate-spin" style={{animationDuration: '3s'}} />
-                      <Sparkles className="absolute -top-2 -right-2 w-4 h-4 text-amber-400 animate-spin" style={{animationDuration: '3s', animationDelay: '1s'}} />
-                      <Sparkles className="absolute -bottom-2 -left-3 w-3 h-3 text-yellow-300 animate-spin" style={{animationDuration: '3s', animationDelay: '2s'}} />
-                      <Sparkles className="absolute -bottom-2 -right-3 w-3 h-3 text-amber-300 animate-spin" style={{animationDuration: '3s', animationDelay: '0.5s'}} />
-                      
-                      {/* Main badge with multiple animations */}
-                      <div 
-                        className="relative px-6 py-2 rounded-full font-bold text-sm text-gray-900 border-2 border-yellow-300"
-                        style={{
-                          background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
-                          backgroundSize: '200% auto',
-                          animation: 'shimmer 3s linear infinite, float 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite',
-                        }}
-                      >
-                        <span className="relative z-10 flex items-center gap-2">
-                          <span className="inline-block animate-pulse">✨</span>
-                          REBRANDING
-                          <span className="inline-block animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
-                        </span>
-                      </div>
+                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs shadow-lg">
+                      REBRANDING
                     </div>
                   </div>
                 </div>
