@@ -133,13 +133,19 @@ export default function RebrandingLandingPage() {
               {/* Solar Sense Logo */}
               <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="relative group">
-                  {/* Gold glow radiating around */}
-                  <div className="absolute -inset-4 bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-300 animate-pulse"></div>
-                  <div className="absolute -inset-2 bg-gradient-to-br from-yellow-400 to-amber-400 rounded-3xl blur-xl opacity-40 animate-pulse" style={{animationDelay: '0.5s'}}></div>
-                  
-                  {/* Main box - white/gray */}
-                  <div className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-100 dark:to-gray-200 border-2 border-yellow-400 rounded-3xl p-8 hover:border-yellow-300 transition-all duration-300 shadow-2xl">
-                    <div className="aspect-square flex items-center justify-center mb-4 bg-white rounded-2xl p-4 shadow-inner">
+                  {/* Main box - white/gray with inward gold glow */}
+                  <div className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-100 dark:to-gray-200 border-4 border-yellow-400 rounded-3xl p-8 hover:border-yellow-300 transition-all duration-300 shadow-2xl overflow-hidden">
+                    {/* Gold glow radiating INWARD from edges */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/40 via-transparent to-amber-500/40 animate-pulse"></div>
+                    <div className="absolute inset-0 bg-gradient-to-tl from-yellow-400/30 via-transparent to-amber-400/30 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                    
+                    {/* Radial glow from corners inward */}
+                    <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-radial from-yellow-500/50 to-transparent rounded-full blur-2xl"></div>
+                    <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-amber-500/50 to-transparent rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-radial from-amber-500/50 to-transparent rounded-full blur-2xl"></div>
+                    <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-radial from-yellow-500/50 to-transparent rounded-full blur-2xl"></div>
+                    
+                    <div className="relative aspect-square flex items-center justify-center mb-4 bg-white rounded-2xl p-4 shadow-inner">
                       <Image
                         src={withBasePath("/SolarSense_Logo.png")}
                         alt="Solar Sense Logo"
@@ -148,10 +154,10 @@ export default function RebrandingLandingPage() {
                         className="object-contain"
                       />
                     </div>
-                    <p className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-bold text-xl">
+                    <p className="relative bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-bold text-xl">
                       Solar Sense
                     </p>
-                    <p className="text-yellow-600 font-bold text-sm">2025 & Beyond</p>
+                    <p className="relative text-yellow-600 font-bold text-sm">2025 & Beyond</p>
                   </div>
                   
                   {/* NOW Badge with gold glow */}
