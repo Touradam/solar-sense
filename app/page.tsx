@@ -87,13 +87,13 @@ export default function RebrandingLandingPage() {
           </h1>
           
           <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+            <span className="text-cyan-400">
               Solar Sense
             </span>
           </div>
           
           <p className="text-xl sm:text-2xl text-white/80 mb-12 max-w-3xl mx-auto">
-            From <span className="text-gray-300 font-semibold">SEPT</span> to <span className="text-yellow-400 font-bold">Solar Sense</span> — A rebranding that reflects our refined vision
+            From <span className="text-gray-300 font-semibold">SEPT</span> to <span className="text-cyan-400 font-bold">Solar Sense</span> — A rebranding that reflects our refined vision
           </p>
 
           {/* Transformation Visual */}
@@ -186,7 +186,7 @@ export default function RebrandingLandingPage() {
                           className="object-contain group-hover:scale-110 transition-transform duration-300"
                         />
                       </div>
-                      <p className="relative bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-bold text-xl">
+                      <p className="relative text-cyan-600 font-bold text-xl">
                         Solar Sense
                       </p>
                       <p className="relative text-gray-900 font-bold text-sm">2025 & Beyond</p>
@@ -211,9 +211,9 @@ export default function RebrandingLandingPage() {
           <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="max-w-3xl mx-auto mb-12">
               <p className="text-xl sm:text-2xl text-white/90 leading-relaxed mb-4">
-                As we step into <span className="font-bold text-yellow-400">2026</span>, we embrace a new identity that better reflects our mission:
+                As we step into <span className="font-bold text-emerald-400">2026</span>, we embrace a new identity that better reflects our mission:
               </p>
-              <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
+              <p className="text-2xl sm:text-3xl font-bold text-cyan-400">
                 Making Solar Energy Safer, Smarter & More Sustainable
               </p>
             </div>
@@ -222,20 +222,20 @@ export default function RebrandingLandingPage() {
             <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
               <div className="bg-white/5 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-emerald-400/50 transition-all duration-300">
                 <div className="text-3xl mb-3">✓</div>
-                <p className="text-white font-semibold mb-2">Same Founders</p>
-                <p className="text-white/60 text-sm">Adama & Jordan</p>
+                <p className="text-emerald-400 font-semibold mb-2">Same Founders</p>
+                <p className="text-emerald-400/70 text-sm">Adama & Jordan</p>
               </div>
               
               <div className="bg-white/5 backdrop-blur-sm border border-cyan-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-300">
                 <div className="text-3xl mb-3">✓</div>
-                <p className="text-white font-semibold mb-2">Same Innovation</p>
-                <p className="text-white/60 text-sm">Proven Technology</p>
+                <p className="text-cyan-400 font-semibold mb-2">Same Innovation</p>
+                <p className="text-cyan-400/70 text-sm">Proven Technology</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-yellow-400/50 transition-all duration-300">
+              <div className="bg-white/5 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-emerald-400/50 transition-all duration-300">
                 <div className="text-3xl mb-3">✓</div>
-                <p className="text-white font-semibold mb-2">Sharper Focus</p>
-                <p className="text-white/60 text-sm">Clear Mission</p>
+                <p className="text-emerald-400 font-semibold mb-2">Sharper Focus</p>
+                <p className="text-emerald-400/70 text-sm">Clear Mission</p>
               </div>
             </div>
 
@@ -253,7 +253,7 @@ export default function RebrandingLandingPage() {
 
           {/* Footer Note */}
           <div className={`mt-16 transition-all duration-1000 delay-1100 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <p className="text-white/40 text-sm">
+            <p className="text-cyan-400/60 text-sm">
               Celebrating a New Chapter | Est. 2023 | Portland, Oregon
             </p>
           </div>
