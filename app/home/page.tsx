@@ -20,7 +20,7 @@ export default function LandingPage() {
   const [stars, setStars] = useState<Star[]>([]);
 
   useEffect(() => {
-    // Initialize random stars
+    // Initialize random stars for rebranding section
     const initialStars: Star[] = Array.from({ length: 30 }, () => ({
       x: Math.random() * 100,
       y: Math.random() * 100,
@@ -58,71 +58,7 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Deep Space Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
-      
-      {/* Dynamic Constellation Field */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        {/* Draw connections when stars are close */}
-        {stars.map((star, i) =>
-          stars.slice(i + 1).map((otherStar, j) => {
-            const distance = Math.sqrt(
-              Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
-            );
-            // Draw line if distance is less than 15% of screen
-            if (distance < 15) {
-              const opacity = Math.max(0, (15 - distance) / 15) * 0.5;
-              return (
-                <line
-                  key={`line-${i}-${j}`}
-                  x1={`${star.x}%`}
-                  y1={`${star.y}%`}
-                  x2={`${otherStar.x}%`}
-                  y2={`${otherStar.y}%`}
-                  stroke="#FCD34D"
-                  strokeWidth="0.5"
-                  opacity={opacity}
-                  className="transition-opacity duration-500"
-                />
-              );
-            }
-            return null;
-          })
-        )}
-        
-        {/* Draw stars */}
-        {stars.map((star, i) => (
-          <circle
-            key={`star-${i}`}
-            cx={`${star.x}%`}
-            cy={`${star.y}%`}
-            r={star.size}
-            fill={i % 3 === 0 ? '#F59E0B' : '#FCD34D'}
-            className="animate-pulse transition-all duration-500"
-            style={{
-              animationDelay: `${i * 0.1}s`,
-              animationDuration: `${2 + (i % 3)}s`
-            }}
-          />
-        ))}
-      </svg>
-
-      {/* Nebula/Galaxy Effects */}
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{animationDelay: '1.5s'}}></div>
-      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
-      
-      {/* Solar glow effect */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
-      <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
-
-      {/* Shooting stars - Gold */}
-      <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
-      <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-yellow-300 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
-
-      <div className="relative z-10">
+    <div className="min-h-screen bg-gradient-to-b from-emerald-50 via-white to-cyan-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950">
       {/* Header */}
       <header className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-950/80 backdrop-blur-lg border-b border-gray-200 dark:border-gray-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -333,11 +269,69 @@ export default function LandingPage() {
       </div>
 
       {/* Rebranding Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-900 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 via-white to-cyan-50 dark:from-gray-900 dark:via-gray-950 dark:to-gray-900"></div>
-        <div className="absolute top-1/4 right-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 left-0 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl"></div>
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-black relative overflow-hidden">
+        {/* Deep Space Background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
+        
+        {/* Dynamic Constellation Field */}
+        <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+          {/* Draw connections when stars are close */}
+          {stars.map((star, i) =>
+            stars.slice(i + 1).map((otherStar, j) => {
+              const distance = Math.sqrt(
+                Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
+              );
+              // Draw line if distance is less than 15% of screen
+              if (distance < 15) {
+                const opacity = Math.max(0, (15 - distance) / 15) * 0.5;
+                return (
+                  <line
+                    key={`line-${i}-${j}`}
+                    x1={`${star.x}%`}
+                    y1={`${star.y}%`}
+                    x2={`${otherStar.x}%`}
+                    y2={`${otherStar.y}%`}
+                    stroke="#FCD34D"
+                    strokeWidth="0.5"
+                    opacity={opacity}
+                    className="transition-opacity duration-500"
+                  />
+                );
+              }
+              return null;
+            })
+          )}
+          
+          {/* Draw stars */}
+          {stars.map((star, i) => (
+            <circle
+              key={`star-${i}`}
+              cx={`${star.x}%`}
+              cy={`${star.y}%`}
+              r={star.size}
+              fill={i % 3 === 0 ? '#F59E0B' : '#FCD34D'}
+              className="animate-pulse transition-all duration-500"
+              style={{
+                animationDelay: `${i * 0.1}s`,
+                animationDuration: `${2 + (i % 3)}s`
+              }}
+            />
+          ))}
+        </svg>
+
+        {/* Nebula/Galaxy Effects */}
+        <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
+        <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{animationDelay: '1.5s'}}></div>
+        <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
+        
+        {/* Solar glow effect */}
+        <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+        <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+
+        {/* Shooting stars - Gold */}
+        <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
+        <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
+        <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-yellow-300 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-16">
@@ -347,10 +341,10 @@ export default function LandingPage() {
               </svg>
               Evolution
             </div>
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-              From <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">SEPT</span> to <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">Solar Sense</span>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6">
+              From <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">SEPT</span> to <span className="bg-gradient-to-r from-emerald-400 to-cyan-400 bg-clip-text text-transparent">Solar Sense</span>
             </h2>
-            <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+            <p className="text-xl text-cyan-200 max-w-3xl mx-auto">
               Our journey of refinement and focus — same mission, sharper vision
             </p>
           </div>
@@ -362,8 +356,8 @@ export default function LandingPage() {
               {/* SEPT Logo - Past */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-cyan-500 rounded-3xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
-                <div className="relative bg-white dark:bg-gray-800 rounded-3xl p-8 border border-gray-200 dark:border-gray-700 shadow-xl hover:shadow-2xl transition-all duration-300">
-                  <div className="aspect-square flex items-center justify-center mb-6 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 rounded-2xl p-8">
+                <div className="relative bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 shadow-xl hover:shadow-2xl transition-all duration-300">
+                  <div className="aspect-square flex items-center justify-center mb-6 bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl p-8">
                     <Image
                       src={withBasePath("/SEPT_logo_Transparent.png")}
                       alt="SEPT Logo"
@@ -373,11 +367,11 @@ export default function LandingPage() {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">SEPT</h3>
-                    <p className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide mb-3">
+                    <h3 className="text-2xl font-bold text-white mb-2">SEPT</h3>
+                    <p className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
                       2023 - 2024
                     </p>
-                    <p className="text-gray-600 dark:text-gray-300 text-sm">
+                    <p className="text-gray-300 text-sm">
                       <strong>Solar Energy Protection Technology</strong><br />
                       Our foundation — broad vision, technical excellence
                     </p>
@@ -416,8 +410,8 @@ export default function LandingPage() {
               {/* Solar Sense Logo - Present */}
               <div className="relative group">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-500 to-amber-500 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500 animate-pulse"></div>
-                <div className="relative bg-gradient-to-br from-white to-emerald-50 dark:from-gray-800 dark:to-emerald-950/30 rounded-3xl p-8 border-2 border-emerald-500 dark:border-emerald-400 shadow-2xl hover:shadow-emerald-500/50 transition-all duration-300 transform hover:scale-105">
-                  <div className="aspect-square flex items-center justify-center mb-6 bg-white dark:bg-gray-900 rounded-2xl p-8 shadow-inner">
+                <div className="relative bg-gradient-to-r from-yellow-500 to-amber-500 rounded-3xl p-8 shadow-2xl hover:shadow-yellow-500/50 transition-all duration-300 transform hover:scale-105">
+                  <div className="aspect-square flex items-center justify-center mb-6 bg-white rounded-2xl p-8 shadow-inner">
                     <Image
                       src={withBasePath("/SolarSense_Logo.png")}
                       alt="Solar Sense Logo"
@@ -427,13 +421,13 @@ export default function LandingPage() {
                     />
                   </div>
                   <div className="text-center">
-                    <h3 className="text-2xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
+                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
                       Solar Sense
                     </h3>
-                    <p className="text-sm font-bold text-emerald-600 dark:text-emerald-400 uppercase tracking-wide mb-3">
+                    <p className="text-sm font-bold text-gray-900 uppercase tracking-wide mb-3">
                       2025 & Beyond
                     </p>
-                    <p className="text-gray-700 dark:text-gray-200 text-sm font-medium">
+                    <p className="text-gray-900 text-sm font-medium">
                       <strong>Smart Solar Monitoring & Safety</strong><br />
                       Clear mission, focused execution, proven results
                     </p>
@@ -454,12 +448,12 @@ export default function LandingPage() {
 
             {/* Bottom Summary */}
             <div className="mt-16 text-center">
-              <div className="max-w-3xl mx-auto p-8 rounded-2xl bg-gradient-to-r from-emerald-500/10 via-cyan-500/10 to-emerald-500/10 dark:from-emerald-500/5 dark:via-cyan-500/5 dark:to-emerald-500/5 border border-emerald-200 dark:border-emerald-800">
-                <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+              <div className="max-w-3xl mx-auto p-8 rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10">
+                <h4 className="text-xl font-bold text-white mb-3">
                   Same Founders. Same Innovation. Sharper Focus.
                 </h4>
-                <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                  We evolved from <strong>SEPT (Solar Energy Protection Technology)</strong> to <strong>Solar Sense</strong> to better reflect our core mission: making solar systems smarter and safer through intelligent monitoring and rapid shutdown compliance.
+                <p className="text-cyan-100 leading-relaxed">
+                  We evolved from <strong className="text-white">SEPT (Solar Energy Protection Technology)</strong> to <strong className="text-white">Solar Sense</strong> to better reflect our core mission: making solar systems smarter and safer through intelligent monitoring and rapid shutdown compliance.
                 </p>
               </div>
             </div>
@@ -1468,14 +1462,13 @@ export default function LandingPage() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black/50 backdrop-blur-sm text-white py-8 px-4 sm:px-6 lg:px-8">
+      <footer className="bg-white dark:bg-gray-950 text-gray-600 dark:text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center text-sm text-gray-500">
             <p>Design and Build by Solar Sense LLC</p>
           </div>
         </div>
       </footer>
-      </div>
     </div>
   );
 }
