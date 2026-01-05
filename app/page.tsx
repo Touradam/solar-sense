@@ -41,11 +41,11 @@ export default function RebrandingLandingPage() {
       {/* Nebula/Galaxy Effects */}
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
       <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{animationDelay: '1.5s'}}></div>
-      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-orange-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
+      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
       
       {/* Solar glow effect */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-orange-500/20 rounded-full blur-2xl animate-pulse"></div>
-      <div className="absolute bottom-10 left-10 w-32 h-32 bg-orange-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+      <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
+      <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
 
       <style jsx>{`
         @keyframes twinkle {
@@ -58,22 +58,26 @@ export default function RebrandingLandingPage() {
         <div className={`max-w-6xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
           
           {/* New Year Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-orange-500 to-amber-600 text-white font-bold text-sm mb-8 shadow-2xl shadow-orange-500/50 animate-bounce">
+          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-sm mb-8 shadow-2xl shadow-yellow-500/50 animate-bounce">
             <Sparkles className="w-4 h-4" />
             New Year, New Vision — 2026
             <Sparkles className="w-4 h-4" />
           </div>
 
           {/* Main Headline */}
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight">
-            Welcome to the Future
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
+            Introducing Our New Identity
           </h1>
           
-          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12">
+          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
             <span className="bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
               Solar Sense
             </span>
           </div>
+          
+          <p className="text-xl sm:text-2xl text-white/80 mb-12 max-w-3xl mx-auto">
+            From <span className="text-gray-300 font-semibold">SEPT</span> to <span className="text-yellow-400 font-bold">Solar Sense</span> — A rebranding that reflects our refined vision
+          </p>
 
           {/* Transformation Visual */}
           <div className="relative max-w-5xl mx-auto mb-12">
@@ -96,17 +100,33 @@ export default function RebrandingLandingPage() {
                 </div>
               </div>
 
-              {/* Arrow with sparkles */}
+              {/* Transformation Arrow */}
               <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-4">
-                  <div className="hidden md:block w-20 h-1 bg-gradient-to-r from-emerald-400 to-cyan-400 rounded-full"></div>
-                  <div className="relative">
-                    <Sparkles className="w-12 h-12 text-orange-400 animate-spin" style={{animationDuration: '3s'}} />
-                    <div className="absolute inset-0 bg-orange-400/30 rounded-full blur-xl animate-pulse"></div>
-                  </div>
-                  <div className="hidden md:block w-20 h-1 bg-gradient-to-r from-cyan-400 to-emerald-400 rounded-full"></div>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-2">
+                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-gray-400 to-yellow-400 rounded-full"></div>
                   
-                  <div className="md:hidden w-1 h-12 bg-gradient-to-b from-emerald-400 to-cyan-400 rounded-full"></div>
+                  {/* Arrow pointing right (desktop) */}
+                  <div className="hidden md:block relative">
+                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
+                    <ArrowRight className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} />
+                  </div>
+                  
+                  {/* Arrow pointing down (mobile) */}
+                  <div className="md:hidden relative">
+                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
+                    <svg className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                    </svg>
+                  </div>
+                  
+                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
+                  
+                  {/* Rebranding Label */}
+                  <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
+                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs shadow-lg">
+                      REBRANDING
+                    </div>
+                  </div>
                 </div>
               </div>
 
@@ -114,11 +134,11 @@ export default function RebrandingLandingPage() {
               <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <div className="relative group">
                   {/* Gold glow radiating around */}
-                  <div className="absolute -inset-4 bg-gradient-to-br from-orange-500 via-amber-500 to-yellow-500 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-300 animate-pulse"></div>
-                  <div className="absolute -inset-2 bg-gradient-to-br from-orange-400 to-amber-400 rounded-3xl blur-xl opacity-40 animate-pulse" style={{animationDelay: '0.5s'}}></div>
+                  <div className="absolute -inset-4 bg-gradient-to-br from-yellow-500 via-amber-500 to-yellow-600 rounded-3xl blur-2xl opacity-60 group-hover:opacity-80 transition-all duration-300 animate-pulse"></div>
+                  <div className="absolute -inset-2 bg-gradient-to-br from-yellow-400 to-amber-400 rounded-3xl blur-xl opacity-40 animate-pulse" style={{animationDelay: '0.5s'}}></div>
                   
                   {/* Main box - white/gray */}
-                  <div className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-100 dark:to-gray-200 border-2 border-orange-400 rounded-3xl p-8 hover:border-orange-300 transition-all duration-300 shadow-2xl">
+                  <div className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-100 dark:to-gray-200 border-2 border-yellow-400 rounded-3xl p-8 hover:border-yellow-300 transition-all duration-300 shadow-2xl">
                     <div className="aspect-square flex items-center justify-center mb-4 bg-white rounded-2xl p-4 shadow-inner">
                       <Image
                         src={withBasePath("/SolarSense_Logo.png")}
@@ -131,14 +151,14 @@ export default function RebrandingLandingPage() {
                     <p className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-bold text-xl">
                       Solar Sense
                     </p>
-                    <p className="text-orange-500 font-bold text-sm">2025 & Beyond</p>
+                    <p className="text-yellow-600 font-bold text-sm">2025 & Beyond</p>
                   </div>
                   
                   {/* NOW Badge with gold glow */}
                   <div className="absolute -top-4 -right-4">
                     <div className="relative">
-                      <div className="absolute inset-0 bg-gradient-to-r from-orange-500 to-amber-600 rounded-full blur-lg opacity-75 animate-pulse"></div>
-                      <div className="relative bg-gradient-to-r from-orange-500 to-amber-600 text-white font-bold text-xs px-4 py-2 rounded-full shadow-2xl">
+                      <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full blur-lg opacity-75 animate-pulse"></div>
+                      <div className="relative bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs px-4 py-2 rounded-full shadow-2xl">
                         NOW
                       </div>
                     </div>
@@ -152,7 +172,7 @@ export default function RebrandingLandingPage() {
           <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
             <div className="max-w-3xl mx-auto mb-12">
               <p className="text-xl sm:text-2xl text-white/90 leading-relaxed mb-4">
-                As we step into <span className="font-bold text-orange-400">2026</span>, we embrace a new identity that better reflects our mission:
+                As we step into <span className="font-bold text-yellow-400">2026</span>, we embrace a new identity that better reflects our mission:
               </p>
               <p className="text-2xl sm:text-3xl font-bold bg-gradient-to-r from-emerald-400 via-cyan-400 to-emerald-400 bg-clip-text text-transparent">
                 Making Solar Energy Safer, Smarter & More Sustainable
@@ -173,7 +193,7 @@ export default function RebrandingLandingPage() {
                 <p className="text-white/60 text-sm">Proven Technology</p>
               </div>
               
-              <div className="bg-white/5 backdrop-blur-sm border border-orange-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-orange-400/50 transition-all duration-300">
+              <div className="bg-white/5 backdrop-blur-sm border border-yellow-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-yellow-400/50 transition-all duration-300">
                 <div className="text-3xl mb-3">✓</div>
                 <p className="text-white font-semibold mb-2">Sharper Focus</p>
                 <p className="text-white/60 text-sm">Clear Mission</p>
@@ -184,7 +204,7 @@ export default function RebrandingLandingPage() {
             <Link href="/home">
               <Button 
                 size="lg" 
-                className="px-12 py-8 text-xl font-bold bg-gradient-to-r from-orange-500 to-amber-600 hover:from-orange-400 hover:to-amber-500 text-white shadow-2xl hover:shadow-orange-500/50 transition-all transform hover:scale-105 rounded-full"
+                className="px-12 py-8 text-xl font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-gray-900 shadow-2xl hover:shadow-yellow-500/50 transition-all transform hover:scale-105 rounded-full"
               >
                 Discover Solar Sense
                 <ArrowRight className="ml-3 w-6 h-6" />
@@ -202,7 +222,7 @@ export default function RebrandingLandingPage() {
       </div>
 
       {/* Shooting stars */}
-      <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-orange-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
+      <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
       <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-cyan-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
       <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-emerald-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
     </div>
