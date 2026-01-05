@@ -19,24 +19,79 @@ export default function RebrandingLandingPage() {
       {/* Deep Space Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
       
-      {/* Star Field - Multiple layers for depth */}
-      <div className="absolute inset-0">
-        {[...Array(100)].map((_, i) => (
-          <div
-            key={i}
-            className="absolute bg-white rounded-full"
-            style={{
-              top: `${Math.random() * 100}%`,
-              left: `${Math.random() * 100}%`,
-              width: `${Math.random() * 2 + 0.5}px`,
-              height: `${Math.random() * 2 + 0.5}px`,
-              opacity: Math.random() * 0.7 + 0.3,
-              animation: `twinkle ${2 + Math.random() * 3}s infinite`,
-              animationDelay: `${Math.random() * 3}s`,
-            }}
-          />
-        ))}
-      </div>
+      {/* Constellation Field */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+        {/* Big Dipper - Top Left */}
+        <g className="animate-pulse" style={{animationDuration: '4s'}}>
+          <line x1="10%" y1="15%" x2="12%" y2="18%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="12%" y1="18%" x2="15%" y2="20%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="15%" y1="20%" x2="18%" y2="19%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="18%" y1="19%" x2="20%" y2="16%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="20%" y1="16%" x2="22%" y2="14%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="22%" y1="14%" x2="24%" y2="15%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <circle cx="10%" cy="15%" r="2" fill="#FCD34D" className="animate-pulse" />
+          <circle cx="12%" cy="18%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.5s'}} />
+          <circle cx="15%" cy="20%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1s'}} />
+          <circle cx="18%" cy="19%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1.5s'}} />
+          <circle cx="20%" cy="16%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '2s'}} />
+          <circle cx="22%" cy="14%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.3s'}} />
+          <circle cx="24%" cy="15%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.7s'}} />
+        </g>
+
+        {/* Orion's Belt - Center */}
+        <g className="animate-pulse" style={{animationDuration: '3s', animationDelay: '1s'}}>
+          <line x1="45%" y1="45%" x2="50%" y2="44%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="50%" y1="44%" x2="55%" y2="45%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <circle cx="45%" cy="45%" r="2.5" fill="#F59E0B" className="animate-pulse" />
+          <circle cx="50%" cy="44%" r="3" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.5s'}} />
+          <circle cx="55%" cy="45%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1s'}} />
+        </g>
+
+        {/* Leo - Right Side */}
+        <g className="animate-pulse" style={{animationDuration: '5s', animationDelay: '2s'}}>
+          <line x1="75%" y1="25%" x2="78%" y2="28%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="78%" y1="28%" x2="82%" y2="30%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="82%" y1="30%" x2="85%" y2="27%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="85%" y1="27%" x2="88%" y2="25%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <circle cx="75%" cy="25%" r="2" fill="#FCD34D" className="animate-pulse" />
+          <circle cx="78%" cy="28%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.4s'}} />
+          <circle cx="82%" cy="30%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '0.8s'}} />
+          <circle cx="85%" cy="27%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '1.2s'}} />
+          <circle cx="88%" cy="25%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.6s'}} />
+        </g>
+
+        {/* Southern Cross - Bottom Right */}
+        <g className="animate-pulse" style={{animationDuration: '4s', animationDelay: '0.5s'}}>
+          <line x1="80%" y1="75%" x2="82%" y2="78%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="82%" y1="78%" x2="84%" y2="75%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="82%" y1="78%" x2="82%" y2="82%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <circle cx="80%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" />
+          <circle cx="82%" cy="78%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.5s'}} />
+          <circle cx="84%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1s'}} />
+          <circle cx="82%" cy="82%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.5s'}} />
+        </g>
+
+        {/* Custom Constellation - Bottom Left */}
+        <g className="animate-pulse" style={{animationDuration: '3.5s', animationDelay: '1.5s'}}>
+          <line x1="15%" y1="70%" x2="18%" y2="72%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="18%" y1="72%" x2="20%" y2="75%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <line x1="20%" y1="75%" x2="23%" y2="73%" stroke="#FCD34D" strokeWidth="0.5" opacity="0.4" />
+          <circle cx="15%" cy="70%" r="2" fill="#FCD34D" className="animate-pulse" />
+          <circle cx="18%" cy="72%" r="2.5" fill="#F59E0B" className="animate-pulse" style={{animationDelay: '0.6s'}} />
+          <circle cx="20%" cy="75%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.2s'}} />
+          <circle cx="23%" cy="73%" r="2" fill="#FCD34D" className="animate-pulse" style={{animationDelay: '1.8s'}} />
+        </g>
+
+        {/* Additional scattered gold stars for depth */}
+        <circle cx="30%" cy="35%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2s'}} />
+        <circle cx="60%" cy="20%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '1s'}} />
+        <circle cx="70%" cy="60%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '3s'}} />
+        <circle cx="40%" cy="80%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '0.5s'}} />
+        <circle cx="90%" cy="45%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2.5s'}} />
+        <circle cx="25%" cy="55%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '1.8s'}} />
+        <circle cx="55%" cy="85%" r="1.5" fill="#FCD34D" opacity="0.6" className="animate-pulse" style={{animationDelay: '2.2s'}} />
+        <circle cx="35%" cy="10%" r="1" fill="#F59E0B" opacity="0.5" className="animate-pulse" style={{animationDelay: '0.8s'}} />
+      </svg>
 
       {/* Nebula/Galaxy Effects */}
       <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
@@ -260,10 +315,10 @@ export default function RebrandingLandingPage() {
         </div>
       </div>
 
-      {/* Shooting stars */}
+      {/* Shooting stars - Gold */}
       <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
-      <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-cyan-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-emerald-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
+      <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
+      <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-yellow-300 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
     </div>
   );
 }
