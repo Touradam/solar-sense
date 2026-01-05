@@ -5,8 +5,7 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-// Helper to add base path for GitHub Pages deployment
+// Helper for asset paths (no base path needed for Hostinger)
 export function withBasePath(path: string): string {
-  const basePath = process.env.NODE_ENV === 'production' ? '/solar-sense' : '';
-  return `${basePath}${path}`;
+  return path;
 }
