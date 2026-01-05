@@ -173,18 +173,10 @@ export default function RebrandingLandingPage() {
               <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
                 <Link href="/home" className="block">
                   <div className="relative group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                    {/* Main box - white/gray with inward gold glow */}
-                    <div className="relative bg-gradient-to-br from-white to-gray-100 dark:from-gray-100 dark:to-gray-200 border-4 border-yellow-400 rounded-3xl p-8 hover:border-yellow-300 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 overflow-hidden">
-                      {/* Gold glow radiating INWARD from edges */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-yellow-500/40 via-transparent to-amber-500/40 animate-pulse group-hover:from-yellow-500/60 group-hover:to-amber-500/60 transition-all"></div>
-                      <div className="absolute inset-0 bg-gradient-to-tl from-yellow-400/30 via-transparent to-amber-400/30 animate-pulse group-hover:from-yellow-400/50 group-hover:to-amber-400/50 transition-all" style={{animationDelay: '0.5s'}}></div>
+                    {/* Main box - GOLD background like button */}
+                    <div className="relative bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 rounded-3xl p-8 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 overflow-hidden">
                       
-                      {/* Radial glow from corners inward */}
-                      <div className="absolute top-0 left-0 w-32 h-32 bg-gradient-radial from-yellow-500/50 to-transparent rounded-full blur-2xl group-hover:from-yellow-500/70 transition-all"></div>
-                      <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-radial from-amber-500/50 to-transparent rounded-full blur-2xl group-hover:from-amber-500/70 transition-all"></div>
-                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-radial from-amber-500/50 to-transparent rounded-full blur-2xl group-hover:from-amber-500/70 transition-all"></div>
-                      <div className="absolute bottom-0 right-0 w-32 h-32 bg-gradient-radial from-yellow-500/50 to-transparent rounded-full blur-2xl group-hover:from-yellow-500/70 transition-all"></div>
-                      
+                      {/* White logo container - keeps its white background */}
                       <div className="relative aspect-square flex items-center justify-center mb-4 bg-white rounded-2xl p-4 shadow-inner">
                         <Image
                           src={withBasePath("/SolarSense_Logo.png")}
@@ -197,7 +189,7 @@ export default function RebrandingLandingPage() {
                       <p className="relative bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent font-bold text-xl">
                         Solar Sense
                       </p>
-                      <p className="relative text-yellow-600 font-bold text-sm">2025 & Beyond</p>
+                      <p className="relative text-gray-900 font-bold text-sm">2025 & Beyond</p>
                     </div>
                     
                     {/* NOW Badge with gold glow */}
