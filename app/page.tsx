@@ -57,8 +57,8 @@ export default function RebrandingLandingPage() {
           50% { transform: translateY(-10px) scale(1.05); }
         }
         @keyframes shimmer {
-          0% { background-position: -200% center; }
-          100% { background-position: 200% center; }
+          0% { background-position: 200% center; }
+          100% { background-position: -200% center; }
         }
         @keyframes rotate3d {
           0% { transform: perspective(1000px) rotateY(0deg); }
