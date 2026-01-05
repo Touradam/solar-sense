@@ -57,8 +57,8 @@ export default function RebrandingLandingPage() {
           50% { transform: translateY(-10px) scale(1.05); }
         }
         @keyframes shimmer {
-          0% { background-position: 200% center; }
-          100% { background-position: -200% center; }
+          0% { background-position: -200% center; }
+          100% { background-position: 200% center; }
         }
         @keyframes rotate3d {
           0% { transform: perspective(1000px) rotateY(0deg); }
@@ -119,76 +119,53 @@ export default function RebrandingLandingPage() {
 
               {/* Transformation Arrow */}
               <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="relative flex flex-col md:flex-row items-center justify-center gap-2">
-                  {/* Animated glow rings around entire arrow section */}
-                  <div className="absolute inset-0 bg-yellow-400/20 blur-2xl animate-ping"></div>
-                  <div className="absolute inset-0 bg-amber-400/10 blur-xl animate-pulse"></div>
-                  
-                  {/* Sparkles around arrow */}
-                  <Sparkles className="absolute -top-8 left-1/4 w-5 h-5 text-yellow-400 animate-spin" style={{animationDuration: '3s'}} />
-                  <Sparkles className="absolute -top-8 right-1/4 w-4 h-4 text-amber-400 animate-spin" style={{animationDuration: '3s', animationDelay: '1s'}} />
-                  <Sparkles className="absolute -bottom-8 left-1/3 w-4 h-4 text-yellow-300 animate-spin" style={{animationDuration: '3s', animationDelay: '2s'}} />
-                  <Sparkles className="absolute -bottom-8 right-1/3 w-5 h-5 text-amber-300 animate-spin" style={{animationDuration: '3s', animationDelay: '0.5s'}} />
-                  
-                  {/* Left line with shimmer */}
-                  <div 
-                    className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden"
-                    style={{
-                      background: 'linear-gradient(90deg, #9CA3AF, #FCD34D, #F59E0B, #FCD34D)',
-                      backgroundSize: '200% auto',
-                      animation: 'shimmer 2s linear infinite reverse, float 2s ease-in-out infinite',
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-                  </div>
+                <div className="flex flex-col md:flex-row items-center justify-center gap-2">
+                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-gray-400 to-yellow-400 rounded-full"></div>
                   
                   {/* Arrow pointing right (desktop) */}
                   <div className="hidden md:block relative">
-                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-ping"></div>
-                    <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-lg animate-pulse"></div>
-                    <ArrowRight 
-                      className="w-20 h-20 text-yellow-400 relative" 
-                      style={{
-                        filter: 'drop-shadow(0 0 30px rgba(250, 204, 21, 0.9))',
-                        animation: 'float 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite'
-                      }} 
-                    />
+                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
+                    <ArrowRight className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} />
                   </div>
                   
                   {/* Arrow pointing down (mobile) */}
                   <div className="md:hidden relative">
-                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-ping"></div>
-                    <div className="absolute inset-0 bg-amber-400/30 rounded-full blur-lg animate-pulse"></div>
-                    <svg 
-                      className="w-20 h-20 text-yellow-400 relative" 
-                      style={{
-                        filter: 'drop-shadow(0 0 30px rgba(250, 204, 21, 0.9))',
-                        animation: 'float 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite'
-                      }} 
-                      fill="none" 
-                      stroke="currentColor" 
-                      viewBox="0 0 24 24"
-                    >
+                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
+                    <svg className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
                     </svg>
                   </div>
                   
-                  {/* Right line with shimmer */}
-                  <div 
-                    className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden"
-                    style={{
-                      background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
-                      backgroundSize: '200% auto',
-                      animation: 'shimmer 2s linear infinite reverse, float 2s ease-in-out infinite',
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-pulse"></div>
-                  </div>
+                  <div className="hidden md:block w-24 h-1 bg-gradient-to-r from-yellow-400 to-yellow-500 rounded-full"></div>
                   
-                  {/* Rebranding Label - Simple */}
+                  {/* Rebranding Label - Animated */}
                   <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs shadow-lg">
-                      REBRANDING
+                    <div className="relative">
+                      {/* Animated glow rings */}
+                      <div className="absolute inset-0 rounded-full bg-yellow-400/30 blur-xl animate-ping"></div>
+                      <div className="absolute inset-0 rounded-full bg-amber-400/20 blur-lg animate-pulse"></div>
+                      
+                      {/* Sparkles around badge */}
+                      <Sparkles className="absolute -top-2 -left-2 w-4 h-4 text-yellow-400 animate-spin" style={{animationDuration: '3s'}} />
+                      <Sparkles className="absolute -top-2 -right-2 w-4 h-4 text-amber-400 animate-spin" style={{animationDuration: '3s', animationDelay: '1s'}} />
+                      <Sparkles className="absolute -bottom-2 -left-3 w-3 h-3 text-yellow-300 animate-spin" style={{animationDuration: '3s', animationDelay: '2s'}} />
+                      <Sparkles className="absolute -bottom-2 -right-3 w-3 h-3 text-amber-300 animate-spin" style={{animationDuration: '3s', animationDelay: '0.5s'}} />
+                      
+                      {/* Main badge with multiple animations */}
+                      <div 
+                        className="relative px-6 py-2 rounded-full font-bold text-sm text-gray-900 border-2 border-yellow-300"
+                        style={{
+                          background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
+                          backgroundSize: '200% auto',
+                          animation: 'shimmer 3s linear infinite, float 2s ease-in-out infinite, glowPulse 2s ease-in-out infinite',
+                        }}
+                      >
+                        <span className="relative z-10 flex items-center gap-2">
+                          <span className="inline-block animate-pulse">✨</span>
+                          REBRANDING
+                          <span className="inline-block animate-pulse" style={{animationDelay: '0.5s'}}>✨</span>
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
