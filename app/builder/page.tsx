@@ -325,8 +325,8 @@ export default function NeuralNetworkBuilder() {
             {/* Left: Logo (clickable - returns to landing page) */}
             <Link href="/" className="flex-shrink-0 group">
               <Image
-                src={withBasePath("/SEPT_logo_Transparent.png")}
-                alt="SEPT Logo"
+                src={withBasePath("/SolarSense_Logo.png")}
+                alt="Solar Sense Logo"
                 width={100}
                 height={33}
                 className="h-8 sm:h-10 w-auto transition-transform group-hover:scale-105"

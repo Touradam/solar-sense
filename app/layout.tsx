@@ -19,8 +19,8 @@ export const metadata: Metadata = {
   themeColor: "#059669",
   manifest: "/manifest.json",
   icons: {
-    icon: "/SEPT_logo_Transparent.png",
-    apple: "/SEPT_logo_Transparent.png",
+    icon: "/SolarSense_Logo.png",
+    apple: "/SolarSense_Logo.png",
   },
   openGraph: {
     title: "SEPT - Solar Energy Protection Technology",

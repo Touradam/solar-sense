@@ -20,8 +20,8 @@ export default function LandingPage() {
             <Link href="/" className="flex-shrink-0 group">
               <div className="relative h-14 w-14 transition-transform group-hover:scale-110">
         <Image
-                  src={withBasePath("/SEPT_logo_Transparent.png")}
-                  alt="SEPT Logo"
+                  src={withBasePath("/SolarSense_Logo.png")}
+                  alt="Solar Sense Logo"
                   fill
                   className="object-contain"
           priority
@@ -84,8 +84,8 @@ export default function LandingPage() {
             <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-800">
               <div className="relative h-10 w-10">
                 <Image
-                  src={withBasePath("/SEPT_logo_Transparent.png")}
-                  alt="SEPT Logo"
+                  src={withBasePath("/SolarSense_Logo.png")}
+                  alt="Solar Sense Logo"
                   fill
                   className="object-contain"
                 />
