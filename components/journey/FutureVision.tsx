@@ -66,7 +66,7 @@ export function FutureVision() {
           </h3>
           <div className="bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20">
             <p className="text-lg mb-6 leading-relaxed">
-              SEPT aims to become the <strong>standard for affordable solar panel monitoring in the commercial PV sector</strong>, 
+              Solar Sense aims to become the <strong>standard for affordable solar panel monitoring in the commercial PV sector</strong>, 
               preventing millions of dollars in premature decommissioning while extending the productive life of solar installations.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">

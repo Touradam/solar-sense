@@ -56,7 +56,7 @@ const learnings: Learning[] = [
     title: 'Programs & Mentorship are Invaluable',
     when: 'Throughout 2024',
     discovery: 'Participated in 9+ accelerator/bootcamp programs, engaged with dozens of mentors, gained countless hours of guidance.',
-    insight: 'No one builds a successful company alone. The ecosystem exists to help—use it. Every mentor, judge, and advisor shaped SEPT\'s direction.',
+    insight: 'No one builds a successful company alone. The ecosystem exists to help—use it. Every mentor, judge, and advisor shaped Solar Sense\'s direction.',
     impact: 'Business model validation, technical feedback, industry connections, investor readiness, strategic clarity. The support system accelerated our progress exponentially.',
     icon: <Award className="h-6 w-6" />,
     color: 'teal',

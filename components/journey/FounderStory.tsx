@@ -77,7 +77,7 @@ export default function FounderStory() {
               </div>
             </div>
 
-            {/* Founding SEPT */}
+            {/* Founding Solar Sense */}
             <div>
               <div className="flex items-start gap-4 mb-6">
                 <div className="flex-shrink-0 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
@@ -85,7 +85,7 @@ export default function FounderStory() {
                 </div>
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                    Founding SEPT
+                    Founding Solar Sense
                   </h3>
                   <p className="text-sm sm:text-base text-teal-600 dark:text-teal-400 font-semibold">
                     Solar Energy Protection Technology
@@ -94,7 +94,7 @@ export default function FounderStory() {
               </div>
               <div className="prose prose-sm sm:prose-base lg:prose-lg dark:prose-invert max-w-none text-gray-700 dark:text-gray-300 space-y-4">
                 <p>
-                  He founded <strong>SEPT (Solar Energy Protection Technology)</strong> with his classmate <strong>Jordan 
+                  He founded <strong>Solar Sense</strong> with his classmate <strong>Jordan 
                   Harris-Toovy</strong> to bring a low-cost monitoring device to the second-life PV market.
                 </p>
               </div>

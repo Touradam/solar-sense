@@ -5,8 +5,8 @@ const isProd = process.env.NODE_ENV === 'production';
 
 const nextConfig: NextConfig = {
   output: 'export',
-  basePath: isProd ? '/SEPT-LLC' : '',
-  assetPrefix: isProd ? '/SEPT-LLC' : '',
+  basePath: isProd ? '/solar-sense' : '',
+  assetPrefix: isProd ? '/solar-sense' : '',
   images: {
     unoptimized: true,
   },

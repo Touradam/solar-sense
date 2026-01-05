@@ -86,7 +86,7 @@ const events: TimelineEvent[] = [
   {
     period: 'Summer 2024',
     title: 'InventOR 2024 Award Winner',
-    description: 'Pitched at InventOR focusing on second-life solar reuse. Received the Visionary Award—a pivotal moment for SEPT. InventOR has been supporting SEPT throughout its journey by providing connections to resources, mentorship, and opportunities that have been instrumental in our growth.',
+    description: 'Pitched at InventOR focusing on second-life solar reuse. Received the Visionary Award—a pivotal moment for Solar Sense. InventOR has been supporting Solar Sense throughout its journey by providing connections to resources, mentorship, and opportunities that have been instrumental in our growth.',
     icon: <Award className="h-5 w-5" />,
     color: 'purple',
     outcome: 'Visionary Award winner and ongoing partnership',
@@ -153,7 +153,7 @@ const events: TimelineEvent[] = [
   {
     period: 'Winter 2025',
     title: 'Prototype 4: In-House Manufacturing',
-    description: 'Developed in-house manufacturing capabilities, enabling production of professional-grade PCBs from Jordan\'s home lab. Fourth-generation design features SEPT branding, advanced component integration, and optimized sensor architecture—demonstrating our ability to manufacture commercial-quality hardware independently.',
+    description: 'Developed in-house manufacturing capabilities, enabling production of professional-grade PCBs from Jordan\'s home lab. Fourth-generation design features Solar Sense branding, advanced component integration, and optimized sensor architecture—demonstrating our ability to manufacture commercial-quality hardware independently.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'purple',
     outcome: 'Manufacturing capability established, commercial-quality production achieved',
@@ -179,22 +179,8 @@ const events: TimelineEvent[] = [
   },
   {
     period: 'Fall 2025',
-    title: 'Neural Network Builder Launch',
-    description: 'Reimagined and rebuilt our software from the ground up. Launched an interactive Neural Network Builder as an educational tool—allowing anyone to learn the process of building neural networks. Currently in development, this platform demonstrates our commitment to making AI-powered solar monitoring accessible and transparent.',
-    icon: <Cpu className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Educational platform launched, software architecture modernized',
-    link: {
-      url: '/builder',
-      text: 'Try the Neural Network Builder',
-      buttonStyle: true
-    },
-    images: '/dashboardPrototype1.png'
-  },
-  {
-    period: 'Fall 2025',
     title: 'Janus Innovation Hub',
-    description: 'Janus Innovation Hub is a startup accelerator that empowers immigrant-led ventures through mentorship, resources, and connections to transform innovative ideas into impactful, investment-ready businesses. The Janus program aims to set SEPT on the right path toward becoming a sustainable enterprise, achieving its mission of making solar smart and safe.',
+    description: 'Janus Innovation Hub is a startup accelerator that empowers immigrant-led ventures through mentorship, resources, and connections to transform innovative ideas into impactful, investment-ready businesses. The Janus program aims to set Solar Sense on the right path toward becoming a sustainable enterprise, achieving its mission of making solar smart and safe.',
     icon: <TrendingUp className="h-5 w-5" />,
     color: 'emerald',
     outcome: 'Positioned for commercial deployment',
@@ -203,7 +189,7 @@ const events: TimelineEvent[] = [
   {
     period: 'Winter 2025-2026',
     title: 'Plug and Play 2025 Summit',
-    description: 'Selected to participate in the prestigious Plug and Play Tech Center Summit—one of the world\'s largest innovation platforms connecting startups with corporate partners. This opportunity positions SEPT to engage with global energy leaders, explore strategic partnerships, and scale our solar monitoring technology into enterprise markets.',
+    description: 'Selected to participate in the prestigious Plug and Play Tech Center Summit—one of the world\'s largest innovation platforms connecting startups with corporate partners. This opportunity positions Solar Sense to engage with global energy leaders, explore strategic partnerships, and scale our solar monitoring technology into enterprise markets.',
     icon: <Rocket className="h-5 w-5" />,
     color: 'purple',
     outcome: 'Global network expansion and corporate partnership opportunities'
@@ -334,7 +320,7 @@ export function Timeline() {
                       <div className="relative w-full aspect-video rounded-lg overflow-hidden bg-gray-100 dark:bg-gray-800">
                         <iframe
                           src={event.video}
-                          title="SEPT Video"
+                          title="Solar Sense Video"
                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                           allowFullScreen
                           className="absolute inset-0 w-full h-full"

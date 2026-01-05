@@ -4,7 +4,7 @@ import { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, Shield, Brain, Zap, DollarSign, Menu, X } from 'lucide-react';
+import { ArrowRight, Shield, Zap, DollarSign, Menu, X } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
 
 export default function LandingPage() {
@@ -49,11 +49,6 @@ export default function LandingPage() {
               </Link>
               <Link href="#contact" className="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-emerald-600 dark:hover:text-emerald-400 transition-colors whitespace-nowrap">
                 Contact
-              </Link>
-              <Link href="/builder">
-                <Button variant="outline" size="sm" className="border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950 whitespace-nowrap">
-                  Builder
-                </Button>
               </Link>
             </nav>
 
@@ -129,17 +124,6 @@ export default function LandingPage() {
               >
                 Contact
               </Link>
-              <div className="pt-2">
-                <Link href="/builder" onClick={() => setMobileMenuOpen(false)}>
-                  <Button 
-                    variant="outline" 
-                    className="w-full justify-center border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950"
-                    size="lg"
-                  >
-                    Neural Network Builder
-                  </Button>
-                </Link>
-              </div>
             </nav>
           </div>
         </div>
@@ -162,8 +146,7 @@ export default function LandingPage() {
                   {' '}& More Sustainable
           </h1>
                 <p className="text-xl text-gray-600 dark:text-gray-400 leading-relaxed">
-                  SEPT delivers intelligent rapid shutdown compliance and real-time fault detection through{' '}
-                  <span className="font-semibold text-emerald-600 dark:text-emerald-400">Solar Sense</span>{' '}
+                  Solar Sense delivers intelligent rapid shutdown compliance and real-time fault detection{' '}
                   — the all-in-one device that protects solar systems while maximizing performance.
                 </p>
               </div>
@@ -208,7 +191,7 @@ export default function LandingPage() {
                 <div className="relative aspect-[3/4]">
                   <Image
                     src={withBasePath("/adamaJordan.jpg")}
-                    alt="Adama Toure and Jordan Harris-Toovy - SEPT Co-Founders"
+                    alt="Adama Toure and Jordan Harris-Toovy - Solar Sense Co-Founders"
                     fill
                     className="object-cover"
                     priority
@@ -216,7 +199,7 @@ export default function LandingPage() {
                 </div>
                 {/* Caption */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-6">
-                  <p className="text-white font-semibold text-lg">SEPT Co-Founders</p>
+                  <p className="text-white font-semibold text-lg">Solar Sense Co-Founders</p>
                   <p className="text-gray-200 text-sm">Adama Toure & Jordan Harris-Toovy</p>
                 </div>
               </div>
@@ -260,7 +243,7 @@ export default function LandingPage() {
             <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
               From Research Lab to Market:<br />
               <span className="bg-gradient-to-r from-emerald-300 via-teal-300 to-cyan-300 bg-clip-text text-transparent">
-                The SEPT Journey
+                The Solar Sense Journey
               </span>
             </h2>
 
@@ -393,7 +376,7 @@ export default function LandingPage() {
               <div className="absolute inset-0 bg-gradient-to-br from-teal-500 to-blue-500 rounded-2xl blur-xl opacity-0 group-hover:opacity-20 transition-opacity duration-500"></div>
               <div className="relative p-8 rounded-2xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-2xl transition-all duration-300 h-full">
                 <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-teal-500 to-blue-500 flex items-center justify-center mb-6">
-                  <Brain className="w-7 h-7 text-white" />
+                  <Zap className="w-7 h-7 text-white" />
                 </div>
                 <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                   Maximize Energy Production
@@ -665,7 +648,7 @@ export default function LandingPage() {
                   <div className="relative w-full h-48 my-4">
                     <Image
                       src={withBasePath("/sept-ecosystem.svg")}
-                      alt="SEPT Ecosystem - Rapid Shutdown"
+                      alt="Solar Sense Ecosystem - Rapid Shutdown"
                       fill
                       className="object-contain"
                     />
@@ -732,7 +715,7 @@ export default function LandingPage() {
                   {/* Icon & Title */}
                   <div className="flex items-center gap-4">
                     <div className="flex-shrink-0 w-16 h-16 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center shadow-lg">
-                      <Brain className="w-8 h-8 text-white" />
+                      <Zap className="w-8 h-8 text-white" />
                     </div>
                     <div>
                       <div className="text-sm font-semibold text-gray-500 dark:text-gray-400 uppercase tracking-wide">System 2</div>
@@ -798,17 +781,6 @@ export default function LandingPage() {
                       <div className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></div>
                       AI-Powered Intelligence
                     </div>
-                  </div>
-
-                  {/* Neural Network Builder CTA */}
-                  <div className="pt-4">
-                    <Link href="/builder">
-                      <Button className="w-full bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white shadow-lg hover:shadow-xl transition-all">
-                        <Brain className="w-4 h-4 mr-2" />
-                        Try Our Neural Network Builder
-                        <ArrowRight className="w-4 h-4 ml-2" />
-                      </Button>
-                    </Link>
                   </div>
                 </div>
               </div>
@@ -926,7 +898,7 @@ export default function LandingPage() {
               {/* Goal 2 */}
               <div className="flex items-start gap-4 p-6 rounded-xl bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg hover:shadow-xl transition-shadow">
                 <div className="flex-shrink-0 w-12 h-12 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center">
-                  <Brain className="w-6 h-6 text-white" />
+                  <Zap className="w-6 h-6 text-white" />
                 </div>
                 <div>
                   <h4 className="text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -1045,7 +1017,7 @@ export default function LandingPage() {
 
                   {/* Bio */}
                   <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-center">
-                    Jordan is an Electrical Engineer with expertise in sensor design, PCB layout, electronics manufacturing, and embedded programming. He co-founded SEPT to apply his experience in advanced sensing technologies to the solar industry, driving the creation and refinement of Solar Sense prototypes.
+                    Jordan is an Electrical Engineer with expertise in sensor design, PCB layout, electronics manufacturing, and embedded programming. He co-founded Solar Sense to apply his experience in advanced sensing technologies to the solar industry, driving the creation and refinement of Solar Sense prototypes.
                   </p>
 
                   {/* Achievements */}
@@ -1085,7 +1057,7 @@ export default function LandingPage() {
               Our Vision for the Future
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
-              At SEPT, we believe that the future of solar energy lies in systems that are intelligent, self-aware, and safe by design.
+              At Solar Sense, we believe that the future of solar energy lies in systems that are intelligent, self-aware, and safe by design.
             </p>
           </div>
 
@@ -1207,8 +1179,8 @@ export default function LandingPage() {
                 </svg>
               </div>
               <h3 className="text-lg font-bold mb-2 text-center">Email Us</h3>
-              <a href="mailto:support@SEPT.energy" className="text-emerald-400 hover:text-emerald-300 text-center block">
-                support@SEPT.energy
+              <a href="mailto:support@solarsense.energy" className="text-emerald-400 hover:text-emerald-300 text-center block">
+                support@solarsense.energy
               </a>
             </div>
 
@@ -1222,21 +1194,6 @@ export default function LandingPage() {
               </div>
               <h3 className="text-lg font-bold mb-2 text-center">Location</h3>
               <p className="text-gray-300 text-center">Portland, Oregon, USA</p>
-            </div>
-
-            {/* Try Builder */}
-            <div className="p-8 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 transition-all shadow-xl">
-              <div className="w-14 h-14 rounded-xl bg-white/20 backdrop-blur-sm flex items-center justify-center mb-6 mx-auto">
-                <Brain className="w-7 h-7 text-white" />
-              </div>
-              <h3 className="text-lg font-bold mb-2 text-center">Try Our Tool</h3>
-              <p className="text-white/90 text-center mb-4 text-sm">Build and train your own Neural Network</p>
-              <Link href="/builder">
-                <Button className="w-full bg-white text-emerald-600 hover:bg-gray-100">
-                  Launch Builder
-                  <ArrowRight className="ml-2 w-4 h-4" />
-                </Button>
-              </Link>
             </div>
           </div>
 
@@ -1268,7 +1225,7 @@ export default function LandingPage() {
       <footer className="bg-black dark:bg-gray-950 text-white py-8 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="text-center text-sm text-gray-500">
-            <p>Design and Build by SEPT LLC</p>
+            <p>Design and Build by Solar Sense LLC</p>
           </div>
         </div>
       </footer>
