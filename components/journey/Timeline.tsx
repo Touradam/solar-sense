@@ -44,7 +44,7 @@ const events: TimelineEvent[] = [
     title: 'Partnership & First Design',
     description: 'Adama returned to the U.S. and partnered with Jordan Harris-Toovy. Jordan sketched the first design and began building Prototype 1.',
     icon: <Users className="h-5 w-5" />,
-    color: 'teal',
+    color: 'cyan',
     outcome: 'Team formed, hardware design initiated'
   },
   {
@@ -79,7 +79,7 @@ const events: TimelineEvent[] = [
     title: 'OIT IdeaFest Demo',
     description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing.',
     icon: <Lightbulb className="h-5 w-5" />,
-    color: 'teal',
+    color: 'cyan',
     outcome: 'Educational demonstrations validated concept',
     images: ['/ideaFestDemo.png', '/ideaFestDemo1.png']
   },
@@ -146,7 +146,7 @@ const events: TimelineEvent[] = [
     title: 'TiE XL Bootcamp',
     description: 'Prepared next pitch addressing multi-device burden. Continued refining hardware and software. Completed TiE XL Bootcamp—learned about startup ecosystem, due diligence, investor relations.',
     icon: <Cpu className="h-5 w-5" />,
-    color: 'teal',
+    color: 'cyan',
     outcome: 'Business acumen strengthened, systems refined',
     images: '/tieOregon.png'
   },
@@ -203,12 +203,6 @@ const colorClasses = {
     text: 'text-emerald-600 dark:text-emerald-400',
     icon: 'bg-emerald-500 dark:bg-emerald-600',
   },
-  teal: {
-    bg: 'bg-teal-100 dark:bg-teal-900/30',
-    border: 'border-teal-500 dark:border-teal-400',
-    text: 'text-teal-600 dark:text-teal-400',
-    icon: 'bg-teal-500 dark:bg-teal-600',
-  },
   cyan: {
     bg: 'bg-cyan-100 dark:bg-cyan-900/30',
     border: 'border-cyan-500 dark:border-cyan-400',
@@ -216,10 +210,10 @@ const colorClasses = {
     icon: 'bg-cyan-500 dark:bg-cyan-600',
   },
   purple: {
-    bg: 'bg-purple-100 dark:bg-purple-900/30',
-    border: 'border-purple-500 dark:border-purple-400',
-    text: 'text-purple-600 dark:text-purple-400',
-    icon: 'bg-purple-500 dark:bg-purple-600',
+    bg: 'bg-emerald-100 dark:bg-emerald-900/30',
+    border: 'border-emerald-500 dark:border-emerald-400',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    icon: 'bg-emerald-500 dark:bg-emerald-600',
   },
 };
 
@@ -227,7 +221,7 @@ export function Timeline() {
   return (
     <div className="relative max-w-5xl mx-auto">
       {/* Vertical Line */}
-      <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-500 via-teal-500 to-purple-500 transform sm:-translate-x-1/2" />
+      <div className="absolute left-4 sm:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-emerald-500 via-cyan-500 to-emerald-500 transform sm:-translate-x-1/2" />
 
       {/* Timeline Events */}
       <div className="space-y-8 sm:space-y-12">
@@ -334,12 +328,7 @@ export function Timeline() {
                     <div className="mt-4">
                       {event.link.buttonStyle ? (
                         <Link href={event.link.url}>
-                          <button className={`w-full sm:w-auto px-6 py-3 rounded-lg font-semibold text-white shadow-lg hover:shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 ${
-                            event.color === 'purple' ? 'bg-gradient-to-r from-purple-600 to-purple-700 hover:from-purple-700 hover:to-purple-800' :
-                            event.color === 'emerald' ? 'bg-gradient-to-r from-emerald-600 to-emerald-700 hover:from-emerald-700 hover:to-emerald-800' :
-                            event.color === 'teal' ? 'bg-gradient-to-r from-teal-600 to-teal-700 hover:from-teal-700 hover:to-teal-800' :
-                            'bg-gradient-to-r from-cyan-600 to-cyan-700 hover:from-cyan-700 hover:to-cyan-800'
-                          }`}>
+                          <button className="w-full sm:w-auto px-6 py-3 rounded-lg font-bold text-gray-900 bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 shadow-lg hover:shadow-xl transition-all transform hover:scale-105 flex items-center justify-center gap-2">
                             {event.link.text}
                             <ArrowRight className="w-5 h-5" />
                           </button>

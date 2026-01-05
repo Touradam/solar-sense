@@ -24,7 +24,7 @@ const metrics: Metric[] = [
     value: '6',
     label: 'Prototypes Built',
     description: 'Rapid iteration in 18 months',
-    color: 'teal',
+    color: 'cyan',
   },
   {
     icon: <Award className="h-6 w-6" />,
@@ -57,11 +57,9 @@ const metrics: Metric[] = [
 ];
 
 const colorClasses = {
-  emerald: 'from-emerald-500 to-teal-500',
-  teal: 'from-teal-500 to-cyan-500',
-  cyan: 'from-cyan-500 to-blue-500',
-  purple: 'from-purple-500 to-pink-500',
-  yellow: 'from-yellow-500 to-orange-500',
+  emerald: 'from-emerald-500 to-emerald-600',
+  cyan: 'from-cyan-500 to-cyan-600',
+  gold: 'from-yellow-500 to-amber-500',
 };
 
 export function MetricsSection() {
@@ -106,7 +104,7 @@ export function MetricsSection() {
       </div>
 
       {/* Additional Context */}
-      <div className="mt-12 bg-gradient-to-br from-emerald-50 to-teal-50 dark:from-emerald-950/20 dark:to-teal-950/20 rounded-2xl p-8 border border-emerald-200 dark:border-emerald-800">
+      <div className="mt-12 bg-gradient-to-br from-emerald-50 to-cyan-50 dark:from-emerald-950/20 dark:to-cyan-950/20 rounded-2xl p-8 border border-emerald-200 dark:border-emerald-800">
         <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6 text-center">
           What the Numbers Mean
         </h3>
@@ -133,15 +131,15 @@ export function MetricsSection() {
             <h4 className="font-bold text-gray-900 dark:text-white mb-2">Business Development</h4>
             <ul className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
               <li className="flex items-start gap-2">
-                <span className="text-teal-600 dark:text-teal-400 mt-1">✓</span>
+                <span className="text-cyan-600 dark:text-cyan-400 mt-1">✓</span>
                 <span>Validated by 9+ competitive programs</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-teal-600 dark:text-teal-400 mt-1">✓</span>
+                <span className="text-cyan-600 dark:text-cyan-400 mt-1">✓</span>
                 <span>Identified product-market fit in commercial PV</span>
               </li>
               <li className="flex items-start gap-2">
-                <span className="text-teal-600 dark:text-teal-400 mt-1">✓</span>
+                <span className="text-cyan-600 dark:text-cyan-400 mt-1">✓</span>
                 <span>Built network of mentors and advisors</span>
               </li>
             </ul>

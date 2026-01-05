@@ -17,7 +17,7 @@ import { Timeline } from '@/components/journey/Timeline';
 
 export default function JourneyPage() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-teal-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-teal-950/10">
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-cyan-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-cyan-950/10">
       {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
@@ -36,7 +36,7 @@ export default function JourneyPage() {
 
             {/* Center: Page Title */}
             <div className="flex-1 text-center hidden md:block px-2">
-              <h1 className="text-sm md:text-base lg:text-lg font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent truncate">
+              <h1 className="text-sm md:text-base lg:text-lg font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent truncate">
                 Our Journey: Innovation in Action
               </h1>
             </div>
@@ -45,7 +45,7 @@ export default function JourneyPage() {
             <div className="flex-shrink-0">
               <Link
                 href="/"
-                className="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 h-10 sm:h-11 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 shadow-md hover:shadow-lg transition-all touch-manipulation"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 h-10 sm:h-11 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 shadow-md hover:shadow-lg transition-all touch-manipulation"
               >
                 <ArrowLeft className="w-4 h-4" />
                 <span className="hidden xs:inline sm:hidden">Back</span>
@@ -64,7 +64,7 @@ export default function JourneyPage() {
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 sm:mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
               4
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -72,7 +72,7 @@ export default function JourneyPage() {
             </div>
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
               4
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -80,7 +80,7 @@ export default function JourneyPage() {
             </div>
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
               3
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
@@ -88,7 +88,7 @@ export default function JourneyPage() {
             </div>
           </div>
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent mb-2">
+            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
               ∞
             </div>
             <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">

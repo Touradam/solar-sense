@@ -99,7 +99,7 @@ const prototypes: Prototype[] = [
     outcome: 'First complete software solution',
     learning: 'User experience is just as important as technical capability',
     icon: <BarChart className="h-6 w-6" />,
-    color: 'teal',
+    color: 'cyan',
   },
   {
     number: 6,
@@ -122,31 +122,25 @@ const prototypes: Prototype[] = [
 
 const colorClasses = {
   emerald: {
-    bg: 'from-emerald-500/20 to-teal-500/20 dark:from-emerald-500/10 dark:to-teal-500/10',
+    bg: 'from-emerald-500/20 to-cyan-500/20 dark:from-emerald-500/10 dark:to-cyan-500/10',
     border: 'border-emerald-500 dark:border-emerald-400',
     badge: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
     icon: 'bg-emerald-500 dark:bg-emerald-600',
   },
-  teal: {
-    bg: 'from-teal-500/20 to-cyan-500/20 dark:from-teal-500/10 dark:to-cyan-500/10',
-    border: 'border-teal-500 dark:border-teal-400',
-    badge: 'bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300',
-    icon: 'bg-teal-500 dark:bg-teal-600',
-  },
   cyan: {
-    bg: 'from-cyan-500/20 to-blue-500/20 dark:from-cyan-500/10 dark:to-blue-500/10',
+    bg: 'from-cyan-500/20 to-cyan-600/20 dark:from-cyan-500/10 dark:to-cyan-600/10',
     border: 'border-cyan-500 dark:border-cyan-400',
     badge: 'bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300',
     icon: 'bg-cyan-500 dark:bg-cyan-600',
   },
   purple: {
-    bg: 'from-purple-500/20 to-pink-500/20 dark:from-purple-500/10 dark:to-pink-500/10',
-    border: 'border-purple-500 dark:border-purple-400',
-    badge: 'bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300',
-    icon: 'bg-purple-500 dark:bg-purple-600',
+    bg: 'from-emerald-500/20 to-emerald-600/20 dark:from-emerald-500/10 dark:to-emerald-600/10',
+    border: 'border-emerald-500 dark:border-emerald-400',
+    badge: 'bg-emerald-100 dark:bg-emerald-900/30 text-emerald-700 dark:text-emerald-300',
+    icon: 'bg-emerald-500 dark:bg-emerald-600',
   },
   yellow: {
-    bg: 'from-yellow-500/20 to-orange-500/20 dark:from-yellow-500/10 dark:to-orange-500/10',
+    bg: 'from-yellow-500/20 to-cyan-500/20 dark:from-yellow-500/10 dark:to-cyan-500/10',
     border: 'border-yellow-500 dark:border-yellow-400',
     badge: 'bg-yellow-100 dark:bg-yellow-900/30 text-yellow-700 dark:text-yellow-300',
     icon: 'bg-yellow-500 dark:bg-yellow-600',

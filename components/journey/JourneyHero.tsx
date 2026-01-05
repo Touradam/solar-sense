@@ -7,7 +7,7 @@ export function JourneyHero() {
   return (
     <div className="relative mb-12 sm:mb-16">
       {/* Background Pattern */}
-      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-teal-500/10 dark:from-emerald-500/5 dark:to-teal-500/5 rounded-3xl" />
+      <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/10 to-cyan-500/10 dark:from-emerald-500/5 dark:to-cyan-500/5 rounded-3xl" />
       
       <div className="relative bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm rounded-3xl border border-gray-200 dark:border-gray-800 shadow-2xl p-8 sm:p-12 lg:p-16">
         {/* Tag Line */}
@@ -19,7 +19,7 @@ export function JourneyHero() {
 
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-6 leading-tight">
-          <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+          <span className="bg-gradient-to-r from-emerald-600 via-cyan-600 to-cyan-600 bg-clip-text text-transparent">
             Taking Ideas from Research Lab to Market
           </span>
         </h1>
@@ -40,12 +40,12 @@ export function JourneyHero() {
 
           <p className="text-center sm:text-left">
             What started as a research challenge has evolved into a mission to solve a major industry gap—the lack
-            of <strong className="text-teal-600 dark:text-teal-400">low-cost tools to continuously monitor individual
+            of <strong className="text-cyan-600 dark:text-cyan-400">low-cost tools to continuously monitor individual
             solar panels</strong>, which causes many panels to be prematurely decommissioned.
           </p>
 
           <p className="text-center sm:text-left">
-            <Rocket className="inline-block h-5 w-5 text-teal-600 dark:text-teal-400 mr-2 mb-1" />
+            <Rocket className="inline-block h-5 w-5 text-cyan-600 dark:text-cyan-400 mr-2 mb-1" />
             Through <strong>4 prototypes</strong>, <strong>4 startup programs</strong>, <strong>3 competitions</strong>, and countless iterations,
             we've discovered what the solar industry really needs: <strong className="text-emerald-600 dark:text-emerald-400">
             affordable, code-compliant monitoring that prevents premature panel decommissioning</strong>.

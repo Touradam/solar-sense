@@ -10,7 +10,7 @@ export default function FounderStory() {
         {/* Section Header */}
         <div className="text-center mb-12 sm:mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4">
-            <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-cyan-600 to-cyan-600 bg-clip-text text-transparent">
               Founder's Story
             </span>
           </h2>
@@ -28,7 +28,7 @@ export default function FounderStory() {
             {/* Academic Journey */}
             <div className="mb-10">
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl p-3 text-white shadow-lg">
+                <div className="flex-shrink-0 bg-gradient-to-br from-emerald-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
                   <GraduationCap className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div>
@@ -56,7 +56,7 @@ export default function FounderStory() {
             {/* NSF Research */}
             <div className="mb-10 pb-10 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl p-3 text-white shadow-lg">
+                <div className="flex-shrink-0 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-xl p-3 text-white shadow-lg">
                   <Globe className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div>
@@ -80,14 +80,14 @@ export default function FounderStory() {
             {/* Founding Solar Sense */}
             <div>
               <div className="flex items-start gap-4 mb-6">
-                <div className="flex-shrink-0 bg-gradient-to-br from-teal-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
+                <div className="flex-shrink-0 bg-gradient-to-br from-cyan-500 to-emerald-600 rounded-xl p-3 text-white shadow-lg">
                   <Lightbulb className="h-6 w-6 sm:h-7 sm:w-7" />
                 </div>
                 <div>
                   <h3 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
                     Founding Solar Sense
                   </h3>
-                  <p className="text-sm sm:text-base text-teal-600 dark:text-teal-400 font-semibold">
+                  <p className="text-sm sm:text-base text-cyan-600 dark:text-cyan-400 font-semibold">
                     Solar Energy Protection Technology
                   </p>
                 </div>

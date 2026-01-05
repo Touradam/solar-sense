@@ -59,39 +59,33 @@ const learnings: Learning[] = [
     insight: 'No one builds a successful company alone. The ecosystem exists to help—use it. Every mentor, judge, and advisor shaped Solar Sense\'s direction.',
     impact: 'Business model validation, technical feedback, industry connections, investor readiness, strategic clarity. The support system accelerated our progress exponentially.',
     icon: <Award className="h-6 w-6" />,
-    color: 'teal',
+    color: 'cyan',
   },
 ];
 
 const colorClasses = {
   emerald: {
-    bg: 'from-emerald-500/10 to-teal-500/10',
+    bg: 'from-emerald-500/10 to-cyan-500/10',
     border: 'border-emerald-500 dark:border-emerald-400',
     icon: 'bg-emerald-500 dark:bg-emerald-600',
     text: 'text-emerald-600 dark:text-emerald-400',
   },
-  teal: {
-    bg: 'from-teal-500/10 to-cyan-500/10',
-    border: 'border-teal-500 dark:border-teal-400',
-    icon: 'bg-teal-500 dark:bg-teal-600',
-    text: 'text-teal-600 dark:text-teal-400',
-  },
   cyan: {
-    bg: 'from-cyan-500/10 to-blue-500/10',
+    bg: 'from-cyan-500/10 to-cyan-600/10',
     border: 'border-cyan-500 dark:border-cyan-400',
     icon: 'bg-cyan-500 dark:bg-cyan-600',
     text: 'text-cyan-600 dark:text-cyan-400',
   },
   purple: {
-    bg: 'from-purple-500/10 to-pink-500/10',
-    border: 'border-purple-500 dark:border-purple-400',
-    icon: 'bg-purple-500 dark:bg-purple-600',
-    text: 'text-purple-600 dark:text-purple-400',
+    bg: 'from-emerald-500/10 to-emerald-600/10',
+    border: 'border-emerald-500 dark:border-emerald-400',
+    icon: 'bg-emerald-500 dark:bg-emerald-600',
+    text: 'text-emerald-600 dark:text-emerald-400',
   },
   yellow: {
-    bg: 'from-yellow-500/10 to-orange-500/10',
-    border: 'border-yellow-500 dark:border-yellow-400',
-    icon: 'bg-yellow-500 dark:bg-yellow-600',
+    bg: 'from-yellow-500/10 to-amber-500/10',
+    border: 'border-yellow-500 dark:border-amber-400',
+    icon: 'bg-yellow-500 dark:bg-amber-600',
     text: 'text-yellow-600 dark:text-yellow-400',
   },
 };

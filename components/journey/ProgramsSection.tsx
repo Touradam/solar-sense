@@ -154,7 +154,7 @@ export function ProgramsSection() {
         >
           {/* Header */}
           <div className="flex items-start justify-between mb-4">
-            <div className="bg-gradient-to-br from-emerald-500 to-teal-500 dark:from-emerald-600 dark:to-teal-600 rounded-lg p-3 text-white shadow-md">
+            <div className="bg-gradient-to-br from-emerald-500 to-cyan-500 dark:from-emerald-600 dark:to-cyan-600 rounded-lg p-3 text-white shadow-md">
               {program.icon}
             </div>
             {program.status === 'active' ? (
@@ -184,7 +184,7 @@ export function ProgramsSection() {
             <span className="text-xs px-2 py-1 rounded bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-400">
               {program.period}
             </span>
-            <span className="text-xs px-2 py-1 rounded bg-teal-100 dark:bg-teal-900/30 text-teal-700 dark:text-teal-300">
+            <span className="text-xs px-2 py-1 rounded bg-cyan-100 dark:bg-cyan-900/30 text-cyan-700 dark:text-cyan-300">
               {program.type}
             </span>
           </div>

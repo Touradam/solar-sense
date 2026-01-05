@@ -5,7 +5,7 @@ import { Rocket, Target, Users, TrendingUp, Mail } from 'lucide-react';
 
 export function FutureVision() {
   return (
-    <div className="bg-gradient-to-br from-emerald-500 to-teal-600 dark:from-emerald-900 dark:to-teal-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
+    <div className="bg-gradient-to-br from-emerald-500 to-cyan-600 dark:from-emerald-900 dark:to-cyan-900 rounded-3xl p-8 sm:p-12 text-white shadow-2xl">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
         <div className="text-center mb-12">
