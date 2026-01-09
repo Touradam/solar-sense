@@ -1,8 +1,12 @@
 import type { NextConfig } from "next";
 
+// Only use basePath in production (GitHub Pages)
+const isProd = process.env.NODE_ENV === 'production';
+
 const nextConfig: NextConfig = {
   output: 'export',
-  // No basePath needed for Hostinger (root domain hosting)
+  basePath: isProd ? '/solar-sense' : '',
+  assetPrefix: isProd ? '/solar-sense' : '',
   images: {
     unoptimized: true,
   },
