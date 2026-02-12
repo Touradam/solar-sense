@@ -58,9 +58,6 @@ export default function JourneyPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl">
-        {/* Hero Section */}
-        <JourneyHero />
-
         {/* Quick Stats */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 sm:mb-16">
           <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
@@ -109,6 +106,9 @@ export default function JourneyPage() {
           </div>
           <Timeline />
         </section>
+
+        {/* Hero Section */}
+        <JourneyHero />
 
         {/* Founder Story Section */}
         <FounderStory />
