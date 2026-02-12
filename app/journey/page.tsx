@@ -58,42 +58,6 @@ export default function JourneyPage() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 max-w-7xl">
-        {/* Quick Stats */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-12 sm:mb-16">
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-              4
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Prototypes Built
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-              4
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Startup Programs
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-              3
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Competitions
-            </div>
-          </div>
-          <div className="bg-white dark:bg-gray-900 rounded-xl p-4 sm:p-6 shadow-lg border border-gray-200 dark:border-gray-800 text-center">
-            <div className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent mb-2">
-              ∞
-            </div>
-            <div className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Lessons Learned
-            </div>
-          </div>
-        </div>
-
         {/* Timeline Section */}
         <section className="mb-12 sm:mb-16">
           <div className="text-center mb-8 sm:mb-12">
