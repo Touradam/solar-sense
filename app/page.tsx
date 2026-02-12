@@ -184,7 +184,7 @@ export default function LandingPage() {
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Follow our path from an NSF research program in Denmark to building a research-grade diagnostics platform. 
-              Through <strong>4 prototypes</strong>, <strong>4 startup programs</strong>, and <strong>3 competitions</strong>, 
+              Through <strong>4 prototypes</strong> and <strong>we participated into 7 startup program</strong>, 
               we've discovered what the solar industry really needs.
             </p>
           </div>
