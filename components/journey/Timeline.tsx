@@ -26,62 +26,110 @@ interface TimelineEvent {
 
 const events: TimelineEvent[] = [
   {
-    period: 'Summer 2023',
-    title: 'NSF Innovators Program',
-    location: 'Aalborg University, Denmark',
-    description: 'Researched solar panel degradation and fault detection. Identified the need for a hardware system to collect real-time data.',
+    period: 'Winter 2025-2026',
+    title: 'Research-Grade Diagnostics Platform & University Pilots',
+    description: 'Solar Sense is building a research-grade, module-level diagnostics platform that turns each solar panel into a live digital twin, streaming high-resolution IV curves and real-world operating data for modeling, fault detection, and degradation tracking. As part of our collaboration with Janus Innovation Hub, we are completing a Phase-1 live demo with a 4-panel validation array and real-time ML-based fault detection, and we are recruiting university pilot partners to validate the system in the field and accelerate publishable PV reliability research.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'Research-grade platform development and university partnership recruitment underway',
+    images: '/pilotproject1.png'
+  },
+  {
+    period: 'Winter 2025-2026',
+    title: 'Plug and Play 2025 Summit',
+    description: 'Selected to participate in the prestigious Plug and Play Tech Center Summit—one of the world\'s largest innovation platforms connecting startups with corporate partners. This opportunity positions Solar Sense to engage with global energy leaders, explore strategic partnerships, and scale our solar monitoring technology into enterprise markets.',
     icon: <Rocket className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Global network expansion and corporate partnership opportunities'
+  },
+  {
+    period: 'Fall 2025',
+    title: 'Janus Innovation Hub',
+    description: 'Janus Innovation Hub is a startup accelerator that empowers immigrant-led ventures through mentorship, resources, and connections to transform innovative ideas into impactful, investment-ready businesses. The Janus program aims to set Solar Sense on the right path toward becoming a sustainable enterprise, achieving its mission of making solar smart and safe.',
+    icon: <TrendingUp className="h-5 w-5" />,
     color: 'emerald',
-    outcome: 'Research foundation established',
-    link: {
-      url: 'https://www.notion.so/touradam/NSF-Innovator-Internship-Program-in-Denmark-44d1690c5606455f9bca0f66dd9a8cc1',
-      text: 'Read about the NSF Program experience'
-    },
-    images: '/meetingAalborg.png'
+    outcome: 'Positioned for commercial deployment',
+    images: '/janus.png'
   },
   {
-    period: 'Fall 2023',
-    title: 'Partnership & First Design',
-    description: 'Adama returned to the U.S. and partnered with Jordan Harris-Toovy. Jordan sketched the first design and began building Prototype 1.',
-    icon: <Users className="h-5 w-5" />,
-    color: 'cyan',
-    outcome: 'Team formed, hardware design initiated'
-  },
-  {
-    period: 'Winter 2024',
-    title: 'Prototype 1 Built',
-    description: 'Built Prototype 1 (PCB + Arduino Nano) with basic multimeter-like readings. Determined it was insufficient for meaningful analysis.',
+    period: 'Summer 2025',
+    title: 'Software Dashboard Prototype',
+    description: 'Built first prototype of software dashboard to visualize real-time panel data and fault detection. Transformed hardware solution into a complete monitoring system for solar operators.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'First working prototype, identified limitations',
-    images: '/firstPrototype.png'
+    outcome: 'Complete hardware-software solution achieved',
+    images: '/dashboardPrototype.png'
   },
   {
-    period: 'Spring 2024',
-    title: 'Catalyze Klamath',
-    description: 'Pitched at Catalyze Klamath Challenge using Prototype 1. Selected for the InventOR Prototyping Competition.',
-    icon: <Award className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'Market validation and resources secured',
-    images: '/catalyzeKlamathPresentation.jpg'
+    period: 'Summer 2025',
+    title: 'OEN Angel Oregon',
+    description: 'Participated in the AOBIO Capital Readiness program—a transformative experience that taught us the essential vocabulary of entrepreneurship and how to avoid costly mistakes as new founders. Through mentorship, cohort discussions, and structured guidance, we clarified our problem, value proposition, and growth path.',
+    icon: <Rocket className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Capital readiness achieved, entrepreneurial foundation strengthened',
+    images: '/oen.jpg'
   },
   {
-    period: 'Spring 2024',
-    title: 'Prototype 2: Enhanced PCB Design',
-    description: 'Developed second-generation PCB with improved sensor integration and data collection capabilities. This iteration enhanced voltage and current monitoring, laying the groundwork for machine learning data acquisition.',
+    period: 'Winter 2025',
+    title: 'Prototype 4: In-House Manufacturing',
+    description: 'Developed in-house manufacturing capabilities, enabling production of professional-grade PCBs from Jordan\'s home lab. Fourth-generation design features Solar Sense branding, advanced component integration, and optimized sensor architecture—demonstrating our ability to manufacture commercial-quality hardware independently.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Manufacturing capability established, commercial-quality production achieved',
+    images: '/solarSenseTech.png'
+  },
+  {
+    period: 'Winter 2025',
+    title: 'TiE XL Bootcamp',
+    description: 'Prepared next pitch addressing multi-device burden. Continued refining hardware and software. Completed TiE XL Bootcamp—learned about startup ecosystem, due diligence, investor relations.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'Improved hardware foundation for ML training',
-    images: '/secondPrototype.png'
+    outcome: 'Business acumen strengthened, systems refined',
+    images: '/tieOregon.png'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'Market Research',
+    description: 'Conducted market research: utility PV reluctant to add system costs. Expanded research to commercial PV. Learned commercial systems need low-cost, code-compliant, single-device solutions.',
+    icon: <TrendingUp className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'Product-market fit identified in commercial PV'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'VertueLab 45Camp',
+    description: 'Participated in VertueLab 45Camp accelerator program to refine business model and develop go-to-market strategy.',
+    icon: <Rocket className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'Enhanced entrepreneurial skills and network',
+    images: '/VertueLab.png'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'Prototype 3: Solar Sense',
+    description: 'Built Prototype 3 featuring real-time fault localization capabilities. This working prototype demonstrated panel-level monitoring with ML-powered fault detection—a complete solution integrating hardware sensors with intelligent software analytics.',
+    icon: <Cpu className="h-5 w-5" />,
+    color: 'purple',
+    outcome: 'First production-ready prototype with commercial viability',
+    images: '/solarSenseOnPV.png'
+  },
+  {
+    period: 'Fall 2024',
+    title: 'American-Made Solar Prize',
+    description: 'Identified critical market gap: utility PV operators lack affordable tools for panel-level fault detection. Applied to American-Made Solar Prize Round 8 with this new solution.',
+    icon: <Target className="h-5 w-5" />,
+    color: 'cyan',
+    outcome: 'Clear problem definition and validation',
+    video: 'https://www.youtube.com/embed/f8RI_KhIVBY',
+    images: '/americanMadeSolar.png'
   },
   {
     period: 'Summer 2024',
-    title: 'OIT IdeaFest Demo',
-    description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing.',
-    icon: <Lightbulb className="h-5 w-5" />,
-    color: 'cyan',
-    outcome: 'Educational demonstrations validated concept',
-    images: ['/ideaFestDemo.png', '/ideaFestDemo1.png']
+    title: 'Strategic Pivot',
+    description: 'Realized landfill-prevention business case was not strong enough. Pivoted to provide a device for the utility PV industry to detect and locate panel faults—addressing a critical gap in solar operations.',
+    icon: <Repeat className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'New market direction identified with clear value proposition'
   },
   {
     period: 'Summer 2024',
@@ -99,100 +147,61 @@ const events: TimelineEvent[] = [
   },
   {
     period: 'Summer 2024',
-    title: 'Strategic Pivot',
-    description: 'Realized landfill-prevention business case was not strong enough. Pivoted to provide a device for the utility PV industry to detect and locate panel faults—addressing a critical gap in solar operations.',
-    icon: <Repeat className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'New market direction identified with clear value proposition'
-  },
-  {
-    period: 'Fall 2024',
-    title: 'American-Made Solar Prize',
-    description: 'Identified critical market gap: utility PV operators lack affordable tools for panel-level fault detection. Applied to American-Made Solar Prize Round 8 with this new solution.',
-    icon: <Target className="h-5 w-5" />,
+    title: 'OIT IdeaFest Demo',
+    description: 'Built cardboard shading model to demonstrate fault detection. Exhibited at OIT IdeaFest—first public hands-on testing.',
+    icon: <Lightbulb className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'Clear problem definition and validation',
-    video: 'https://www.youtube.com/embed/f8RI_KhIVBY',
-    images: '/americanMadeSolar.png'
+    outcome: 'Educational demonstrations validated concept',
+    images: ['/ideaFestDemo.png', '/ideaFestDemo1.png']
   },
   {
-    period: 'Fall 2024',
-    title: 'Prototype 3: Solar Sense',
-    description: 'Built Prototype 3 featuring real-time fault localization capabilities. This working prototype demonstrated panel-level monitoring with ML-powered fault detection—a complete solution integrating hardware sensors with intelligent software analytics.',
-    icon: <Cpu className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'First production-ready prototype with commercial viability',
-    images: '/solarSenseOnPV.png'
-  },
-  {
-    period: 'Fall 2024',
-    title: 'VertueLab 45Camp',
-    description: 'Participated in VertueLab 45Camp accelerator program to refine business model and develop go-to-market strategy.',
-    icon: <Rocket className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Enhanced entrepreneurial skills and network',
-    images: '/VertueLab.png'
-  },
-  {
-    period: 'Fall 2024',
-    title: 'Market Research',
-    description: 'Conducted market research: utility PV reluctant to add system costs. Expanded research to commercial PV. Learned commercial systems need low-cost, code-compliant, single-device solutions.',
-    icon: <TrendingUp className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'Product-market fit identified in commercial PV'
-  },
-  {
-    period: 'Winter 2025',
-    title: 'TiE XL Bootcamp',
-    description: 'Prepared next pitch addressing multi-device burden. Continued refining hardware and software. Completed TiE XL Bootcamp—learned about startup ecosystem, due diligence, investor relations.',
+    period: 'Spring 2024',
+    title: 'Prototype 2: Enhanced PCB Design',
+    description: 'Developed second-generation PCB with improved sensor integration and data collection capabilities. This iteration enhanced voltage and current monitoring, laying the groundwork for machine learning data acquisition.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'Business acumen strengthened, systems refined',
-    images: '/tieOregon.png'
+    outcome: 'Improved hardware foundation for ML training',
+    images: '/secondPrototype.png'
   },
   {
-    period: 'Winter 2025',
-    title: 'Prototype 4: In-House Manufacturing',
-    description: 'Developed in-house manufacturing capabilities, enabling production of professional-grade PCBs from Jordan\'s home lab. Fourth-generation design features Solar Sense branding, advanced component integration, and optimized sensor architecture—demonstrating our ability to manufacture commercial-quality hardware independently.',
-    icon: <Cpu className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Manufacturing capability established, commercial-quality production achieved',
-    images: '/solarSenseTech.png'
+    period: 'Spring 2024',
+    title: 'Catalyze Klamath',
+    description: 'Pitched at Catalyze Klamath Challenge using Prototype 1. Selected for the InventOR Prototyping Competition.',
+    icon: <Award className="h-5 w-5" />,
+    color: 'emerald',
+    outcome: 'Market validation and resources secured',
+    images: '/catalyzeKlamathPresentation.jpg'
   },
   {
-    period: 'Summer 2025',
-    title: 'OEN Angel Oregon',
-    description: 'Participated in the AOBIO Capital Readiness program—a transformative experience that taught us the essential vocabulary of entrepreneurship and how to avoid costly mistakes as new founders. Through mentorship, cohort discussions, and structured guidance, we clarified our problem, value proposition, and growth path.',
-    icon: <Rocket className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Capital readiness achieved, entrepreneurial foundation strengthened',
-    images: '/oen.jpg'
-  },
-  {
-    period: 'Summer 2025',
-    title: 'Software Dashboard Prototype',
-    description: 'Built first prototype of software dashboard to visualize real-time panel data and fault detection. Transformed hardware solution into a complete monitoring system for solar operators.',
+    period: 'Winter 2024',
+    title: 'Prototype 1 Built',
+    description: 'Built Prototype 1 (PCB + Arduino Nano) with basic multimeter-like readings. Determined it was insufficient for meaningful analysis.',
     icon: <Cpu className="h-5 w-5" />,
     color: 'cyan',
-    outcome: 'Complete hardware-software solution achieved',
-    images: '/dashboardPrototype.png'
+    outcome: 'First working prototype, identified limitations',
+    images: '/firstPrototype.png'
   },
   {
-    period: 'Fall 2025',
-    title: 'Janus Innovation Hub',
-    description: 'Janus Innovation Hub is a startup accelerator that empowers immigrant-led ventures through mentorship, resources, and connections to transform innovative ideas into impactful, investment-ready businesses. The Janus program aims to set Solar Sense on the right path toward becoming a sustainable enterprise, achieving its mission of making solar smart and safe.',
-    icon: <TrendingUp className="h-5 w-5" />,
-    color: 'emerald',
-    outcome: 'Positioned for commercial deployment',
-    images: '/janus.png'
+    period: 'Fall 2023',
+    title: 'Partnership & First Design',
+    description: 'Adama returned to the U.S. and partnered with Jordan Harris-Toovy. Jordan sketched the first design and began building Prototype 1.',
+    icon: <Users className="h-5 w-5" />,
+    color: 'cyan',
+    outcome: 'Team formed, hardware design initiated'
   },
   {
-    period: 'Winter 2025-2026',
-    title: 'Plug and Play 2025 Summit',
-    description: 'Selected to participate in the prestigious Plug and Play Tech Center Summit—one of the world\'s largest innovation platforms connecting startups with corporate partners. This opportunity positions Solar Sense to engage with global energy leaders, explore strategic partnerships, and scale our solar monitoring technology into enterprise markets.',
+    period: 'Summer 2023',
+    title: 'NSF Innovators Program',
+    location: 'Aalborg University, Denmark',
+    description: 'Researched solar panel degradation and fault detection. Identified the need for a hardware system to collect real-time data.',
     icon: <Rocket className="h-5 w-5" />,
-    color: 'purple',
-    outcome: 'Global network expansion and corporate partnership opportunities'
+    color: 'emerald',
+    outcome: 'Research foundation established',
+    link: {
+      url: 'https://www.notion.so/touradam/NSF-Innovator-Internship-Program-in-Denmark-44d1690c5606455f9bca0f66dd9a8cc1',
+      text: 'Read about the NSF Program experience'
+    },
+    images: '/meetingAalborg.png'
   },
 ];
 
