@@ -97,9 +97,6 @@ export default function JourneyPage() {
           </div>
         </div>
 
-        {/* Founder Story Section */}
-        <FounderStory />
-
         {/* Timeline Section */}
         <section className="mb-12 sm:mb-16">
           <div className="text-center mb-8 sm:mb-12">
@@ -112,6 +109,9 @@ export default function JourneyPage() {
           </div>
           <Timeline />
         </section>
+
+        {/* Founder Story Section */}
+        <FounderStory />
 
         {/* TODO: Add more sections later */}
         {/* 
