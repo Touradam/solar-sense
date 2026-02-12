@@ -1,341 +1,243 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import Image from 'next/image';
+import React from 'react';
 import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { ArrowRight, Sparkles } from 'lucide-react';
+import Image from 'next/image';
+import { ArrowRight, Zap, Shield, Sparkles, ChevronDown } from 'lucide-react';
 import { withBasePath } from '@/lib/utils';
+import { Timeline } from '@/components/journey/Timeline';
+import { Button } from '@/components/ui/button';
 
-interface Star {
-  x: number;
-  y: number;
-  vx: number;
-  vy: number;
-  size: number;
-}
-
-export default function RebrandingLandingPage() {
-  const [isVisible, setIsVisible] = useState(false);
-  const [stars, setStars] = useState<Star[]>([]);
-
-  useEffect(() => {
-    setIsVisible(true);
-    
-    // Initialize random stars
-    const initialStars: Star[] = Array.from({ length: 30 }, () => ({
-      x: Math.random() * 100,
-      y: Math.random() * 100,
-      vx: (Math.random() - 0.5) * 0.02,
-      vy: (Math.random() - 0.5) * 0.02,
-      size: Math.random() * 1.5 + 1.5,
-    }));
-    setStars(initialStars);
-
-    // Animate stars
-    const interval = setInterval(() => {
-      setStars(prevStars =>
-        prevStars.map(star => {
-          let newX = star.x + star.vx;
-          let newY = star.y + star.vy;
-          let newVx = star.vx;
-          let newVy = star.vy;
-
-          // Bounce off edges
-          if (newX <= 0 || newX >= 100) {
-            newVx = -star.vx;
-            newX = Math.max(0, Math.min(100, newX));
-          }
-          if (newY <= 0 || newY >= 100) {
-            newVy = -star.vy;
-            newY = Math.max(0, Math.min(100, newY));
-          }
-
-          return { ...star, x: newX, y: newY, vx: newVx, vy: newVy };
-        })
-      );
-    }, 50);
-
-    return () => clearInterval(interval);
-  }, []);
-
+export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-black relative overflow-hidden">
-      {/* Deep Space Background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-gray-950 to-black"></div>
-      
-      {/* Dynamic Constellation Field */}
-      <svg className="absolute inset-0 w-full h-full pointer-events-none" xmlns="http://www.w3.org/2000/svg">
-        {/* Draw connections when stars are close */}
-        {stars.map((star, i) =>
-          stars.slice(i + 1).map((otherStar, j) => {
-            const distance = Math.sqrt(
-              Math.pow(star.x - otherStar.x, 2) + Math.pow(star.y - otherStar.y, 2)
-            );
-            // Draw line if distance is less than 15% of screen
-            if (distance < 15) {
-              const opacity = Math.max(0, (15 - distance) / 15) * 0.5;
-              return (
-                <line
-                  key={`line-${i}-${j}`}
-                  x1={`${star.x}%`}
-                  y1={`${star.y}%`}
-                  x2={`${otherStar.x}%`}
-                  y2={`${otherStar.y}%`}
-                  stroke="#FCD34D"
-                  strokeWidth="0.5"
-                  opacity={opacity}
-                  className="transition-opacity duration-500"
-                />
-              );
-            }
-            return null;
-          })
-        )}
-        
-        {/* Draw stars */}
-        {stars.map((star, i) => (
-          <circle
-            key={`star-${i}`}
-            cx={`${star.x}%`}
-            cy={`${star.y}%`}
-            r={star.size}
-            fill={i % 3 === 0 ? '#F59E0B' : '#FCD34D'}
-            className="animate-pulse transition-all duration-500"
-            style={{
-              animationDelay: `${i * 0.1}s`,
-              animationDuration: `${2 + (i % 3)}s`
-            }}
-          />
-        ))}
-      </svg>
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 via-emerald-50/30 to-cyan-50/30 dark:from-gray-950 dark:via-emerald-950/10 dark:to-cyan-950/10">
+      {/* Header */}
+      <header className="sticky top-0 z-50 w-full border-b bg-white/80 backdrop-blur-lg dark:bg-gray-950/80 dark:border-gray-800 shadow-sm">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="flex h-14 items-center justify-between gap-2 sm:gap-4">
+            {/* Left: Logo */}
+            <Link href="/" className="flex-shrink-0 group">
+              <Image
+                src={withBasePath("/SolarSense_Logo.png")}
+                alt="Solar Sense Logo"
+                width={100}
+                height={33}
+                className="h-8 sm:h-10 w-auto transition-transform group-hover:scale-105"
+                priority
+              />
+            </Link>
 
-      {/* Nebula/Galaxy Effects */}
-      <div className="absolute top-1/4 right-1/4 w-[600px] h-[600px] bg-emerald-500/10 rounded-full blur-[120px] animate-pulse"></div>
-      <div className="absolute bottom-1/3 left-1/4 w-[500px] h-[500px] bg-cyan-500/10 rounded-full blur-[100px] animate-pulse" style={{animationDelay: '1.5s'}}></div>
-      <div className="absolute top-1/2 left-1/2 w-[400px] h-[400px] bg-yellow-500/5 rounded-full blur-[80px] animate-pulse" style={{animationDelay: '3s'}}></div>
-      
-      {/* Solar glow effect */}
-      <div className="absolute top-10 right-10 w-32 h-32 bg-yellow-500/20 rounded-full blur-2xl animate-pulse"></div>
-      <div className="absolute bottom-10 left-10 w-32 h-32 bg-amber-400/20 rounded-full blur-2xl animate-pulse" style={{animationDelay: '1s'}}></div>
+            {/* Center: Tagline */}
+            <div className="flex-1 text-center hidden md:block px-2">
+              <h1 className="text-sm md:text-base lg:text-lg font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent truncate">
+                Making Solar Smart and Safe
+              </h1>
+            </div>
 
-      <style jsx>{`
-        @keyframes twinkle {
-          0%, 100% { opacity: 0.3; }
-          50% { opacity: 1; }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0px) scale(1); }
-          50% { transform: translateY(-10px) scale(1.05); }
-        }
-        @keyframes shimmer {
-          0% { background-position: 200% center; }
-          100% { background-position: -200% center; }
-        }
-        @keyframes rotate3d {
-          0% { transform: perspective(1000px) rotateY(0deg); }
-          50% { transform: perspective(1000px) rotateY(180deg); }
-          100% { transform: perspective(1000px) rotateY(360deg); }
-        }
-        @keyframes glowPulse {
-          0%, 100% { box-shadow: 0 0 20px rgba(250, 204, 21, 0.5), 0 0 40px rgba(250, 204, 21, 0.3); }
-          50% { box-shadow: 0 0 40px rgba(250, 204, 21, 0.8), 0 0 80px rgba(250, 204, 21, 0.5); }
-        }
-      `}</style>
-
-      <div className="relative z-10 min-h-screen flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8 py-12">
-        <div className={`max-w-6xl mx-auto text-center transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-          
-          {/* New Year Badge */}
-          <div className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-sm mb-8 shadow-2xl shadow-yellow-500/50 animate-bounce">
-            <Sparkles className="w-4 h-4" />
-            New Year, New Vision — 2026
-            <Sparkles className="w-4 h-4" />
+            {/* Right: Explore Button */}
+            <div className="flex-shrink-0">
+              <Link
+                href="/home"
+                className="inline-flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 h-10 sm:h-11 rounded-lg text-xs sm:text-sm font-medium text-white bg-gradient-to-r from-emerald-600 to-cyan-600 hover:from-emerald-700 hover:to-cyan-700 shadow-md hover:shadow-lg transition-all touch-manipulation"
+              >
+                <Sparkles className="w-4 h-4" />
+                <span className="hidden sm:inline">Explore Technology</span>
+                <span className="sm:hidden">Explore</span>
+              </Link>
+            </div>
           </div>
+        </div>
+      </header>
 
-          {/* Main Headline */}
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 leading-tight">
-            Introducing Our New Identity
-          </h1>
-          
-          <div className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
-            <span className="text-cyan-400">
-              Solar Sense
-            </span>
-          </div>
-          
-          <p className="text-xl sm:text-2xl text-white/80 mb-12 max-w-3xl mx-auto">
-            From <span className="text-gray-300 font-semibold">SEPT</span> to <span className="text-cyan-400 font-bold">Solar Sense</span> — A rebranding that reflects our refined vision
-          </p>
+      {/* Hero Section */}
+      <section className="relative py-16 sm:py-20 lg:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Decorations */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 right-20 w-72 h-72 bg-emerald-400/20 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-72 h-72 bg-cyan-400/20 rounded-full blur-3xl animate-pulse" style={{animationDelay: '1s'}}></div>
+        </div>
 
-          {/* Transformation Visual */}
-          <div className="relative max-w-5xl mx-auto mb-12">
-            <div className="grid md:grid-cols-3 gap-8 items-center">
-              
-              {/* SEPT Logo */}
-              <div className={`transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-900 border border-gray-300 dark:border-gray-700 rounded-3xl p-8 hover:shadow-lg transition-all duration-300">
-                  <div className="aspect-square flex items-center justify-center mb-4 bg-white dark:bg-gray-950 rounded-2xl p-4">
-                    <Image
-                      src={withBasePath("/SEPT_logo_Transparent.png")}
-                      alt="SEPT Logo"
-                      width={150}
-                      height={150}
-                      className="object-contain opacity-70 grayscale"
-                    />
-                  </div>
-                  <p className="text-gray-700 dark:text-gray-300 font-semibold text-lg">SEPT</p>
-                  <p className="text-gray-500 dark:text-gray-500 text-sm">2023-2024</p>
-                </div>
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Column - Content */}
+            <div className="space-y-8">
+              {/* Badge */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-sm shadow-lg">
+                <Sparkles className="w-4 h-4" />
+                Research-Grade Solar Monitoring
               </div>
 
-              {/* Transformation Arrow */}
-              <div className={`transition-all duration-1000 delay-500 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <div className="flex flex-col md:flex-row items-center justify-center gap-2">
-                  {/* Left line with animation */}
-                  <div className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden">
-                    <div className="absolute inset-0 bg-yellow-400/30 blur-lg animate-ping"></div>
-                    <div 
-                      className="relative w-full h-full rounded-full"
-                      style={{
-                        background: 'linear-gradient(90deg, #9CA3AF, #FCD34D, #F59E0B, #FCD34D)',
-                        backgroundSize: '200% auto',
-                        animation: 'shimmer 3s linear infinite',
-                      }}
-                    ></div>
+              {/* Headline */}
+              <div className="space-y-4">
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white leading-tight">
+                  Making Solar Energy{' '}
+                  <span className="bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">
+                    Safer & Smarter
+                  </span>
+                </h1>
+                <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 leading-relaxed">
+                  Turn each solar panel into a live digital twin with real-time monitoring, ML-based fault detection, and rapid shutdown compliance
+                </p>
+              </div>
+
+              {/* Key Features */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-md">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
+                    <Shield className="w-5 h-5 text-white" />
                   </div>
-                  
-                  {/* Arrow pointing right (desktop) */}
-                  <div className="hidden md:block relative">
-                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
-                    <ArrowRight className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} />
+                  <div>
+                    <h3 className="font-bold text-gray-900 dark:text-white mb-1">Rapid Shutdown</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">NEC compliant safety</p>
                   </div>
-                  
-                  {/* Arrow pointing down (mobile) */}
-                  <div className="md:hidden relative">
-                    <div className="absolute inset-0 bg-yellow-400/40 rounded-full blur-xl animate-pulse"></div>
-                    <svg className="w-16 h-16 text-yellow-400 relative animate-pulse" style={{filter: 'drop-shadow(0 0 20px rgba(250, 204, 21, 0.8))'}} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M19 14l-7 7m0 0l-7-7m7 7V3" />
-                    </svg>
+                </div>
+                <div className="flex items-start gap-3 p-4 rounded-xl bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 shadow-md">
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-gradient-to-br from-emerald-500 to-cyan-500 flex items-center justify-center">
+                    <Zap className="w-5 h-5 text-white" />
                   </div>
-                  
-                  {/* Right line with animation */}
-                  <div className="hidden md:block relative w-24 h-2 rounded-full overflow-hidden">
-                    <div className="absolute inset-0 bg-yellow-400/30 blur-lg animate-ping"></div>
-                    <div 
-                      className="relative w-full h-full rounded-full"
-                      style={{
-                        background: 'linear-gradient(90deg, #FCD34D, #F59E0B, #FCD34D, #F59E0B)',
-                        backgroundSize: '200% auto',
-                        animation: 'shimmer 3s linear infinite',
-                      }}
-                    ></div>
-                  </div>
-                  
-                  {/* Rebranding Label - Simple */}
-                  <div className="absolute -bottom-16 md:-bottom-12 left-1/2 transform -translate-x-1/2 whitespace-nowrap">
-                    <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs shadow-lg">
-                      REBRANDING
-                    </div>
+                  <div>
+                    <h3 className="font-bold text-gray-900 dark:text-white mb-1">AI Fault Detection</h3>
+                    <p className="text-sm text-gray-600 dark:text-gray-400">Real-time analytics</p>
                   </div>
                 </div>
               </div>
 
-              {/* Solar Sense Logo - Clickable */}
-              <div className={`transition-all duration-1000 delay-700 ${isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-90'}`}>
-                <Link href="/home" className="block">
-                  <div className="relative group cursor-pointer transform hover:scale-105 transition-all duration-300">
-                    {/* Main box - GOLD background like button */}
-                    <div className="relative bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 rounded-3xl p-8 transition-all duration-300 shadow-2xl hover:shadow-yellow-500/50 overflow-hidden">
-                      
-                      {/* White logo container - keeps its white background */}
-                      <div className="relative aspect-square flex items-center justify-center mb-4 bg-white rounded-2xl p-4 shadow-inner">
-                        <Image
-                          src={withBasePath("/SolarSense_Logo.png")}
-                          alt="Solar Sense Logo"
-                          width={150}
-                          height={150}
-                          className="object-contain group-hover:scale-110 transition-transform duration-300"
-                        />
-                      </div>
-                      <p className="relative text-cyan-600 font-bold text-xl">
-                        Solar Sense
-                      </p>
-                      <p className="relative text-gray-900 font-bold text-sm">2025 & Beyond</p>
-                    </div>
-                    
-                    {/* NOW Badge with gold glow */}
-                    <div className="absolute -top-4 -right-4">
-                      <div className="relative">
-                        <div className="absolute inset-0 bg-gradient-to-r from-yellow-500 to-amber-500 rounded-full blur-lg opacity-75 animate-pulse group-hover:opacity-100 transition-all"></div>
-                        <div className="relative bg-gradient-to-r from-yellow-500 to-amber-500 text-gray-900 font-bold text-xs px-4 py-2 rounded-full shadow-2xl group-hover:scale-110 transition-transform">
-                          NOW
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+              {/* CTAs */}
+              <div className="flex flex-col sm:flex-row gap-4">
+                <Link href="/home" className="flex-1">
+                  <Button size="lg" className="w-full px-8 py-6 text-lg bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-gray-900 font-bold shadow-xl hover:shadow-2xl transition-all transform hover:scale-[1.02]">
+                    Explore Our Technology
+                    <ArrowRight className="ml-2 w-6 h-6" />
+                  </Button>
+                </Link>
+                <Link href="#timeline" className="flex-1">
+                  <Button size="lg" variant="outline" className="w-full px-8 py-6 text-lg font-bold border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 dark:hover:bg-emerald-950/20 transition-all">
+                    View Our Journey
+                    <ChevronDown className="ml-2 w-6 h-6" />
+                  </Button>
                 </Link>
               </div>
+
+              {/* Stats */}
+              <div className="flex items-center gap-8 pt-4">
+                <div className="text-center">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">4</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Prototypes</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">12+</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Milestones</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-cyan-600 bg-clip-text text-transparent">2026</div>
+                  <div className="text-sm text-gray-600 dark:text-gray-400">Live Pilots</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Right Column - Visual */}
+            <div className="relative">
+              {/* Product Image */}
+              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border-4 border-white dark:border-gray-800">
+                <div className="relative aspect-[4/3] bg-gradient-to-br from-emerald-100 to-cyan-100 dark:from-emerald-950/30 dark:to-cyan-950/30">
+                  <Image
+                    src={withBasePath("/pilotproject1.png")}
+                    alt="Solar Sense Pilot Project - 4-Panel Validation Array"
+                    fill
+                    className="object-cover"
+                    priority
+                  />
+                </div>
+                {/* Caption */}
+                <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
+                  <p className="text-white font-bold text-lg">Phase-1 Validation Array</p>
+                  <p className="text-gray-200 text-sm">Real-time ML-Based Fault Detection</p>
+                </div>
+              </div>
+
+              {/* Floating Badge */}
+              <div className="absolute -top-6 -right-6 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-2xl border-4 border-white dark:border-gray-950 z-20">
+                <div className="text-lg font-bold">Research-Grade Platform</div>
+              </div>
+
+              {/* Floating Elements */}
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-gradient-to-br from-emerald-400 to-cyan-400 rounded-full blur-3xl opacity-20 animate-pulse"></div>
             </div>
           </div>
+        </div>
+      </section>
 
-          {/* Message */}
-          <div className={`transition-all duration-1000 delay-900 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-            <div className="max-w-3xl mx-auto mb-12">
-              <p className="text-xl sm:text-2xl text-white/90 leading-relaxed mb-4">
-                As we step into <span className="font-bold text-emerald-400">2026</span>, we embrace a new identity that better reflects our mission:
-              </p>
-              <p className="text-2xl sm:text-3xl font-bold text-cyan-400">
-                Making Solar Energy Safer, Smarter & More Sustainable
-              </p>
+      {/* Timeline Section */}
+      <section id="timeline" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto max-w-7xl">
+          {/* Section Header */}
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-100 dark:bg-emerald-950/30 border border-emerald-200 dark:border-emerald-800 mb-6">
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
+              </span>
+              <span className="text-sm font-medium text-emerald-700 dark:text-emerald-300">Our Journey</span>
             </div>
-
-            {/* Key Points */}
-            <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
-              <div className="bg-white/5 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-emerald-400/50 transition-all duration-300">
-                <div className="text-3xl mb-3">✓</div>
-                <p className="text-emerald-400 font-semibold mb-2">Same Founders</p>
-                <p className="text-emerald-400/70 text-sm">Adama & Jordan</p>
-              </div>
-              
-              <div className="bg-white/5 backdrop-blur-sm border border-cyan-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-cyan-400/50 transition-all duration-300">
-                <div className="text-3xl mb-3">✓</div>
-                <p className="text-cyan-400 font-semibold mb-2">Same Innovation</p>
-                <p className="text-cyan-400/70 text-sm">Proven Technology</p>
-              </div>
-              
-              <div className="bg-white/5 backdrop-blur-sm border border-emerald-500/30 rounded-2xl p-6 hover:bg-white/10 hover:border-emerald-400/50 transition-all duration-300">
-                <div className="text-3xl mb-3">✓</div>
-                <p className="text-emerald-400 font-semibold mb-2">Sharper Focus</p>
-                <p className="text-emerald-400/70 text-sm">Clear Mission</p>
-              </div>
-            </div>
-
-            {/* CTA */}
-            <Link href="/home">
-              <Button 
-                size="lg" 
-                className="px-12 py-8 text-xl font-bold bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-400 hover:to-amber-400 text-gray-900 shadow-2xl hover:shadow-yellow-500/50 transition-all transform hover:scale-105 rounded-full"
-              >
-                Discover Solar Sense
-                <ArrowRight className="ml-3 w-6 h-6" />
-              </Button>
-            </Link>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 dark:text-white mb-4">
+              From Research Lab to Market
+            </h2>
+            <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
+              Follow our path from an NSF research program in Denmark to building a research-grade diagnostics platform. 
+              Through <strong>4 prototypes</strong>, <strong>4 startup programs</strong>, and <strong>3 competitions</strong>, 
+              we've discovered what the solar industry really needs.
+            </p>
           </div>
 
-          {/* Footer Note */}
-          <div className={`mt-16 transition-all duration-1000 delay-1100 ${isVisible ? 'opacity-100' : 'opacity-0'}`}>
-            <p className="text-cyan-400/60 text-sm">
-              Celebrating a New Chapter | Est. 2023 | Portland, Oregon
+          {/* Timeline Component */}
+          <Timeline />
+        </div>
+      </section>
+
+      {/* Call to Action Section */}
+      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-8 bg-gradient-to-br from-emerald-900 via-cyan-900 to-cyan-900 dark:from-emerald-950 dark:via-cyan-950 dark:to-cyan-950 relative overflow-hidden">
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '40px 40px'}}></div>
+        </div>
+
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="text-center space-y-8">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">
+              Ready to Make Solar Smarter?
+            </h2>
+            <p className="text-lg sm:text-xl text-emerald-100 max-w-2xl mx-auto">
+              Explore our complete technology platform, team, and vision for the future of solar energy
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/home">
+                <Button size="lg" className="px-10 py-6 text-lg bg-gradient-to-r from-yellow-500 to-amber-500 hover:from-yellow-600 hover:to-amber-600 text-gray-900 font-bold shadow-2xl hover:shadow-amber-500/50 transition-all transform hover:scale-105">
+                  Explore Full Technology
+                  <ArrowRight className="ml-2 w-6 h-6" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Footer */}
+      <footer className="border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-950 py-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 max-w-7xl">
+          <div className="text-center text-sm text-gray-600 dark:text-gray-400">
+            <p>© 2026 Solar Sense LLC. Building the future of solar energy protection.</p>
+            <p className="mt-2 space-x-4">
+              <Link href="/home" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                Full Technology
+              </Link>
+              <span>•</span>
+              <a href="mailto:support@solarsense.energy" className="text-emerald-600 dark:text-emerald-400 hover:underline">
+                Contact Us
+              </a>
             </p>
           </div>
         </div>
-      </div>
-
-      {/* Shooting stars - Gold */}
-      <div className="absolute top-20 right-20 w-1 h-20 bg-gradient-to-b from-yellow-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(45deg)'}}></div>
-      <div className="absolute bottom-32 left-32 w-1 h-16 bg-gradient-to-b from-amber-400 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(-30deg)', animationDelay: '1s'}}></div>
-      <div className="absolute top-1/2 right-1/3 w-1 h-12 bg-gradient-to-b from-yellow-300 to-transparent opacity-60 animate-pulse" style={{transform: 'rotate(60deg)', animationDelay: '2s'}}></div>
+      </footer>
     </div>
   );
 }
