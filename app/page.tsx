@@ -157,7 +157,7 @@ export default function LandingPage() {
 
               {/* Floating Badge */}
               <div className="absolute -top-6 -right-6 px-6 py-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 text-white shadow-2xl border-4 border-white dark:border-gray-950 z-20">
-                <div className="text-lg font-bold">Research-Grade Platform</div>
+                <div className="text-lg font-bold">Pilot Project</div>
               </div>
 
               {/* Floating Elements */}
@@ -184,7 +184,7 @@ export default function LandingPage() {
             </h2>
             <p className="text-base sm:text-lg text-gray-600 dark:text-gray-400 max-w-3xl mx-auto">
               Follow our path from an NSF research program in Denmark to building a research-grade diagnostics platform. 
-              Through <strong>4 prototypes</strong> and <strong>we participated into 7 startup program</strong>, 
+              Through <strong>4 prototypes</strong> and <strong>7 startup programs</strong>, 
               we've discovered what the solar industry really needs.
             </p>
           </div>
