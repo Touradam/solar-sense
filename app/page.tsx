@@ -150,7 +150,7 @@ export default function LandingPage() {
                 </div>
                 {/* Caption */}
                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 to-transparent p-6">
-                  <p className="text-white font-bold text-lg">Phase-1 Validation Array</p>
+                  <p className="text-white font-bold text-lg">Jordan preparing the electric cabinet for pilot project</p>
                   <p className="text-gray-200 text-sm">Real-time ML-Based Fault Detection</p>
                 </div>
               </div>
